@@ -5,3 +5,6 @@
 
 ### MFD
 ![PFD](Doc/images/mfd.png)
+
+### Mobile example
+![PFD](Doc/images/mobile_example.png)
