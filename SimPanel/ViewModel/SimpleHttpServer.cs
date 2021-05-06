@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimPanel.Utility;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -35,22 +36,23 @@ namespace SimPanel.ViewModel
                 res.StatusCode = (int)HttpStatusCode.NotFound;
                 return;
             }
+            res.ContentType = MimeTypes.Mappings[Path.GetExtension(path)]; 
 
-            if (path.EndsWith(".html"))
-            {
-                res.ContentType = "text/html";
-                res.ContentEncoding = Encoding.UTF8;
-            }
-            else if (path.EndsWith(".js"))
-            {
-                res.ContentType = "application/javascript";
-                res.ContentEncoding = Encoding.UTF8;
-            }
-            else if (path.EndsWith(".json"))
-            {
-                res.ContentType = "application/json";
-                res.ContentEncoding = Encoding.UTF8;
-            }
+            //if (path.EndsWith(".html"))
+            //{
+            //    res.ContentType = "text/html";
+            //    res.ContentEncoding = Encoding.UTF8;
+            //}
+            //else if (path.EndsWith(".js"))
+            //{
+            //    res.ContentType = "application/javascript";
+            //    res.ContentEncoding = Encoding.UTF8;
+            //}
+            //else if (path.EndsWith(".json"))
+            //{
+            //    res.ContentType = "application/json";
+            //    res.ContentEncoding = Encoding.UTF8;
+            //}
 
             res.ContentLength64 = contents.LongLength;
             res.Close(contents, true);

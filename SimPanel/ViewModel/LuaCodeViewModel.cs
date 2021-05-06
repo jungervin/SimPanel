@@ -86,6 +86,7 @@ namespace SimPanel.ViewModel
             {
                 this.Code = File.ReadAllText(filename);
                 this.CodeModified = false;
+                this.FileName = filename;
                 return true;
             }
             catch (Exception ex)
