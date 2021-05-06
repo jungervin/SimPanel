@@ -194,7 +194,7 @@ class FMS {
             try {
                 if (res.type == "variables") {
                     this.SimData = res.data;
-                    this.LeftPanel.btnBeacon.update(res.data)
+                    //this.LeftPanel.btnBeacon.update(res.data)
 
                     this.Controls.forEach(element => {
                         if (this.RequestCounter % element.lazy == 0) {

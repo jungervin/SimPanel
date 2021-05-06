@@ -268,25 +268,23 @@ SVG.LCDDisplay = class extends SVG.G {
         var opt = options || {};
         var fill = opt.fill || "red";
         var pat = opt.pat || "00000";
+        var font_size = opt.font_size || 32
         this.Rect = this.rect(w, h).stroke({ width: 5, color: "gray" });
 
-        this.Text2 = this.text(pat).font({ "font-family": "SevenSegment", fill: "#404040", size: 32, leading: '0em' });
+        this.Text2 = this.text(pat).font({ "font-family": "SevenSegment", fill: "#404040", size: font_size, leading: '0em' });
         this.Text2.attr({ "x": this.Rect.bbox().x2 - 5, "y": this.Rect.bbox().cy + 12, "dominant-baseline": "middle", "text-anchor": "end" });
 
-        this.Text = this.text(text).font({ "font-family": "SevenSegment", fill: fill, size: 32, leading: '0em' });
+        this.Text = this.text(text).font({ "font-family": "SevenSegment", fill: fill, size: font_size, leading: '0em' });
         this.Text.attr({ "x": this.Rect.bbox().x2 - 5, "y": this.Rect.bbox().cy + 12, "dominant-baseline": "middle", "text-anchor": "end" });
 
     }
 
-    update() {
-        // this.Text.move(this.Rect.bbox().x2 - this.Text.bbox().w, this.Rect.bbox().y );
-        // return this;
-    }
+   
 
     setText(text) {
         this.Text.text(text);
-        this.update();
-    } s
+   
+    } 
 }
 
 SVG.RPMGauge = class extends SVG.G {

@@ -44,28 +44,16 @@
     <script src="js/leaflet.geometryutil.js"></script>
     <script src="js/TileLayer.Grayscale.js"></script>
 
+    <script src="./js/geodesy.js"></script>
 
-
-    <script src="./js/elements/views.js"></script>
-    <script src="./js/elements/numpad.js"></script>
-    <script src="./js/elements/keyboard.js"></script>
-    <script src="./js/elements/compass.js"></script>
-    <script src="./js/elements/counter.js"></script>
-    <script src="./js/elements/attitudeindicator.js"></script>
-    <script src="./js/elements/altimeter.js"></script>
-    <script src="./js/elements/gs_indicator.js"></script>
-    <script src="./js/elements/speedindicator.js"></script>
-    <script src="./js/elements/flapscontrol.js"></script>
-    <script src="./js/elements/trimindicator.js"></script>
-    <script src="./js/elements/g1000/panel_top.js"></script>
-    <script src="./js/elements/g1000/panel_left.js"></script>
-    <script src="./js/elements/g1000/panel_right.js"></script>
-    <script src="./js/elements/g1000/panel_bottom.js"></script>
-    <script src="./js/elements/map.js"></script>
-    <script src="./js/elements/warnings.js"></script>
-    <script src="./js/elements/switchpanel.js"></script>
+    <script src="js/elements/settings.js"></script>
     <script src="./js/elements/wsclient.js"></script>
-    <script src="./js/elements/g1000/switches_lights.js"></script>
+    <script src="./js/elements/view.js"></script>
+    <script src="js/elements/svg_ext.js"></script>
+    <script src="./js/fms.js"></script>
+    <script src="js/elements/map.js"></script>
+
+    <script src="./js/mobile.js"></script>
 
 
     <style>
@@ -102,32 +90,19 @@
 
 <body style="background: gray; margin: 0px;padding:0px; border: 0;overflow: hidden;">
 
-    <svg id="panel_glass" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
-        width="384" height="683" viewBox="0 0 384 683">
-        <!-- <rect x="0" y="0" width="100%" height="100%" fill="#0a6cc0"></rect> -->
-        <rect x="0" y="0" width="100%" height="100%" fill="black"></rect>
-    </svg>
+    <div id="simpanel"></div>
 
-    <div id="map" style="position: absolute;left: 0px;top: 0px;width: 384px; height: 320px;display: block;"></div>
   
 
     <script>
-        var g1000 = document.getElementById("panel_glass");
-        var topLayer = document.getElementById("topLayer");
-        var panel = document.getElementById("panel");
-        var map = document.getElementById("panel");
-        var svg = SVG().addTo(g1000);
-        var Settings = null;
-
-        var ws_status = document.getElementById("ws_status");
-
         window.onload = function () {
             getJSON("/js/settings.json", function (e, d) {
                 if (e == null) {
                     Settings = d;
                     //var PFD = new G1000PFD(svg, d.websocket_url , 171, 0, 1024, 768, Settings.airplanes[0]);   
                     //url, query, timeout, onrec, onerr
-                    var c172 = new ControlPanelC172(768, 1366, d.websocket_url, "getvariables", 50)
+                    //var c172 = new ControlPanelC172(768, 1366, d.websocket_url, "getvariables", 50)
+                    var c172 = new C172Mobile(screen.width, screen.height)
                     
 
                 } else {
