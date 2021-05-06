@@ -1,0 +1,20 @@
+.modal {
+    background-color: black;
+    color: blueviolet;
+    font-size: large;
+    font-family: consolas;
+    z-index: 2000;
+}
+
+button {
+    background-color: black;
+    color: white;
+    font-family: consolas;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    border: white 2px solid;
+    cursor: pointer;
+    height: 32px;
+    width: 60px;
+}

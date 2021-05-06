@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <title>SIMPANEL</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script> -->
+    <meta charset=utf-8 />
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=yes' />
+
+    <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script> -->
+
+
+    <script src="js/utils.js"></script>
+    <script src="js/leaflet.rotatedMarker.js"></script>
+    <script src="js/leaflet.geometryutil.js"></script>
+    <script src="js/TileLayer.Grayscale.js"></script>
+
+
+
+    <script src="./js/instruments/views.js"></script>
+    <script src="./js/instruments/numpad.js"></script>
+    <script src="./js/instruments/keyboard.js"></script>
+    <script src="./js/instruments/compass.js"></script>
+    <script src="./js/instruments/counter.js"></script>
+    <script src="./js/instruments/attitudeindicator.js"></script>
+    <script src="./js/instruments/altimeter.js"></script>
+    <script src="./js/instruments/gs_indicator.js"></script>
+    <script src="./js/instruments/speedindicator.js"></script>
+    <script src="./js/instruments/flapscontrol.js"></script>
+    <script src="./js/instruments/trimindicator.js"></script>
+    <script src="./js/instruments/g1000/panel_top.js"></script>
+    <script src="./js/instruments/g1000/panel_left.js"></script>
+    <script src="./js/instruments/g1000/panel_right.js"></script>
+    <script src="./js/instruments/g1000/panel_bottom.js"></script>
+    <script src="./js/instruments/map.js"></script>
+    <script src="./js/instruments/warnings.js"></script>
+    <script src="./js/instruments/switchpanel.js"></script>
+    <script src="./js/instruments/wsclient.js"></script>
+    <script src="./js/instruments/g1000/switches_lights.js"></script>
+
+
+    <style>
+
+@font-face {
+      font-family: 'sevensegment';
+      src: url('/fonts/lcd7.ttf') format('woff2'),
+        url('/fonts/lcd7.ttf') format('woff'),
+        url('/fonts/lcd7.ttf') format('true type');
+
+      font-weight: normal;
+      font-style: normal;
+
+    }
+
+        svg {
+            margin: 0;
+            padding: 0;
+        }
+
+        svg text {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        svg text::selection {
+            background: none;
+        }
+    </style>
+
+</head>
+
+<body style="background: gray; margin: 0px;padding:0px; border: 0;overflow: hidden;">
+
+    <svg id="panel_glass" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="384" height="683" viewBox="0 0 384 683">
+        <!-- <rect x="0" y="0" width="100%" height="100%" fill="#0a6cc0"></rect> -->
+        <rect x="0" y="0" width="100%" height="100%" fill="black"></rect>
+    </svg>
+
+    <div id="map" style="position: absolute;left: 0px;top: 0px;width: 384px; height: 320px;display: block;"></div>
+  
+
+    <script>
+        var g1000 = document.getElementById("panel_glass");
+        var topLayer = document.getElementById("topLayer");
+        var panel = document.getElementById("panel");
+        var map = document.getElementById("panel");
+        var svg = SVG().addTo(g1000);
+        var Settings = null;
+
+        var ws_status = document.getElementById("ws_status");
+
+        window.onload = function () {
+            getJSON("/js/settings.json", function (e, d) {
+                if (e == null) {
+                    Settings = d;
+                    //var PFD = new G1000PFD(svg, d.websocket_url , 171, 0, 1024, 768, Settings.airplanes[0]);   
+                    //url, query, timeout, onrec, onerr
+                    var c172 = new ControlPanelC172(768, 1366, d.websocket_url, "getvariables", 50)
+                    
+
+                } else {
+                    alert("Could not load the settings\nReson code: " + e)
+                }
+
+            });
+        };
+
+        function init() {
+
+        }
+    </script>
+</body>
+
+</html>

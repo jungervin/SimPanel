@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <title>SIMPANEL</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script> -->
+    <meta charset=utf-8 />
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script> -->
+
+
+    <script src="js/utils.js"></script>
+    <script src="js/leaflet.rotatedMarker.js"></script>
+    <script src="js/leaflet.geometryutil.js"></script>
+    <script src="js/TileLayer.Grayscale.js"></script>
+
+
+    <script src="./js/geodesy.js"></script>
+
+    <script src="./js/instruments/views.js"></script>
+    <script src="./js/instruments/numpad.js"></script>
+    <script src="./js/instruments/keyboard.js"></script>
+    <script src="./js/instruments/compass.js"></script>
+    <script src="./js/instruments/counter.js"></script>
+    <script src="./js/instruments/attitudeindicator.js"></script>
+    <script src="./js/instruments/altimeter.js"></script>
+    <script src="./js/instruments/gs_indicator.js"></script>
+    <script src="./js/instruments/speedindicator.js"></script>
+    <script src="./js/instruments/flapscontrol.js"></script>
+    <script src="./js/instruments/trimindicator.js"></script>
+    <script src="./js/instruments/g1000/panel_top.js"></script>
+    <script src="./js/instruments/g1000/panel_left.js"></script>
+    <script src="./js/instruments/g1000/panel_right.js"></script>
+    <script src="./js/instruments/g1000/panel_bottom.js"></script>
+    <script src="./js/instruments/map.js"></script>
+    <script src="./js/instruments/warnings.js"></script>
+    <script src="./js/instruments/switchpanel.js"></script>
+    <script src="./js/instruments/flightplan.js"></script>
+    <script src="./js/instruments/g1000pfd.js"></script>
+
+
+    <style>
+        svg {
+            margin: 0;
+            padding: 0;
+        }
+
+        svg text {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        svg text::selection {
+            background: none;
+        }
+    </style>
+
+</head>
+
+<body style="background: gray; margin: 0px;padding:0px; border: 0;overflow: hidden;">
+    <svg id="panel_glass" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="1366" height="768" viewBox="0 0 1366 768">
+        <rect x="0" y="0" width="100%" height="100%" fill="#0a6cc0"></rect>
+    </svg>
+
+    <div id="map" style="width: 255px; height: 215px;overflow: hidden; position: absolute; top:473px; left: 164px; border: 3px solid black;" ></div>
+
+
+    <svg id="panel_top" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="1206" height="45" viewBox="0 0 1206 45" style="position: absolute; left: 160px; top:0">
+        <rect x="0" y="0" width="100%" height="100%" fill="black"></rect>
+    </svg>
+
+    <!-- width="1046" height="70" viewBox="0 0 1046 70" style="position: absolute; left: 160px; top:698px"> -->
+    <svg id="panel_bottom" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+
+    width="1206" height="70" viewBox="0 0 1206 70" style="position: absolute; left: 160px; top:698px">
+    <rect x="0" y="0" width="100%" height="100%" fill="black"></rect>
+    </svg>
+
+    <svg id="panel_left" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="160" height="768" viewBox="0 0 160 768" style="position: absolute; left: 0; top:0">
+        <rect x="0" y="0" width="100%" height="100%" fill="black"></rect>
+        <g></g>
+    </svg>
+
+    <svg id="panel_right" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="160" height="768" viewBox="0 0 160 768" style="position: absolute; left: 1206; top:0; display: block;">
+        <rect x="0" y="0" width="100%" height="100%" fill="black"></rect>
+    </svg>
+
+
+    <svg id="ws_status" id="g1000" xmlns="http://www.w3.org/2000/svg" version="1.1"
+        xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 32 32"
+        style="position: absolute; top:40px; left: 165px; ">
+
+        <path fill="red"
+            d="M21,16V14L13,9V3.5A1.5,1.5 0 0,0 11.5,2A1.5,1.5 0 0,0 10,3.5V9L2,14V16L10,13.5V19L8,20.5V22L11.5,21L15,22V20.5L13,19V13.5L21,16Z"
+            transform='rotate(45, 10,10)'>
+            <animate attributeType="XML" attributeName="fill" values="#f00;#ff0;" dur="0.8s" repeatCount="indefinite" />
+        </path>
+    </svg>
+
+    <div id="switchpaneldiv"
+        style="position:absolute; top:538px; left:160px;width:1046px;height:160px;display: block;z-index: 1000;background-color: #0a6cc0;">
+        <svg id="switchpanelsvg" xmlns="http://www.w3.org/2000/svg" version="1.1"
+            xmlns:xlink="http://www.w3.org/1999/xlink" width="1046" height="160" viewBox="0 0 1046 160">
+
+
+        </svg>
+    </div>
+
+    
+    <div id="panel" style="position:absolute; top:0px; left: 0px;width: 1366px;height:768px;display: none;z-index: 1000; background-color: #000000B0;">
+        <!-- <svg id="topLayer" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+            style="position:absolute; top:0px; left: 0px;display: none;z-index: 100;" width=" 1366" height="768"
+            viewBox="0 0 1366 768">
+            <rect x="0" y="0" width="1366px" height="768px" fill="red"></rect>
+
+        </svg> -->
+    </div> 
+
+
+
+    
+    <script>
+        var g1000 = document.getElementById("panel_glass");
+        var topLayer = document.getElementById("topLayer");
+        var panel = document.getElementById("panel");
+        var map = document.getElementById("panel");
+        var svg = SVG().addTo(g1000);
+        var Settings = null;
+
+        var ws_status = document.getElementById("ws_status");
+
+        window.onload = function () {
+            getJSON("/js/settings.json", function (e, d) {
+                if (e == null) {
+                    Settings = d;
+                    var PFD = new G1000PFD(svg, d.websocket_url , 171, 0, 1024, 768, Settings.airplanes[0]);   
+                    PFD.connect();                
+
+                } else  {
+                    alert("Could not load the settings\nReson code: " + e)
+                }
+
+            });
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <title>SIMPANEL</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script> -->
+    <meta charset=utf-8 />
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script> -->
+
+
+    <script src="js/utils.js"></script>
+    <script src="js/leaflet.rotatedMarker.js"></script>
+    <script src="js/leaflet.geometryutil.js"></script>
+    <script src="js/TileLayer.Grayscale.js"></script>
+
+
+
+    <!-- <script src="./js/instruments/views.js"></script>
+    <script src="./js/instruments/numpad.js"></script>
+    <script src="./js/instruments/keyboard.js"></script>
+    <script src="./js/instruments/compass.js"></script>
+    <script src="./js/instruments/counter.js"></script>
+    <script src="./js/instruments/attitudeindicator.js"></script>
+    <script src="./js/instruments/altimeter.js"></script>
+    <script src="./js/instruments/gs_indicator.js"></script>
+    <script src="./js/instruments/speedindicator.js"></script>
+    <script src="./js/instruments/flapscontrol.js"></script>
+    <script src="./js/instruments/trimindicator.js"></script>
+    <script src="./js/instruments/g1000/panel_top.js"></script>
+    <script src="./js/instruments/g1000/panel_left.js"></script>
+    <script src="./js/instruments/g1000/panel_right.js"></script>
+    <script src="./js/instruments/g1000/panel_bottom.js"></script>
+    <script src="./js/instruments/map.js"></script>
+    <script src="./js/instruments/warnings.js"></script>
+    <script src="./js/instruments/switchpanel.js"></script>
+    <script src="./js/instruments/g1000pfd.js"></script> -->
+    <script src="./js/elements/view.js"></script>
+    <script src="./js/elements/altimeter.js"></script>
+
+    <style>
+        svg {
+            margin: 0;
+            padding: 0;
+        }
+
+        svg text {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        svg text::selection {
+            background: none;
+        }
+    </style>
+
+</head>
+
+<body style="background: gray; margin: 0px;padding:0px; border: 0;overflow: hidden;">
+
+    <div id="simpanel">
+
+
+
+    </div>
+
+
+
+    <script>
+
+        var t1 = new Date();
+        var altimeter = new Altimeter("simpanel",900, 100, 320, 600, -16, 500);
+        var altimeter2 = new Altimeter("simpanel",300, 100, 120, 300, 0, 30);
+
+        var svg = SVG().addTo("#simpanel").size(1366, 768);
+        svg.scale(1);
+
+
+        var button = svg.button(60, 30, "AP", null, null).fill("black").move(100, 100);
+        button.move(500, 300);
+
+        var button2 = svg.indicator_button(60, 30, "AP", null, null).fill("black").move(100, 100);
+        button2.move(580, 300);
+        button2.set(1);
+
+        var button3 = svg.indicator_button(60, 30, "AP", null, null).fill("black").move(100, 100);
+        button3.move(660, 300);
+        button3.set(1).scale(1.2);
+
+        var d = 300;
+        var compass = svg.compass(d).fill("black");
+        compass.move(500, 400);
+
+        var compass_bug = svg.compass_bug(d).fill("black");
+        compass_bug.move(500, 400);
+
+        //compass.add(compass_bug);
+        var compass_needle = svg.compass_needle(d).fill("black");
+        compass_needle.move(500, 400).fill("magenta");
+        //compass.add(compass_needle)
+        // window.onload = function () {
+        //     getJSON("/js/settings.json", function (e, d) {
+        //         if (e == null) {
+        //             Settings = d;
+        //             var PFD = new G1000PFD(svg, d.websocket_url , 171, 0, 1024, 768, Settings.airplanes[0]);   
+        //             PFD.connect();                
+
+        //         } else  {
+        //             alert("Could not load the settings\nReson code: " + e)
+        //         }
+
+        //     });
+        // };
+        //compass_needle.dist2(compass_needle.prevDist + 20);
+
+
+        //compass.rotate2(30);
+        var a = [20, 40, 120, 140, 180, 200];
+
+        //var a = [20, 340];
+        var i = 0;
+        //compass_bug.rotate2(90);
+        var d = 90;
+
+        //console.log(document.getElementsByTagName('body')[0].innerHTML) ;
+
+        function rot() {
+            //compass.rotate2(a[i]);
+            //compass_bug.rotate2(a[i]);
+            var d = a[i];
+
+            var n = Math.random() * 2;
+
+            compass_needle.dist(1.5 - Math.random() * 3);
+             compass_bug.rotate2(Math.random() * 300);
+            compass_needle.rotate2(Math.random() * 300);
+            compass.rotate2(Math.random() * 300);
+            altimeter.setAlt(3000 + Math.random() * 200);
+
+            // altimeter2.setAlt(21000 + Math.random() * 200);
+
+
+            i++;
+            if (i >= a.length)
+                i = 0;
+            setTimeout(rot, 1000);
+        }
+
+        altimeter.setAlt(30000);
+
+        //rot();
+        // setInterval(function() {
+        //     // var n  =Math.random();
+        //     bug.rotate2(a[i]);
+        //     i++;
+        //     if(i > a.length) {
+        //         i = 0;
+        //     }
+        //     // //compass.rotate2(360 * n);
+
+        //    //compass_bug.rotate2(Math.random() * 359);
+        //  //compass_bug.rotate2( 0 - Math.random() * 30);
+        //     // compass_needle.dist2(n);
+
+        // }, 2000);
+        var t2 = new Date();
+        console.log(t2 -t1 + "ms");
+    </script>
+</body>
+
+</html>

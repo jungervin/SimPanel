@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>SIMPANEL - C172 PFD</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script> -->
+    <meta charset=utf-8 />
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1.5,user-scalable=no' />
+
+    <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
+
+    <script src="js/utils.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+
+        <link rel="stylesheet" href="styles/style.css">
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+       
+
+
+
+    <script src="js/leaflet.rotatedMarker.js"></script>
+    <script src="js/leaflet.geometryutil.js"></script>
+    <script src="js/TileLayer.Grayscale.js"></script>
+
+    <script src="./js/geodesy.js"></script>
+
+    <script src="js/elements/settings.js"></script>
+    <script src="js/elements/wsclient.js"></script>
+    <script src="js/elements/view.js"></script>
+    <script src="js/elements/helpers.js"></script>
+    <script src="js/elements/attitudeindicator.js"></script>
+    <script src="js/elements/verticalspeed.js"></script>
+    <script src="js/elements/gs_indicator.js"></script>
+    <script src="js/elements/altimeter.js"></script>
+    <script src="js/elements/speedindicator.js"></script>
+    <script src="js/elements/compass.js"></script>
+    <script src="js/elements/svg_ext.js"></script>
+    <script src="js/elements/g1000/pfd_panel_left.js"></script>
+    <script src="js/elements/g1000/mfd_panel_right.js"></script>
+    <script src="js/elements/g1000/panel_top.js"></script>
+    <script src="js/elements/g1000/pfd_panel_bottom.js"></script>
+    <script src="js/elements/g1000/switchpanel.js"></script>
+    <script src="js/elements/map.js"></script>
+    <script src="js/elements/numpad.js"></script>
+    <script src="js/elements/flightplan.js"></script>
+    <script src="js/fms.js"></script>
+    <script src="js/elements/g1000/mfd_c172.js"></script>
+
+    <style>
+        svg {
+            margin: 0;
+            padding: 0;
+        }
+
+        svg text {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        svg text::selection {
+            background: none;
+        }
+
+        body {
+            transform: scale(1, 1);
+            transform-origin: 0 0;
+
+        }
+
+    </style>
+</head>
+
+<body style="background: rgb(78, 90, 255); margin: 0px;padding:0px; border: 0;overflow: hidden;">
+    <div id="simpanel"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let airplane = new C172(1366, 768);
+        });
+
+        
+
+    </script>
+
+    <template id="runways">
+        <div style="padding: 10px; margin: 0;">
+        <h2 style="margin: 0;">AIRPORT INFO</h2>
+        <table id="runwaytable" style="margin: 15px;">
+            <!-- <thead>
+              <tr>
+                <td>UPC_Code</td>
+                <td>Product_Name</td>
+              </tr>
+            </thead> -->
+            <tbody>
+              <!-- existing data could optionally be included here -->
+            </tbody>
+          </table>
+          <button type="button" id="btnRunwaysClose">CLOSE</button>
+        </div>
+    </template>
+
+    <template id="runwayrow">
+        <tr>
+          <td style="color: white;"></td>
+          <td style="color: magenta;"></td>
+        </tr>
+      </template>
+</body>
+
+</html>

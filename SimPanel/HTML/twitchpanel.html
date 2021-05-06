@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <style>
+
+        .tabs {
+            display: inline-flex;
+            display: -webkit-inline-flex;
+            align-items: center;
+            -webkit-align-items: flex-center;
+            height: 100%;
+            padding-left: 10px;
+            padding-right: 20px;
+        }
+
+            .primary-stroke {
+                stroke: white;
+            }
+
+            .primary-fill {
+                fill: white;
+            }
+
+            .primary-color {
+                color: white;
+            }
+
+            .secondary-stroke {
+                stroke: cornflowerblue;
+            }
+
+            .secondary-fill {
+                fill: cornflowerblue;
+            }
+
+            .secondary-color {
+                color: cornflowerblue;
+            }
+
+
+            .tabs svg {
+                margin-right: 10px;
+                width: 42px;
+                height: 42px;
+            }
+
+        .two-digit {
+            min-width: 2ch;
+        }
+
+        .three-digit {
+            min-width: 3ch;
+        }
+
+        .four-digit {
+            min-width: 4ch;
+        }
+
+        .five-digit {
+            min-width: 5ch;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        table {
+            border-spacing: 0px;
+        }
+
+        body {
+            background-color: transparent;
+            font-family: 'Trebuchet MS';
+            font-size: 14px;
+            overflow: hidden;
+            margin-top: 0;
+        }
+    </style>
+
+
+</head>
+<body>
+
+
+    <div id="speed" class="tabs">
+        <svg class="icon" viewBox="0 0 24 24">
+            <path class="primary-fill" d="M12 16C13.66 16 15 14.66 15 13C15 11.88 14.39 10.9 13.5 10.39L3.79 4.77L9.32 14.35C9.82 15.33 10.83 16 12 16M12 3C10.19 3 8.5 3.5 7.03 4.32L9.13 5.53C10 5.19 11 5 12 5C16.42 5 20 8.58 20 13C20 15.21 19.11 17.21 17.66 18.65H17.65C17.26 19.04 17.26 19.67 17.65 20.06C18.04 20.45 18.68 20.45 19.07 20.07C20.88 18.26 22 15.76 22 13C22 7.5 17.5 3 12 3M2 13C2 15.76 3.12 18.26 4.93 20.07C5.32 20.45 5.95 20.45 6.34 20.06C6.73 19.67 6.73 19.04 6.34 18.65C4.89 17.2 4 15.21 4 13C4 12 4.19 11 4.54 10.1L3.33 8C2.5 9.5 2 11.18 2 13Z" />
+        </svg>
+
+        <table>
+            <tr id="tas-row">
+                <td class="secondary-font secondary-color">TAS:&nbsp;</td>
+                <td id="tas" class="primary-font primary-color three-digit right">0</td>
+                <td class="primary-font primary-color">kt</td>
+            </tr>
+            <tr id="gs-row">
+                <td class="secondary-font secondary-color">GS:&nbsp;</td>
+                <td id="gs" class="primary-font primary-color three-digit right">0</td>
+                <td class="primary-font primary-color">kt</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div id="altitude" class="tabs">
+        <svg class="icon" viewBox="0 0 80 100">
+            <line x1="0" x2="80" y1="70" y2="70" stroke-width="5" class="primary-stroke" />
+            <g transform="translate(0,-58) rotate(0,40,89)" id="airplane">
+                <path d="M10,94 H65 C73,94 73,84 65,84 H50 L30,64 L25,66 L35,84 H15 L12,79 H5" class="primary-fill" />
+                <g id="airplane-gear">
+                    <circle cx="45" cy="97.5" r="2.5" class="primary-fill" />
+                    <circle cx="39" cy="97.5" r="2.5" class="primary-fill" />
+                </g>
+            </g>
+        </svg>
+        <table>
+            <tr id="alt-row">
+                <td class="secondary-font secondary-color">ALT:&nbsp;</td>
+                <td id="alt" class="primary-font primary-color five-digit right">0</td>
+                <td id="alt_unit" class="primary-font primary-color">ft</td>
+            </tr>
+            <tr id="vs-row">
+                <td class="secondary-font secondary-color">VS:&nbsp;</td>
+                <td id="vs" class="primary-font primary-color five-digit right">0</td>
+                <td class="primary-font primary-color">ft/min</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="heading" class="tabs">
+        <svg class="icon" viewBox="0 0 24 24">
+            <path class="primary-fill" d="M7,17L10.2,10.2L17,7L13.8,13.8L7,17M12,11.1A0.9,0.9 0 0,0 11.1,12A0.9,0.9 0 0,0 12,12.9A0.9,0.9 0 0,0 12.9,12A0.9,0.9 0 0,0 12,11.1M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />
+        </svg>
+
+        <table>
+            <tr id="hdg-row">
+                <td class="secondary-font secondary-color">HDG:&nbsp;</td>
+                <td id="hdg" class="primary-font primary-color three-digit right">0</td>
+                <td class="primary-font primary-color">&#176;</td>
+            </tr>
+            <tr id="trk-row">
+                <td class="secondary-font secondary-color">TRK:&nbsp;</td>
+                <td id="trk" class="primary-font primary-color three-digit right">0</td>
+                <td class="primary-font primary-color">&#176;</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div id="wind" class="tabs">
+        <svg class="icon" viewBox="0 0 24 24">
+            <path class="primary-fill" d="M7 5V13L22 11V7L7 5M10 6.91L13 7.31V10.69L10 11.09V6.91M16 7.71L19 8.11V9.89L16 10.29V7.71M5 10V11H6V12H5V21H3V4C3 3.45 3.45 3 4 3S5 3.45 5 4V6H6V7H5V10Z" />
+        </svg>
+
+        <table>
+            <tr id="dir-row">
+                <td class="secondary-font secondary-color">DIR:&nbsp;</td>
+                <td id="wdir" class="primary-font primary-color three-digit right">0</td>
+                <td class="primary-font primary-color">&#176;</td>
+            </tr>
+            <tr id="mag-row">
+                <td class="secondary-font secondary-color">MAG:&nbsp;</td>
+                <td id="ws" class="primary-font primary-color three-digit right">0</td>
+                <td class="primary-font primary-color">kt</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div id="temperature" class="tabs">
+        <svg class="icon" viewBox="0 0 24 24">
+            <path class="primary-fill" d="M17 3H21V5H17V3M17 7H21V9H17V7M17 11H21V13H17.75L17 12.1V11M21 15V17H19C19 16.31 18.9 15.63 18.71 15H21M7 3V5H3V3H7M7 7V9H3V7H7M7 11V12.1L6.25 13H3V11H7M3 15H5.29C5.1 15.63 5 16.31 5 17H3V15M15 13V5C15 3.34 13.66 2 12 2S9 3.34 9 5V13C6.79 14.66 6.34 17.79 8 20S12.79 22.66 15 21 17.66 16.21 16 14C15.72 13.62 15.38 13.28 15 13M12 4C12.55 4 13 4.45 13 5V8H11V5C11 4.45 11.45 4 12 4Z" />
+        </svg>
+        <table>
+            <tr id="oat-row">
+                <td class="secondary-font secondary-color">OAT:&nbsp;</td>
+                <td id="oat" class="primary-font primary-color three-digit right">0</td>
+                <td class="primary-font primary-color">&#176;C</td>
+            </tr>
+            <tr id="tat-row">
+                <td class="secondary-font secondary-color">TAT:&nbsp;</td>
+                <td id="tat" class="primary-font primary-color three-digit right">0</td>
+                <td class="primary-font primary-color">&#176;C</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div id="flightplan" class="tabs">
+        <svg class="icon" viewBox="0 0 24 24">
+            <path class="primary-fill" d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z" />
+        </svg>
+        <table>
+            <tr id="oat-row">
+                <td class="secondary-font secondary-color">ETE:&nbsp;</td>
+                <td id="ete" class="primary-font primary-color three-digit right">0:00:00</td>
+                <td class="primary-font primary-color"></td>
+            </tr>
+            <tr id="tat-row">
+                <td class="secondary-font secondary-color">ETA:&nbsp;</td>
+                <td id="eta" class="primary-font primary-color three-digit right">0:00:00</td>
+                <td class="primary-font primary-color"></td>
+            </tr>
+        </table>
+    </div>
+
+
+
+
+
+
+
+    <script>
+
+
+        function pad(n) {
+            if (n < 10)
+                return '0' + n;
+            return n;
+            //z = z || '0';
+            //n = n + '';
+            //return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+        }
+
+        function secondsToTime(secs) {
+            secs = Math.round(secs);
+            var hours = Math.floor(secs / (60 * 60));
+
+            var divisor_for_minutes = secs % (60 * 60);
+            var minutes = Math.floor(divisor_for_minutes / 60);
+
+            var divisor_for_seconds = divisor_for_minutes % 60;
+            var seconds = Math.ceil(divisor_for_seconds);
+
+            var obj = {
+                "h": hours,
+                "m": minutes,
+                "s": seconds
+            };
+            return obj;
+        }
+
+        function connect() {
+            ws = new WebSocket("ws://127.0.0.1:5000/sim");
+            ws.onopen = function () {
+                // ws.send("getpos");
+
+            };
+
+            ws.onmessage = function (e) {
+                console.log('Message:', e.data);
+                if (e.data) {
+                    try {
+                        var res = JSON.parse(e.data);
+
+                        //document.getElementById("hdg").innerHTML = res.hdg;
+                        document.getElementById("tas").innerHTML = res.data.AIRSPEED_TRUE.toFixed(0);
+                        document.getElementById("gs").innerHTML = res.data.GPS_GROUND_SPEED.toFixed(0);
+                        document.getElementById("alt").innerHTML = res.data.INDICATED_ALTITUDE.toFixed(0);
+                        document.getElementById("vs").innerHTML = res.data.VERTICAL_SPEED.toFixed(0);
+                        document.getElementById("hdg").innerHTML = res.data.PLANE_HEADING_DEGREES_MAGNETIC.toFixed(0);
+                        document.getElementById("trk").innerHTML = res.data.GPS_GROUND_MAGNETIC_TRACK.toFixed(0);
+                        document.getElementById("wdir").innerHTML = res.data.AMBIENT_WIND_DIRECTION.toFixed(0);
+                        document.getElementById("ws").innerHTML = res.data.AMBIENT_WIND_VELOCITY.toFixed(0);
+
+                        document.getElementById("oat").innerHTML = res.data.AMBIENT_TEMPERATURE.toFixed(0);
+                        document.getElementById("tat").innerHTML = res.data.STANDARD_ATM_TEMPERATURE.toFixed(0);
+
+
+                        var ete = secondsToTime(res.data.GPS_ETE);
+                        document.getElementById("ete").innerHTML = ete.h + ":" + pad(ete.m) + ":" + pad(ete.s);
+
+                        var eta = secondsToTime(res.data.GPS_ETA);
+                        document.getElementById("eta").innerHTML = eta.h + ":" + pad(eta.m) + ":" + pad(eta.s);
+
+                        
+
+                    }
+                    catch
+                    {
+                        console.log('Hiba:', e.data);
+                    }
+
+
+
+                }
+
+
+            };
+
+            ws.onclose = function (e) {
+                console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
+                setTimeout(function () {
+                    ws = null;
+                    connect();
+                }, 1000);
+            };
+
+            ws.onerror = function (err) {
+                console.error('Socket encountered error: ', err.message, 'Closing socket');
+                ws = null;
+                ws.close();
+            };
+        }
+
+        connect();
+
+        setInterval(function () {
+            if (ws != null) {
+                ws.send("getvariables");
+            }
+        }, 1000);
+
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="proba.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="411.49562"
+     inkscape:cy="731.89239"
+     inkscape:document-units="mm"
+     inkscape:current-layer="webslicer-layer"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="1. réteg"
+     inkscape:groupmode="layer"
+     id="layer1" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Web Slicer"
+     id="webslicer-layer">
+    <circle
+       style="opacity;fill:#4d4d4d;fill-opacity;fill-rule:nonzero;stroke:#000000;stroke-width:0.95599997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity"
+       id="path1390"
+       cx="122.81035"
+       cy="85.723442"
+       r="59.734737"
+       inkscape:export-filename="C:\Users\junge\source\repos\MVVMHelper\ExAdy\Images\flightdirector.png"
+       inkscape:export-xdpi="126"
+       inkscape:export-ydpi="126" />
+    <g
+       id="g1401"
+       transform="translate(101.29515,-2.4054258)"
+       inkscape:export-filename="C:\Users\junge\source\repos\MVVMHelper\ExAdy\Images\g1401.png"
+       inkscape:export-xdpi="126"
+       inkscape:export-ydpi="126">
+      <rect
+         y="38.015827"
+         x="19.243404"
+         height="69.222809"
+         width="2.9399648"
+         id="rect1392"
+         style="opacity;fill:#333333;fill-opacity;fill-rule:nonzero;stroke:#000000;stroke-width:0.95599997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity" />
+      <rect
+         style="opacity;fill:#f2f2f2;fill-opacity;fill-rule:nonzero;stroke:#000000;stroke-width:0.95600003;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity"
+         id="rect1394"
+         width="2.9399648"
+         height="45.97036"
+         x="19.243404"
+         y="38.015827" />
+      <circle
+         style="opacity;fill:#4d4d4d;fill-opacity;fill-rule:nonzero;stroke:#000000;stroke-width:0.95600003;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity"
+         id="circle1396"
+         cx="20.713387"
+         cy="93.474251"
+         r="4.9444842" />
+    </g>
+  </g>
+</svg>

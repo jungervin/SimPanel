@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>SIMPANEL - INDEX</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+        <script src="js/utils.js"></script>
+
+</head>
+
+<body>
+    <div class="jumbotron text-center">
+        <h1>SIMPANEL</h1>
+        <p>Version: <b><span id="version">???</b></span></p>
+        <p>Date: <b><span id="date">???</b></span></p>
+        <p>WebSocket Connection: <b><span id="websocket_url">???</span></b></p>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3>Available panels</h3>
+                <li><a href="/c172pfd.html">G1000 PFD</a></li>
+                <li><a href="/c172mfd.html">G1000 MFD</a></li>
+            </div>
+            <div class="col-sm-4">
+                <h3>MSFS 2020 Links</h3>
+                <li><a href="https://flightsim.to">Flightsim.to</a></li>
+                <li><a href="https://www.flightsimulator.com">FlightSimulator</a></li>
+                <li><a href="https://www.fsdeveloper.com/forum">FSDeveloper.com</a></li>
+                <li><a href="https://github.com/pimarc/pms50-gns530">GNS530 MOD</a></li>
+                <li><a href="https://albar965.github.io/littlenavmap.html">Little Navmap</a></li>
+                <li><a href="https://skyvector.com">SkyVector</a></li>
+                <li><a href="https://github.com/Working-Title-MSFS-Mods/fspackages">Working Title MSFS Mods</a></li>
+                
+            </div>
+            <div class="col-sm-4">
+                <h3>Dev Links</h3>
+                <li><a href="https://svgjs.com">SVG.js</a></li>
+                <li><a href=""></a></li>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            getJSON("/js/settings.json", function (e, d) {
+                if (e == null) {
+                    document.getElementById("version").innerHTML = d.version;
+                    document.getElementById("date").innerHTML = d.date;
+                    document.getElementById("websocket_url").innerHTML = d.websocket_url;
+                   
+
+                } else  {
+                    alert("Could not load the settings\nReson code: " + e)
+                }
+
+            });
+        };
+    </script>
+</body>
+
+</html>
