@@ -276,22 +276,18 @@ namespace SimPanel.ViewModel
             {
                 bool bFSXcompatible = false;
 
-                //this.SimConnect = new SimConnect("Simconnect - Simvar test", this.FHWnd, WM_USER_SIMCONNECT, null, bFSXcompatible ? (uint)1 : 0);
-                //this.SimConnect = new SimConnect("BridgeGaugeClient", this.FHWnd, WM_USER_SIMCONNECT, null, bFSXcompatible ? (uint)1 : 0);
-                //this.SimConnect = new SimConnect("BridgeGaugeClient", this.FHWnd, WM_USER_SIMCONNECT, null, 6);
                 this.SimConnect = new SimConnect("SimPanel", this.FHWnd, WM_USER_SIMCONNECT, null, 0);
-                this.SimConnect.OnRecvOpen += SimConnect_OnRecvOpen; //     new SimConnect.RecvOpenEventHandler(SimConnect_OnRecvOpen);
-                this.SimConnect.OnRecvQuit += SimConnect_OnRecvQuit; // new SimConnect.RecvQuitEventHandler(SimConnect_OnRecvQuit);
+                this.SimConnect.OnRecvOpen += SimConnect_OnRecvOpen;
+                this.SimConnect.OnRecvQuit += SimConnect_OnRecvQuit;
                 this.SimConnect.OnRecvException += SimConnect_OnRecvException;
 
                 this.SimConnect.OnRecvSimobjectData += new SimConnect.RecvSimobjectDataEventHandler(SimConnect_OnRecvSimobjectData);
                 this.SimConnect.OnRecvSimobjectDataBytype += new SimConnect.RecvSimobjectDataBytypeEventHandler(SimConnect_OnRecvSimobjectDataBytype);
 
 
-                //https://forums.flightsimulator.com/t/demo-lvar-write-access-for-any-aircraft-control/353443
-                this.SimConnect.OnRecvClientData += new SimConnect.RecvClientDataEventHandler(SimConnect_OnRecvClientData);
-                //RecvEventFilenameEventHandler(SimConnect sender, SIMCONNECT_RECV_EVENT_FILENAME data);
-                this.SimConnect.OnRecvEventFilename += SimConnect_OnRecvEventFilename;
+                ////https://forums.flightsimulator.com/t/demo-lvar-write-access-for-any-aircraft-control/353443
+                //this.SimConnect.OnRecvClientData += new SimConnect.RecvClientDataEventHandler(SimConnect_OnRecvClientData);
+                //this.SimConnect.OnRecvEventFilename += SimConnect_OnRecvEventFilename;
 
 
                 //SimConnect.MapClientDataNameToID("BRIDGE_WriteToSim", ClientData.WriteToSim);
@@ -323,19 +319,19 @@ namespace SimPanel.ViewModel
 
 
                 //this.SimConnect.OnRecvCloudState += SimConnect_OnRecvCloudState1;
-                this.SimConnect.SubscribeToFacilities(SIMCONNECT_FACILITY_LIST_TYPE.AIRPORT, REQUESTS.SUBSCRIBE_REQ);
-                this.SimConnect.SubscribeToFacilities(SIMCONNECT_FACILITY_LIST_TYPE.WAYPOINT, REQUESTS.SUBSCRIBE_REQ);
-                this.SimConnect.SubscribeToFacilities(SIMCONNECT_FACILITY_LIST_TYPE.NDB, REQUESTS.SUBSCRIBE_REQ);
-                this.SimConnect.SubscribeToFacilities(SIMCONNECT_FACILITY_LIST_TYPE.VOR, REQUESTS.SUBSCRIBE_REQ);
-                this.SimConnect.SubscribeToFacilities(SIMCONNECT_FACILITY_LIST_TYPE.COUNT, REQUESTS.SUBSCRIBE_REQ);
+                //this.SimConnect.SubscribeToFacilities(SIMCONNECT_FACILITY_LIST_TYPE.AIRPORT, REQUESTS.SUBSCRIBE_REQ);
+                //this.SimConnect.SubscribeToFacilities(SIMCONNECT_FACILITY_LIST_TYPE.WAYPOINT, REQUESTS.SUBSCRIBE_REQ);
+                //this.SimConnect.SubscribeToFacilities(SIMCONNECT_FACILITY_LIST_TYPE.NDB, REQUESTS.SUBSCRIBE_REQ);
+                //this.SimConnect.SubscribeToFacilities(SIMCONNECT_FACILITY_LIST_TYPE.VOR, REQUESTS.SUBSCRIBE_REQ);
+                //this.SimConnect.SubscribeToFacilities(SIMCONNECT_FACILITY_LIST_TYPE.COUNT, REQUESTS.SUBSCRIBE_REQ);
 
 
-                this.SimConnect.OnRecvAirportList += SimConnect_OnRecvAirportList;
-                this.SimConnect.OnRecvVorList += SimConnect_OnRecvVorList;
-                this.SimConnect.OnRecvNdbList += SimConnect_OnRecvNdbList;
-                this.SimConnect.OnRecvWaypointList += SimConnect_OnRecvWaypointList;
-                this.SimConnect.OnRecvWeatherObservation += SimConnect_OnRecvWeatherObservation;
-                this.SimConnect.OnRecvCloudState += SimConnect_OnRecvCloudState;
+                //this.SimConnect.OnRecvAirportList += SimConnect_OnRecvAirportList;
+                //this.SimConnect.OnRecvVorList += SimConnect_OnRecvVorList;
+                //this.SimConnect.OnRecvNdbList += SimConnect_OnRecvNdbList;
+                //this.SimConnect.OnRecvWaypointList += SimConnect_OnRecvWaypointList;
+                //this.SimConnect.OnRecvWeatherObservation += SimConnect_OnRecvWeatherObservation;
+                //this.SimConnect.OnRecvCloudState += SimConnect_OnRecvCloudState;
 
 
             }
@@ -388,41 +384,16 @@ namespace SimPanel.ViewModel
             Console.WriteLine("AIRPORTS");
         }
 
-
-        //C:\Users\junge\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalState\LHBP_LHDC.FLT
-        //flights\other\MainMenu.FLT
-        //C:\Users\junge\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalState\MISSIONS\Custom\CustomFlight\CustomFlight.FLT
-
-
         private void SimConnect_OnRecvEventFilename(SimConnect sender, SIMCONNECT_RECV_EVENT_FILENAME data)
         {
             if (data.uEventID == (int)SYSEVENTS.FileLoaded && Globals.MainWindow.FlightPlanViewModel != null)
             {
                 Globals.MainWindow.FlightPlanViewModel.LoadFromFile(data.szFileName);
             }
-
         }
 
         private void SimConnect_OnRecvClientData(SimConnect sender, SIMCONNECT_RECV_CLIENT_DATA data)
         {
-            //ReadFromSim vdata = (ReadFromSim)(data.dwData[0]);
-
-            //for (int i = 0; i < vdata.valueCount; i++)
-            //{
-            //    SimVar sv = this.VarList.Where(k => k.ClientRequestID == i).FirstOrDefault();
-            //    if (sv != null)
-            //    {
-            //        //sv.Value = 180.0 / Math.PI * vdata.data[i];
-            //        sv.Value = vdata.data[i];
-            //    }
-            //}
-            ////for (var i = 0; i < 10; i++)
-            //{
-            //    Console.WriteLine($"BANK: {vdata.valueCount}, DATA: {vdata.data[1]}");
-            //    Console.WriteLine($"PITCH: {vdata.valueCount}, DATA: {vdata.data[2]}");
-            //    Console.WriteLine($"GPS: {vdata.valueCount}, DATA: {vdata.data[3]}");
-            //}
-            //foreach
         }
 
         protected virtual void SimConnect_OnRecvSimobjectData(SimConnect sender, SIMCONNECT_RECV_SIMOBJECT_DATA data)
@@ -441,25 +412,13 @@ namespace SimPanel.ViewModel
         private object simlock;
         protected virtual void SimConnect_OnRecvSimobjectDataBytype(SimConnect sender, SIMCONNECT_RECV_SIMOBJECT_DATA_BYTYPE data)
         {
-            //Console.WriteLine("SimConnect_OnRecvSimobjectDataBytype");
-
             uint iRequest = data.dwRequestID;
             uint iObject = data.dwObjectID;
-            //if (!lObjectIDs.Contains(iObject))
-            //{
-            //    lObjectIDs.Add(iObject);
-            //}
 
-
-            //switch ((DATA_REQUESTS)data.dwRequestID)
-            //{ 
-
-            //}
             //lock (simlock)
             {
                 foreach (SimVar oSimvarRequest in this.VarList)
                 {
-                    //                if (iRequest == (uint)oSimvarRequest.eRequest && (!bObjectIDSelectionEnabled || iObject == m_iObjectIdRequest))
                     if (iRequest == (uint)oSimvarRequest.DefID)
                     {
                         object d = data.dwData[0];
@@ -492,9 +451,10 @@ namespace SimPanel.ViewModel
 
         private void SimConnect_OnRecvQuit(SimConnect sender, SIMCONNECT_RECV data)
         {
-            foreach (SimVar svar in this.VarList)
+            foreach (SimVar sv in this.VarList)
             {
-                svar.Subscribed = false;
+                sv.Subscribed = false;
+                sv.Value = null;
             }
 
             foreach (SimEvent se in this.EventList)
@@ -517,41 +477,9 @@ namespace SimPanel.ViewModel
         {
             this.ClientRequestID = 0;
 
-            //SimConnect.MapClientDataNameToID("BRIDGE_WriteToSim", ClientData.WriteToSim);
-            //SimConnect.MapClientDataNameToID("BRIDGE_ReadFromSim", ClientData.ReadFromSim);
-            //SimConnect.AddToClientDataDefinition(ClientData.WriteToSim, 0, (uint)Marshal.SizeOf(typeof(WriteToSim)), 0, 0);
-            //SimConnect.AddToClientDataDefinition(ClientData.ReadFromSim, 0, (uint)Marshal.SizeOf(typeof(ReadFromSim)), 0, 0);
-
-            //SimConnect.RegisterStruct<SIMCONNECT_RECV_CLIENT_DATA, ReadFromSim>(ClientData.ReadFromSim);
-            //SimConnect.RequestClientData(
-            //    ClientData.ReadFromSim,
-            //    DATA_REQUESTS.ReadFromSimChanged,
-            //    ClientData.ReadFromSim, SIMCONNECT_CLIENT_DATA_PERIOD.ON_SET, SIMCONNECT_CLIENT_DATA_REQUEST_FLAG.CHANGED,
-            //    0, 0, 0);
-
 
 
             this.SimConnect.SubscribeToSystemEvent(SYSEVENTS.FileLoaded, "FlightLoaded");
-
-
-            //SimConnect.AddToDataDefinition(DEFINITIONS.AIRPLANE, vname, "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
-            //this.SimConnect.RegisterDataDefineStruct<SimDataDouble>(REQUESTS.AIRPLANE);
-            //this.SimConnect.RequestDataOnSimObject(DEFINITIONS.AIRPLANE, REQUESTS.AIRPLANE, SimConnect.SIMCONNECT_OBJECT_ID_USER, SIMCONNECT_PERIOD.VISUAL_FRAME, SIMCONNECT_DATA_REQUEST_FLAG.DEFAULT, 0, 0, 0);
-
-
-
-
-            //this.SimConnect.RegisterDataDefineStruct<C172Struct>(REQUESTS.AIRPLANE);
-
-            //this.SimConnect.AddToDataDefinition(DEFINITIONS.AIRPLANE, "AIRCRAFT_ORIENTATION_AXIS", "XYZ", SIMCONNECT_DATATYPE.XYZ, 0f, SimConnect.SIMCONNECT_UNUSED);
-            //this.SimConnect.AddToDataDefinition(DEFINITIONS.AIRPLANE, "AIRCRAFT ORIENTATION AXIS", "XYZ", SIMCONNECT_DATATYPE.XYZ, 0f, SimConnect.SIMCONNECT_UNUSED);
-
-            //this.SimConnect.RequestDataOnSimObject(REQUESTS.AIRPLANE, DEFINITIONS.AIRPLANE, SimConnect.SIMCONNECT_OBJECT_ID_USER, SIMCONNECT_PERIOD.VISUAL_FRAME, 0, 0, 0, 0);
-
-            //this.SimConnect.RegisterDataDefineStruct<C172Struct>(REQUESTS.AIRPLANE);
-
-            //this.Connected = true;
-            //return;
 
             this.Ready = false;
             Console.WriteLine("OnRecOpen");
@@ -565,19 +493,9 @@ namespace SimPanel.ViewModel
                 }
                 else
                 {
-                    //oSimvarRequest.bStillPending = true;
+
                 }
 
-                //Thread.Sleep(50);
-                //if (!svar.Subscribed)
-                //{
-                //    this.SimConnect?.RequestDataOnSimObjectType((SIMREQUEST)1, svar.DefID, 0, svar.SimObjectType);
-                //    svar.Subscribed = true;
-                //}
-                //else
-                //{
-                //    //oSimvarRequest.bStillPending = true;
-                //}
             }
 
             foreach (SimEvent se in this.EventList)
@@ -588,40 +506,28 @@ namespace SimPanel.ViewModel
                     se.Subscribed = true;
                 }
             }
-
-
             this.Connected = true;
             this.Timer.Start();
-
-            //if (this.WSServer == null)
-            //{
-            //    this.WSServer = new WSServer();
-            //    this.WSServer.Start();
-            //}
         }
 
         private void OnTick(object sender, EventArgs e)
         {
-
-            // SimConnect.TransmitClientEvent(0U, ClientData.ReadFromSim, 0, (Enum)NOTIFICATION_GROUPS.GENERIC, SIMCONNECT_EVENT_FLAG.GROUPID_IS_PRIORITY);
-
-            //Console.WriteLine("OnTick");
-            foreach (SimVar oSimvarRequest in this.VarList)
+            foreach (SimVar sv in this.VarList)
             {
-                if (oSimvarRequest.Subscribed)
+                if (sv.Subscribed)
                 {
                     try
                     {
-                        if (oSimvarRequest.VarName.StartsWith("L:"))
+                        if (sv.VarName.StartsWith("L:"))
                         {
                             //Console.WriteLine("SKIP:" + oSimvarRequest.VarName);
                         }
                         else
                         {
-                            SimConnect?.RequestDataOnSimObjectType((SIMREQUEST)oSimvarRequest.DefID, (SIMREQUEST)oSimvarRequest.DefID, 0, oSimvarRequest.SimObjectType);
+                            SimConnect?.RequestDataOnSimObjectType((SIMREQUEST)sv.DefID, (SIMREQUEST)sv.DefID, 0, sv.SimObjectType);
                         }
 
-                        oSimvarRequest.Subscribed = true;
+                        sv.Subscribed = true;
                     }
                     catch (Exception ex)
                     {
@@ -630,23 +536,34 @@ namespace SimPanel.ViewModel
                 }
                 else
                 {
-                    //oSimvarRequest.bStillPending = true;
                 }
             }
-
         }
 
 
         public void Disconnect()
         {
-            this.Connected = false;
 
             if (this.SimConnect != null)
             {
+                this.Timer.Stop();
                 this.SimConnect.Dispose();
                 this.SimConnect = null;
             }
+
+            foreach (SimVar sv in this.VarList)
+            {
+                sv.Subscribed = false;
+            }
+
+            foreach (SimEvent se in this.EventList)
+            {
+                se.Subscribed = false;
+            }
+
+            this.Connected = false;
             this.Ready = false;
+
         }
 
         public void AddRequest(string varname, string varunit, string writable = "")
