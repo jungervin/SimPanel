@@ -16,7 +16,10 @@ namespace SimPanel.ViewModel
         public LuaCodeViewModel()
         {
             // TODO:
-            RunCommand = new RelayCommand(p => Run(p.ToString()));
+            RunCommand = new RelayCommand(p =>
+            {
+                Run(p.ToString());
+            });
 
             this.LuaSrcipt = new Script();
 
