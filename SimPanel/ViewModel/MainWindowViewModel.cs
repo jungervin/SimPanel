@@ -85,6 +85,7 @@ namespace SimPanel.ViewModel
             OpenFileDialog d = new OpenFileDialog();
             d.Filter = "Files|*.vars; *.evnts;*.pln;*.lua;*.flt";
             //d.Filter = "Files|*.vars; *.evnts;*.lua;*.flt";
+            d.InitialDirectory = Globals.DataDir;
             if (d.ShowDialog() == true)
             {
                 string ext = Path.GetExtension(d.FileName).ToLower();
@@ -93,7 +94,6 @@ namespace SimPanel.ViewModel
                     if (this.SimConnectViewModel.LoadVariablesFromFile(d.FileName))
                     {
                     }
-
                 }
                 else if (ext == ".evnts")
                 {
@@ -122,7 +122,7 @@ namespace SimPanel.ViewModel
         {
             SaveFileDialog d = new SaveFileDialog();
 
-
+            d.InitialDirectory = Globals.DataDir;
             if (this.SelectedTabIndex == 0)
             {
                 d.Filter = "Variables|*.vars";

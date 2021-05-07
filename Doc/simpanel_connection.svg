@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="simpanel_connection.svg">
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible;"
+       id="marker1683"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1681" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker1673"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1671" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker1507"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1505" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker1403"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1401" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path886" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker1173"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1171" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path883" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="663.91643"
+     inkscape:cy="362.35319"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     inkscape:window-x="153"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="font-variation-settings:'wdth' 100, 'wght' 400;fill:#f2f2f2;stroke:#000000;stroke-width:0.982984;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect2182"
+       width="148.95631"
+       height="125.57227"
+       x="33.07933"
+       y="7.3798623"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       id="g3210"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.355176;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker1173);marker-end:url(#Arrow1Lend)"
+         d="m 117.57404,30.290037 -19.063206,0.2685"
+         id="path881"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.355176;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker1673);marker-end:url(#marker1683)"
+         d="m 118.50949,98.966502 -19.063222,0.26849"
+         id="path1669"
+         sodipodi:nodetypes="cc" />
+      <rect
+         style="font-variation-settings:'wdth' 100, 'wght' 400;fill:#cccccc;stroke:#000000;stroke-width:0.993576"
+         id="rect857"
+         width="54.899067"
+         height="37.986137"
+         x="121.93964"
+         y="11.431218" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+         x="140.91965"
+         y="18.080462"
+         id="text861"><tspan
+           sodipodi:role="line"
+           id="tspan859"
+           x="140.91965"
+           y="18.080462"
+           style="stroke-width:0.0939735">Other PC</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+         x="135.26749"
+         y="23.476679"
+         id="text865"><tspan
+           sodipodi:role="line"
+           id="tspan863"
+           x="135.26749"
+           y="23.476679"
+           style="stroke-width:0.0939735">192.168.1.175</tspan></text>
+      <rect
+         style="font-variation-settings:'wdth' 100, 'wght' 400;fill:#f2f2f2;stroke:#000000;stroke-width:0.506758"
+         id="rect871"
+         width="41.977375"
+         height="14.003964"
+         x="128.40048"
+         y="32.170094" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+         x="141.52809"
+         y="38.008518"
+         id="text875"><tspan
+           sodipodi:role="line"
+           id="tspan873"
+           x="141.52809"
+           y="38.008518"
+           style="stroke-width:0.0939735">Browser</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+         x="129.62541"
+         y="44.273746"
+         id="text879"><tspan
+           sodipodi:role="line"
+           id="tspan877"
+           x="129.62541"
+           y="44.273746"
+           style="stroke-width:0.0939735">192.168.1.174:5000</tspan></text>
+      <g
+         id="g2959"
+         transform="translate(0.93544335,9.0871639)">
+        <rect
+           style="font-variation-settings:'wdth' 100, 'wght' 400;fill:#999999;stroke:#000000;stroke-width:1.2392"
+           id="rect1297"
+           width="54.653442"
+           height="59.354443"
+           x="122.06245"
+           y="60.336361" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="140.91965"
+           y="66.862778"
+           id="text1301"><tspan
+             sodipodi:role="line"
+             id="tspan1299"
+             x="140.91965"
+             y="66.862778"
+             style="stroke-width:0.0939735">Other PC</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="135.26749"
+           y="75.34671"
+           id="text1305"><tspan
+             sodipodi:role="line"
+             id="tspan1303"
+             x="135.26749"
+             y="75.34671"
+             style="stroke-width:0.0939735">192.168.1.175</tspan></text>
+        <rect
+           style="font-variation-settings:'wdth' 100, 'wght' 400;fill:#f2f2f2;stroke:#000000;stroke-width:0.509712"
+           id="rect1307"
+           width="42.484943"
+           height="13.998422"
+           x="128.1467"
+           y="80.9552" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="136.21274"
+           y="86.790848"
+           id="text1311"><tspan
+             sodipodi:role="line"
+             id="tspan1309"
+             x="136.21274"
+             y="86.790848"
+             style="stroke-width:0.0939735">SimConnect 6</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="130.82028"
+           y="93.056084"
+           id="text1315"><tspan
+             sodipodi:role="line"
+             id="tspan1313"
+             x="130.82028"
+             y="93.056084"
+             style="stroke-width:0.0939735">192.168.1.174:500</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="140.76823"
+           y="71.026108"
+           id="text1381"><tspan
+             sodipodi:role="line"
+             id="tspan1379"
+             x="140.76823"
+             y="71.026108"
+             style="stroke-width:0.0939735">SimPanel</tspan></text>
+        <rect
+           style="font-variation-settings:'wdth' 100, 'wght' 400;fill:#f2f2f2;stroke:#000000;stroke-width:0.56056"
+           id="rect1389"
+           width="41.923573"
+           height="17.157396"
+           x="128.42738"
+           y="100.27826" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="141.52809"
+           y="106.08981"
+           id="text1393"><tspan
+             sodipodi:role="line"
+             id="tspan1391"
+             x="141.52809"
+             y="106.08981"
+             style="stroke-width:0.0939735">Browser</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="134.40485"
+           y="111.95229"
+           id="text1397"><tspan
+             sodipodi:role="line"
+             id="tspan1395"
+             x="134.40485"
+             y="111.95229"
+             style="stroke-width:0.0939735">127.0.0.1:5000</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="129.62543"
+           y="116.36224"
+           id="text1883"><tspan
+             sodipodi:role="line"
+             id="tspan1881"
+             x="129.62543"
+             y="116.36224"
+             style="stroke-width:0.0939735">192.168.1.175:5000</tspan></text>
+      </g>
+      <g
+         id="g2938"
+         transform="translate(-2.680707,9.0871639)">
+        <rect
+           style="font-variation-settings:'wdth' 100, 'wght' 400;fill:#999999;stroke:#000000;stroke-width:0.993576"
+           id="rect1273"
+           width="54.899067"
+           height="37.986137"
+           x="40.956982"
+           y="71.020515" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="60.124203"
+           y="78.206734"
+           id="text1277"><tspan
+             sodipodi:role="line"
+             id="tspan1275"
+             x="60.124203"
+             y="78.206734"
+             style="stroke-width:0.0939735">MAIN PC</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="54.242615"
+           y="88.838646"
+           id="text1281"><tspan
+             sodipodi:role="line"
+             id="tspan1279"
+             x="54.242615"
+             y="88.838646"
+             style="stroke-width:0.0939735">192.168.1.174</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="61.202511"
+           y="83.5783"
+           id="text1285"><tspan
+             sodipodi:role="line"
+             id="tspan1283"
+             x="61.202511"
+             y="83.5783"
+             style="stroke-width:0.0939735">FS2020</tspan></text>
+        <rect
+           style="font-variation-settings:'wdth' 100, 'wght' 400;fill:#f2f2f2;stroke:#000000;stroke-width:0.508338"
+           id="rect1287"
+           width="42.244293"
+           height="14.002384"
+           x="47.284367"
+           y="93.371162" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="60.545433"
+           y="98.806046"
+           id="text1291"><tspan
+             sodipodi:role="line"
+             id="tspan1289"
+             x="60.545433"
+             y="98.806046"
+             style="stroke-width:0.0939735">Browser</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="48.642765"
+           y="105.07127"
+           id="text1295"><tspan
+             sodipodi:role="line"
+             id="tspan1293"
+             x="48.642765"
+             y="105.07127"
+             style="stroke-width:0.0939735">192.168.1.175:5000</tspan></text>
+      </g>
+      <g
+         id="g2924"
+         transform="translate(-5.4790253)">
+        <rect
+           style="font-variation-settings:'wdth' 100, 'wght' 400;fill:#cccccc;stroke:#000000;stroke-width:1.18313"
+           id="rect833"
+           width="54.709511"
+           height="54.049557"
+           x="42.914635"
+           y="11.525996" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="61.98708"
+           y="17.548378"
+           id="text837"><tspan
+             sodipodi:role="line"
+             id="tspan835"
+             x="61.98708"
+             y="17.548378"
+             style="stroke-width:0.0939735">MAIN PC</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="56.105492"
+           y="28.180275"
+           id="text841"><tspan
+             sodipodi:role="line"
+             id="tspan839"
+             x="56.105492"
+             y="28.180275"
+             style="stroke-width:0.0939735">192.168.1.174</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="51.583946"
+           y="23.054184"
+           id="text845"><tspan
+             sodipodi:role="line"
+             id="tspan843"
+             x="51.583946"
+             y="23.054184"
+             style="stroke-width:0.0939735">FS2020 + SimPanel</tspan></text>
+        <rect
+           style="font-variation-settings:'wdth' 100, 'wght' 400;fill:#f2f2f2;stroke:#000000;stroke-width:0.56056"
+           id="rect2083"
+           width="41.923573"
+           height="17.157396"
+           x="49.307606"
+           y="44.160477" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="62.408306"
+           y="49.972023"
+           id="text2087"><tspan
+             sodipodi:role="line"
+             id="tspan2085"
+             x="62.408306"
+             y="49.972023"
+             style="stroke-width:0.0939735">Browser</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="55.285061"
+           y="55.834503"
+           id="text2091"><tspan
+             sodipodi:role="line"
+             id="tspan2089"
+             x="55.285061"
+             y="55.834503"
+             style="stroke-width:0.0939735">127.0.0.1:5000</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="50.505642"
+           y="60.244453"
+           id="text2095"><tspan
+             sodipodi:role="line"
+             id="tspan2093"
+             x="50.505642"
+             y="60.244453"
+             style="stroke-width:0.0939735">192.168.1.174:5000</tspan></text>
+        <rect
+           style="font-variation-settings:'wdth' 100, 'wght' 400;fill:#f2f2f2;stroke:#000000;stroke-width:0.423288"
+           id="rect2897"
+           width="41.804001"
+           height="9.8111229"
+           x="49.36739"
+           y="30.789591" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:3.75893px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0939735"
+           x="57.114971"
+           y="36.669746"
+           id="text2901"><tspan
+             sodipodi:role="line"
+             id="tspan2899"
+             x="57.114971"
+             y="36.669746"
+             style="stroke-width:0.0939735">SimConnect 0</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>
