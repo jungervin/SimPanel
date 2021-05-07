@@ -537,7 +537,7 @@ class Map {
 
         this.request_num = -1;
         const MAP = this;
-        const url = "ws://192.168.1.174:5000/sim"
+        const url = SETTINGS.ws_sim
         this.ws = new WebSocket(url);
         this.ws.onopen = function () {
             this.request_num = -1;

@@ -1,8 +1,8 @@
 let SETTINGS = {
     version : "0.1",
     date : "2021-04-02",
-    ws_sim : "ws://192.168.1.174:5000/sim",
-    ws_variables: "ws://192.168.1.174:5000/variables",
+    ws_sim : "ws://127.0.0.1:5000/sim",
+    ws_variables: "ws://127.0.0.1:5000/variables",
     mfd_url:  window.location.origin + "/c172mfd.html",
     timeout: 30,
     animation : { duration: 150, delay: 0, when: "now", swing: true, times: 1, wait: 0 },

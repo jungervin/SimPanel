@@ -153,15 +153,15 @@ class SwitchPanel extends PopupPanel {
 
         switches.move(500, 20);
 
-        this.Hidden = true;
+        // this.Hidden = true;
 
-        var vis = getCookie("switchpanel_visibility");
-        if (vis == "true") {
-            this.visibility(true);
+        // var vis = getCookie("switchpanel_visibility");
+        // if (vis == "true") {
+        //     this.visibility(true);
 
-        } else {
-            this.visibility(false);
-        }
+        // } else {
+        //     this.visibility(false);
+        // }
 
         //==============================================================================
         // TRIM INDICATOR
