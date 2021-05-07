@@ -127,56 +127,6 @@
                             <TextBlock Text="Variables: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="66" />
                             <TextBlock DataContext="{Binding SimConnectViewModel}" Text="{Binding VariablesFileName, FallbackValue=FileName}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="81,10,0,0" />
 
-                            <!--<ListView DataContext="{Binding SimConnectViewModel}" ItemsSource="{Binding VarList}" SelectedItem="{Binding SelectedSimVar, Mode=OneWayToSource}"  Margin="10,10,10,54" Grid.ColumnSpan="2">
-                        <ListView.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Remove" Command="{Binding cmdRemoveSelectedRequest}" />
-                            </ContextMenu>
-                        </ListView.ContextMenu>
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="State" Width="Auto" >
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <materialDesign:PackIcon >
-                                                <materialDesign:PackIcon.Style>
-                                                    <Style TargetType="materialDesign:PackIcon">
-                                                        <Setter Property="Kind" Value="Heart"></Setter>
-                                                        <Setter Property="Foreground" Value="Green"></Setter>
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding Value}" Value="{x:Null}">
-                                                                <Setter Property="Kind" Value="Heart"></Setter>
-                                                                <Setter Property="Foreground" Value="Red"></Setter>
-                                                            </DataTrigger>
-                                                         </Style.Triggers>
-                                                    </Style>
-                                                </materialDesign:PackIcon.Style>
-                                            </materialDesign:PackIcon>
-                                            -->
-                            <!--<TextBlock>
-                                                <TextBlock.Style>
-                                                    <Style TargetType="TextBlock">
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding Valule}" Value="{x:Null}">
-                                                                <Setter Property="Text" Value="Err"></Setter>
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </TextBlock.Style>
-                                            </TextBlock>-->
-                            <!--
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Header="#" Width="Auto" DisplayMemberBinding="{Binding DefID}" />
-                                <GridViewColumn Header="Simvar" Width="Auto" DisplayMemberBinding="{Binding VarName}" />
-                                <GridViewColumn Header="Value" Width="Auto" DisplayMemberBinding="{Binding Value, StringFormat=\{0:F9\}}"/>
-                                <GridViewColumn Header="Units" Width="Auto" DisplayMemberBinding="{Binding Unit}"/>
-                                <GridViewColumn Header="Writable" Width="Auto" DisplayMemberBinding="{Binding Writable}"/>
-                                <GridViewColumn Header="Updated" Width="Auto" DisplayMemberBinding="{Binding LastUpdate}"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>-->
 
                             <DataGrid x:Name="varlist" DataContext="{Binding SimConnectViewModel}" ItemsSource="{Binding VarList}" SelectedItem="{Binding SelectedSimVar, Mode=OneWayToSource}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="False" Margin="0,32,0,58">
                                 <DataGrid.Columns>
@@ -286,21 +236,12 @@
                         </Grid>
                     </TabItem>
 
-                    <!--<TabItem Header="Serial Events">
-                <Grid DataContext="{Binding SerialportViewModel}">
-
-                    <DataGrid  ItemsSource="{Binding SerialEvents}" SelectedItem="{Binding SelectedEvent}" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" IsReadOnly="False" Margin="0,0,0,61" HorizontalAlignment="Left" Width="740">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="SimEvent" Width="Auto" Binding="{Binding SimEventName}" />
-                            <DataGridTextColumn Header="Trigger" Width="Auto" Binding="{Binding Trigger}" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <Button Content="Save" Command="{Binding SaveCommand}" HorizontalAlignment="Left" Margin="331,0,0,10" VerticalAlignment="Bottom" Width="75" d:LayoutOverrides="Height"/>
-                    <TextBox Margin="745,10,10,0" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Visible"  Text="{Binding SerialDeviceViewModel.IncommingData}" Height="264" VerticalAlignment="Top"/>
-                </Grid>
-            </TabItem>-->
                     <TabItem Header="Settings">
                         <Grid Background="WhiteSmoke">
+                            <TextBlock Text="Simconnect Config Index" TextAlignment="Right" Width="224" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,40,0,0"></TextBlock>
+                            <TextBox  Text="{Binding SimConnectConfigIndex}" Width="200" Height="Auto" Background="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="232,35,0,0"/>
+
+
                             <TextBlock Text="Ignored Serial Ports" TextAlignment="Right" Width="224" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,70,0,0"></TextBlock>
                             <TextBox  Text="{Binding IgnoredSerialPorts}" Width="200" Height="Auto" Background="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="232,66,0,0"/>
 
@@ -309,6 +250,9 @@
 
                             <TextBlock Text="Database" TextAlignment="Right" Width="224" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,134,0,0"/>
                             <TextBox Text="{Binding Database}" Height="Auto" Background="White" VerticalAlignment="Top" Margin="232,128,392,0"/>
+
+                            <Button Content="Open Index Page" Click="Button_Click" HorizontalAlignment="Left" Margin="206,0,0,10" VerticalAlignment="Bottom"></Button>
+
 
                             <Button Content="Save" Command="{Binding SaveSettingsCommand}" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"></Button>
                             <Button x:Name="SelectDB" Click="SelectDB_Clck" Content="{materialDesign:PackIcon Kind=OpenInApp}" Style="{StaticResource MaterialDesignFlatAccentButton}"  HorizontalAlignment="Right" Margin="0,122,337,0" VerticalAlignment="Top" Width="50" Height="32"/>

@@ -106,5 +106,17 @@ namespace SimPanel.Properties {
                 this["Database"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public uint SimConnectConfigIndex {
+            get {
+                return ((uint)(this["SimConnectConfigIndex"]));
+            }
+            set {
+                this["SimConnectConfigIndex"] = value;
+            }
+        }
     }
 }

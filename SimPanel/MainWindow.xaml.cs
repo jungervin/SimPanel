@@ -151,8 +151,9 @@ namespace SimPanel
             }
         }
 
-
-
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://127.0.0.1:" + Settings.Default.TCPPort.ToString());
+        }
     }
 }

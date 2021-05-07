@@ -225,36 +225,7 @@ namespace SimPanel.ViewModel
                     if (!this.Connected)
                     {
                         this.Connect();
-                    }
-                    //else
-                    //{
-                    //   //System.Windows.Threading.Dispatcher.CurrentDispatcher.Invoke(() =>
-                    //    {
-                    //        try
-                    //        {
-                    //            if (this.SimConnect != null)
-                    //            {
-                    //                //this.SimConnect.RequestDataOnSimObjectType((REQUEST)this.PositionRequestID, (REQUEST)this.PositionRequestID, 0, m_eSimObjectType);
-
-                    //                this.SimConnect.RequestDataOnSimObjectType(REQUESTS.AIRPLANE, REQUESTS.AIRPLANE, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
-                    //                this.SimConnect.RequestDataOnSimObjectType(REQUESTS.TRANSPONDER, REQUESTS.TRANSPONDER, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
-
-                    //                //foreach (Simvar oSimvarRequest in Simvars)
-                    //                //{
-
-                    //                //    this.SimConnect.RequestDataOnSimObjectType((REQUEST)oSimvarRequest.RequestID, (REQUEST)oSimvarRequest.RequestID, 0, m_eSimObjectType);
-
-                    //                //}
-                    //            }
-                    //        }
-                    //        catch (Exception ex)
-                    //        {
-                    //            Console.WriteLine("SimConnectThread:" + ex.Message);
-                    //        }
-                    //    }
-                    //    //);
-                    //    Thread.Sleep(300);
-                    //}
+                    }                  
                     Thread.Sleep(3000);
                 }
             });
@@ -264,7 +235,6 @@ namespace SimPanel.ViewModel
         public void Stop()
         {
             this.FStopped = true;
-
         }
 
         private void Connect()
@@ -276,7 +246,7 @@ namespace SimPanel.ViewModel
             {
                 bool bFSXcompatible = false;
 
-                this.SimConnect = new SimConnect("SimPanel", this.FHWnd, WM_USER_SIMCONNECT, null, 0);
+                this.SimConnect = new SimConnect("SimPanel", this.FHWnd, WM_USER_SIMCONNECT, null, Settings.Default.SimConnectConfigIndex);
                 this.SimConnect.OnRecvOpen += SimConnect_OnRecvOpen;
                 this.SimConnect.OnRecvQuit += SimConnect_OnRecvQuit;
                 this.SimConnect.OnRecvException += SimConnect_OnRecvException;

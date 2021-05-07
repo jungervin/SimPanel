@@ -255,6 +255,16 @@ namespace SimPanel.ViewModel
             }
         }
 
+        public uint SimConnectConfigIndex
+        {
+            get { return Settings.Default.SimConnectConfigIndex; }
+            set
+            {
+                Settings.Default.SimConnectConfigIndex = value;
+                this.OnPropertyChanged();
+            }
+        }
+
         public string IgnoredSerialPorts
         {
             get { return Settings.Default.DisabledComports; }
