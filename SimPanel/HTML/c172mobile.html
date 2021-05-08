@@ -99,11 +99,7 @@
             getJSON("/js/settings.json", function (e, d) {
                 if (e == null) {
                     Settings = d;
-                    //var PFD = new G1000PFD(svg, d.websocket_url , 171, 0, 1024, 768, Settings.airplanes[0]);   
-                    //url, query, timeout, onrec, onerr
-                    //var c172 = new ControlPanelC172(768, 1366, d.websocket_url, "getvariables", 50)
                     var c172 = new C172Mobile(screen.width, screen.height)
-                    
 
                 } else {
                     alert("Could not load the settings\nReson code: " + e)
