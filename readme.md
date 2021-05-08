@@ -1,4 +1,4 @@
-# FS2020 SimPanel
+# FS2020 SimPanel (experimetal)
 
 SimPanel is an application developed for the FS2020 C172 aircraft with touch screen and serial port support.
 
@@ -22,7 +22,7 @@ To install, download the current version and unpack it somewhere. After startup,
 
 The program is currently sized to a 15-inch monitor at 1366x768 pixels. It is not advisable to change this, scaling should be used instead.
 
-```javascript
+```html
  
  body {
   / *  uncomment for 1920x1080 * /
@@ -30,4 +30,5 @@ The program is currently sized to a 15-inch monitor at 1366x768 pixels. It is no
   transform: scale (1, 1);
   transform-origin: 0 0;
  }
+```
 
