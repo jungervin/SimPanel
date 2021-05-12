@@ -4,9 +4,9 @@ SimPanel is an application developed for the FS2020 C172 aircraft with touch scr
 
 It has two main parts. One is the server, which handles variables and events through SimConnect and forwards the data to clients. The other main part is the clients program, which provides display and management in a web browser. The server program is written in C #, while the client program is written in HTML, JS and uses SVG graphics.
 
-The current program is currently only tested with the C172, but can also be used on other aircraft.
+The program is currently only tested with the C172, but can also be used on other aircraft.
 
-To install, download the current version and unpack it somewhere. After startup, load variables and events from the Simpanel/Data folder. Then open the web browser with the "Open Index Page" button on the settings tab.
+To install, download the current release and unpack it somewhere. After startup, load variables and events from the Simpanel/Data folder. Then open the web browser with the "Open Index Page" button on the settings tab.
 
 
 ### PFD
