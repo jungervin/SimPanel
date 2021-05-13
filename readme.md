@@ -8,15 +8,17 @@ The program is currently only tested with the C172, but can also be used on othe
 
 To install, download the current release and unpack it somewhere. After startup, load variables and events from the Simpanel/Data folder. Then open the web browser with the "Open Index Page" button on the settings tab.
 
+### SimPanel
+![SimPanel](Doc/images/simpanel.png)
 
 ### PFD
 ![PFD](Doc/images/pfd.png)
 
 ### MFD
-![PFD](Doc/images/mfd.png)
+![MFD](Doc/images/mfd.png)
 
 ### Mobile example
-![PFD](Doc/images/mobile_example.png)
+![Mobile](Doc/images/mobile_example.png)
 
 ### Details:
 
