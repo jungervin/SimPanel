@@ -21,7 +21,6 @@ To install, download the current release and unpack it somewhere. After startup,
 ![Mobile](Doc/images/mobile_example.png)
 
 ### Details:
-
 The program is currently sized to a 15-inch monitor at 1366x768 pixels. It is not advisable to change this, scaling should be used instead.
 
 ```html
