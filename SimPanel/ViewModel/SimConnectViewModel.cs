@@ -237,6 +237,78 @@ namespace SimPanel.ViewModel
             this.FStopped = true;
         }
 
+
+        // PZS
+
+        //private void initDataRequest()
+        //{
+        //    try
+        //    {
+        //        my_simconnect.OnRecvOpen += new SimConnect.RecvOpenEventHandler(simconnect_OnRecvOpen);
+        //        my_simconnect.OnRecvQuit += new SimConnect.RecvQuitEventHandler(simconnect_OnRecvQuit);
+        //        my_simconnect.OnRecvException += new SimConnect.RecvExceptionEventHandler(simconnect_OnRecvException);
+        //        my_simconnect.OnRecvSimobjectDataBytype += new SimConnect.RecvSimobjectDataBytypeEventHandler(simconnect_OnRecvSimobjectDataBytype);
+        //        my_simconnect.OnRecvEvent += new SimConnect.RecvEventEventHandler(simconnect_OnRecvEventID);
+
+
+        //        //*************EVENTS cuccok****************************
+        //        //magassági
+        //        my_simconnect.MapClientEventToSimEvent(EVENTS.EVENT_YAXIS, "AXIS_ELEVATOR_SET");
+        //        my_simconnect.AddClientEventToNotificationGroup(GROUPS.GROUP_1, EVENTS.EVENT_YAXIS, true);
+        //        my_simconnect.SetNotificationGroupPriority(GROUPS.GROUP_1, SimConnect.SIMCONNECT_GROUP_PRIORITY_HIGHEST_MASKABLE);
+        //        my_simconnect.MapInputEventToClientEvent(GROUPS.GROUP_1, "joystick:0:YAxis", EVENTS.EVENT_YAXIS, 0, EVENTS.EVENT_YAXIS, SimConnect.SIMCONNECT_UNUSED, true);
+        //        my_simconnect.SetInputGroupState(GROUPS.GROUP_1, 0);
+
+        //        //csűrő
+        //        my_simconnect.MapClientEventToSimEvent(EVENTS.EVENT_XAXIS, "AXIS_AILERONS_SET");
+        //        my_simconnect.AddClientEventToNotificationGroup(GROUPS.GROUP_1, EVENTS.EVENT_XAXIS, true);
+        //        my_simconnect.SetNotificationGroupPriority(GROUPS.GROUP_1, SimConnect.SIMCONNECT_GROUP_PRIORITY_HIGHEST_MASKABLE);
+        //        my_simconnect.MapInputEventToClientEvent(GROUPS.GROUP_1, "joystick:0:XAxis", EVENTS.EVENT_XAXIS, 0, EVENTS.EVENT_XAXIS, SimConnect.SIMCONNECT_UNUSED, true);
+        //        my_simconnect.SetInputGroupState(GROUPS.GROUP_1, 0);
+        //    }
+        //    catch (COMException exception1)
+        //    {
+        //        this.Text = exception1.Message;
+        //    }
+        //}
+
+        //private void simconnect_OnRecvEventID(SimConnect sender, SIMCONNECT_RECV_EVENT data)
+        //{
+        //    switch (data.uEventID)
+        //    {
+        //        case (uint)EVENTS.EVENT_SIMSTART:
+
+        //            break;
+
+        //        // Magassági kormány
+        //        case (uint)EVENTS.EVENT_YAXIS:
+        //            int kormany_elev = (int)data.dwData;
+        //            double kormanypos_elev = kormany_elev;
+        //            kormanypos_elev = Math.Pow(kormanypos_elev / 16384, 2) * 16384 * Math.Sign(kormany_elev) * 1;  //már lövésem sincs itt mit matekoltam
+
+        //            // ITT megmatekozod a magassági kormányjelet, majd visszaküldöd az FS-nek
+
+        //            my_simconnect.TransmitClientEvent(SimConnect.SIMCONNECT_OBJECT_ID_USER, EVENTS.EVENT_YAXIS, (uint)kormanypos_elev, GROUPS.GROUP_1, 0);
+        //            break;
+
+        //        // Csűrőkormány
+        //        case (uint)EVENTS.EVENT_XAXIS:
+        //            int kormany_ail = (int)data.dwData;
+        //            double kormanypos_ail = kormany_ail;
+        //            kormanypos_ail = Math.Pow(kormanypos_ail / 16384, 2) * 16384 * Math.Sign(kormany_ail) * 1;
+
+        //            // ITT megmatekozod a csűrő kormányjelet, majd visszaküldöd az FS-nek
+
+        //            my_simconnect.TransmitClientEvent(SimConnect.SIMCONNECT_OBJECT_ID_USER, EVENTS.EVENT_XAXIS, (uint)kormanypos_ail, GROUPS.GROUP_1, 0);
+        //            break;
+
+        //        default:
+        //            this.Text = "Unknown request ID: " + ((uint)data.uEventID);
+        //            break;
+        //    }
+        //}
+
+
         private void Connect()
         {
             this.Ready = false;

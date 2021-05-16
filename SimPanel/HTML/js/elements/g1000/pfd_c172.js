@@ -181,6 +181,14 @@ class C172 extends FMS {
         this.subscribe(MarkerBeacon)
 
 
+        var font = { 'fill': 'white', 'font-family': 'consolas', 'font-weight': 'bold', 'font-size': 28, leading: '0em' };
+        let ra = svg.boxed_text(150,32, "0").font(font).move(cx + 74, 364)
+        ra.update = function (data) {
+            //let a = data.PLANE_ALTITUDE - m2feet(data.GROUND_ALTITUDE)
+            ra.text("RA" + padLeft(data.PLANE_ALT_ABOVE_GROUND.toFixed(0), 5) + "ft")
+        }
+        this.subscribe(ra, 2)
+
         this.RequestCounter = 0;
 
         MAP.connect();

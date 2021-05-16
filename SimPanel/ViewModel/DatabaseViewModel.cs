@@ -49,7 +49,7 @@ namespace SimPanel.ViewModel
                 ri.Runway = rw;
 
                 ri.PrimaryEnd = this.RunwayEnds.Where(k => k.runway_end_id == rw.primary_end_id).FirstOrDefault();
-                ri.SecondaryEnd = this.RunwayEnds.Where(k => k.runway_end_id == rw.primary_end_id).FirstOrDefault();
+                ri.SecondaryEnd = this.RunwayEnds.Where(k => k.runway_end_id == rw.secondary_end_id).FirstOrDefault();
                 ai.Runways.Add(ri);
             }
             return ai;

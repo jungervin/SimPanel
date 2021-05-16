@@ -165,7 +165,10 @@ class FMS {
             STANDARD_ATM_TEMPERATURE: 0,
             GPS_FLIGHT_PLAN_WP_INDEX: 0,
             GPS_TARGET_DISTANCE: 0,
-            GPS_WP_ETE: 0
+            GPS_WP_ETE: 0,
+            GROUND_ALTITUDE: 0,
+            PLANE_ALTITUDE:0,
+            PLANE_ALT_ABOVE_GROUND: 0
         }
         this.RequestCounter = 0;
 
@@ -253,6 +256,7 @@ class FMS {
                 res.data[i].dist = dist;
                 res.data[i].rem = rem;
                 res.data[i].ete = ete
+                
             }
             this.FlightPlan = res.data;
             this.FlightPlan.brg = { brg: brg }

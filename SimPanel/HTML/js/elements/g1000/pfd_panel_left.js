@@ -122,17 +122,17 @@ class G1000PFDPanelLeft {
         // CRS ROTRAY
         //=====================================================================
         let crs = lw.rotary().center(65, 200).on("wheel", function (e) {
-            e.currentTarget.instance.rotate(e.deltaY * 10);
-            // if (PFD.Compass.NAVMode == 1) {
-            //     if (e.deltaY < 0)
-            //         PFD.sendCommand("VOR1_OBI_INC");
-            //     else PFD.sendCommand("VOR1_OBI_DEC");
-            // }
-            // else if (PFD.Compass.NAVMode == 2) {
-            //     if (e.deltaY < 0)
-            //         PFD.sendCommand("VOR2_OBI_INC");
-            //     else PFD.sendCommand("VOR2_OBI_DEC");
-            // }
+            e.currentTarget.instance.rotate(e.deltaY * -10);
+             if (PFD.Compass.NAVMode == 1) {
+                 if (e.deltaY < 0)
+                     PFD.sendCommand("VOR1_OBI_INC");
+                 else PFD.sendCommand("VOR1_OBI_DEC");
+             }
+             else if (PFD.Compass.NAVMode == 2) {
+                 if (e.deltaY < 0)
+                     PFD.sendCommand("VOR2_OBI_INC");
+                 else PFD.sendCommand("VOR2_OBI_DEC");
+             }
         }, { passive: false });
         lw.text("CRS").font(font2).fill("white").center(crs.bbox().cx, 250)
 

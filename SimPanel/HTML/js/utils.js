@@ -63,7 +63,9 @@ function encode(text) {
     return { morse: morse, phonetic: phonetic };
 }
 
-
+function m2feet(m) {
+    return m * 3.2808399
+}
 // 1 meter = 0.000539956803 nautical miles
 function m2nm(meter) {
     return meter * 0.000539956803;
@@ -89,21 +91,21 @@ function padRight(text, len, char = "\u00A0") {
 }
 
 
-function getDistance(origin, destination) {
-    // return distance in meters
-    var lon1 = toRadian(origin[1]),
-        lat1 = toRadian(origin[0]),
-        lon2 = toRadian(destination[1]),
-        lat2 = toRadian(destination[0]);
+// function getDistance(origin, destination) {
+//     // return distance in meters
+//     var lon1 = toRadian(origin[1]),
+//         lat1 = toRadian(origin[0]),
+//         lon2 = toRadian(destination[1]),
+//         lat2 = toRadian(destination[0]);
 
-    var deltaLat = lat2 - lat1;
-    var deltaLon = lon2 - lon1;
+//     var deltaLat = lat2 - lat1;
+//     var deltaLon = lon2 - lon1;
 
-    var a = Math.pow(Math.sin(deltaLat / 2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLon / 2), 2);
-    var c = 2 * Math.asin(Math.sqrt(a));
-    var EARTH_RADIUS = 6371;
-    return c * EARTH_RADIUS * 1000;
-}
+//     var a = Math.pow(Math.sin(deltaLat / 2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLon / 2), 2);
+//     var c = 2 * Math.asin(Math.sqrt(a));
+//     var EARTH_RADIUS = 6371;
+//     return c * EARTH_RADIUS * 1000;
+// }
 
 function toRadian(degree) {
     return degree * Math.PI / 180;
@@ -139,19 +141,19 @@ function GetDiffAndStore(prev_v, current_v, diff) {
     return false;
 }
 
-function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-    var R = 6371; // Radius of the earth in km
-    var dLat = deg2rad(lat2 - lat1);  // deg2rad below
-    var dLon = deg2rad(lon2 - lon1);
-    var a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-        Math.sin(dLon / 2) * Math.sin(dLon / 2)
-        ;
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c; // Distance in km
-    return d;
-}
+// function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+//     var R = 6371; // Radius of the earth in km
+//     var dLat = deg2rad(lat2 - lat1);  // deg2rad below
+//     var dLon = deg2rad(lon2 - lon1);
+//     var a =
+//         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+//         Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+//         Math.sin(dLon / 2) * Math.sin(dLon / 2)
+//         ;
+//     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+//     var d = R * c; // Distance in km
+//     return d;
+// }
 
 
 function angleFromCoordinate(lat1, lon1, lat2, lon2) {
