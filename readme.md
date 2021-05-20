@@ -42,3 +42,13 @@ C:\Users\YourUserName\AppData\Roaming\ABarthel\little_navmap_db\little_navmap_ms
 If database exists you will get more infomations about airports on the map:
 
 ![AirportInfo](Doc/images/airport_info.png)
+
+### Serial Port
+When data comes from the serial port, simpanel will call the script. Main method must be called Process(trigger), where trigger is the serial data.
+
+Two methods are supported:
+GetVariableValue(string varname) will give back the value of variable.
+SendEvent(string eventname, uint value) will send an event with value.
+
+[Example](https://github.com/jungervin/SimPanel/blob/master/SimPanel/Data/rotary.lua)
+
