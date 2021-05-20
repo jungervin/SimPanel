@@ -21,6 +21,10 @@ To install, download the current release and unpack it somewhere. After startup,
 ![Mobile](Doc/images/mobile_example.png)
 
 ### Details:
+PFD needs more power for high FPS than a Raspberry Pi can provide (I use an integrated motherboard with J4105 processor), but MFD can works on a stronger tablet.
+
+![Cockpit](Doc/images/cockpit01lo.png)
+
 The program is currently sized to a 15-inch monitor at 1366x768 pixels. It is not advisable to change this, scaling should be used instead.
 
 ```html
@@ -36,7 +40,7 @@ The program is currently sized to a 15-inch monitor at 1366x768 pixels. It is no
 ### Database:
 If you use [Little Navmap](https://github.com/albar965/littlenavmap), then you can attach the database file into the simpanel or you can use [Navdatareader](https://github.com/albar965/navdatareader) to create database from the FS2020. 
 
-[Little Navmap](https://github.com/albar965/littlenavmap) file can be found somewhere here:
+[Little Navmap](https://github.com/albar965/littlenavmap) database file can be found somewhere here:
 C:\Users\YourUserName\AppData\Roaming\ABarthel\little_navmap_db\little_navmap_msfs.sqlite
 
 If database exists you will get more infomations about airports on the map:
