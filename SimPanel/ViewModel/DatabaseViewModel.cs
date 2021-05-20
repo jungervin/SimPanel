@@ -25,47 +25,82 @@ namespace SimPanel.ViewModel
                 this.ConnectioString = $"Data Source = {Settings.Default.Database}; Cache = Shared";
             }
 
+        }
+
+        public void Init()
+        {
             this.Airports = this.FillAirports();
             this.Runways = this.FillRunways();
             this.RunwayEnds = this.FillRunwayEnds();
             this.Parkings = this.FillParking();
+            this.ILSs = this.FillILSs();
 
             AirPortInfo ai = this.GetAiportInfo("LHBP");
 
             string res = JsonConvert.SerializeObject(ai);
             Console.WriteLine(res);
+
         }
 
+        public List<AirPort> SelectAirPorts(MapDetailsModel d)
+        {
+            return this.Airports.Where(k =>
+                k.rating >= d.rating &&
+                k.laty >= d.bounds._southWest.lat &&
+                k.laty <= d.bounds._northEast.lat &&
+                k.lonx >= d.bounds._southWest.lng &&
+                k.lonx <= d.bounds._northEast.lng
+
+            ).ToList();
+        }
+
+        public List<AirPort> SelectAirPorts(string ident)
+        {
+            return this.Airports.Where(k => k.ident == ident).ToList();
+        }
+
+
+        public List<Parking> SelectParkings(MapDetailsModel d)
+        {
+            return this.Parkings.Where(k =>
+                 k.laty >= d.bounds._southWest.lat &&
+                 k.laty <= d.bounds._northEast.lat &&
+                 k.lonx >= d.bounds._southWest.lng &&
+                 k.lonx <= d.bounds._northEast.lng
+             ).ToList();
+        }
         public AirPortInfo GetAiportInfo(string ident)
         {
             AirPortInfo ai = new AirPortInfo();
-            ai.AirPort = this.Airports.Where(k => k.ident == ident).FirstOrDefault();
-            ai.Runways = new List<RunwayInfo>();
+            //ai.AirPort = this.Airports.Where(k => k.ident == ident).FirstOrDefault();
+            //ai.Runways = new List<RunwayInfo>();
 
-            List<Runway> runways = this.Runways.Where(k => k.airport_id == ai.AirPort.airport_id).ToList();
-            foreach (Runway rw in runways)
-            {
-                RunwayInfo ri = new RunwayInfo();
-                ri.Runway = rw;
+            //List<Runway> runways = this.Runways.Where(k => k.airport_id == ai.AirPort.airport_id).ToList();
+            //foreach (Runway rw in runways)
+            //{
+            //    RunwayInfo ri = new RunwayInfo();
+            //    ri.Runway = rw;
 
-                ri.PrimaryEnd = this.RunwayEnds.Where(k => k.runway_end_id == rw.primary_end_id).FirstOrDefault();
-                ri.SecondaryEnd = this.RunwayEnds.Where(k => k.runway_end_id == rw.secondary_end_id).FirstOrDefault();
-                ai.Runways.Add(ri);
-            }
+            //    ri.PrimaryEnd = this.RunwayEnds.Where(k => k.runway_end_id == rw.primary_end_id).FirstOrDefault();
+            //    ri.SecondaryEnd = this.RunwayEnds.Where(k => k.runway_end_id == rw.secondary_end_id).FirstOrDefault();
+            //    ai.Runways.Add(ri);
+            //}
             return ai;
         }
 
         public string ConnectioString { get; set; }
 
-        public List<AirPort> Airports { get; }
-        public List<Runway> Runways { get; }
-        public List<RunwayEnd> RunwayEnds { get; }
-        public List<Parking> Parkings { get; }
+        public List<AirPort> Airports { get; set; }
+        public List<Runway> Runways { get; set; }
+        public List<RunwayEnd> RunwayEnds { get; set; }
+        public List<Parking> Parkings { get; set; }
+        public List<ILS> ILSs { get; set; }
 
         public List<AirPort> FillAirports()
         {
             List<AirPort> list = new List<AirPort>();
-            if(this.ConnectioString != null) {
+            if (this.ConnectioString != null)
+            {
                 try
                 {
                     using (var conn = new SQLiteConnection(this.ConnectioString))
@@ -150,7 +185,7 @@ namespace SimPanel.ViewModel
                         }
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
 
                 }
@@ -205,7 +240,7 @@ namespace SimPanel.ViewModel
                         }
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 { }
             }
             return list;
@@ -294,11 +329,11 @@ namespace SimPanel.ViewModel
                             pa.name = r.GetValue(4) != DBNull.Value ? r.GetString(4) : "";
                             pa.number = r.GetValue(5) != DBNull.Value ? r.GetInt32(5) : 0;
                             pa.airline_codes = r.GetValue(6) != DBNull.Value ? r.GetString(6) : "";
-                            pa.radius = r.GetValue(7) != DBNull.Value ? r.GetInt64(7) : 0;
-                            pa.heading = r.GetValue(8) != DBNull.Value ? r.GetInt64(8) : 0;
+                            pa.radius = r.GetValue(7) != DBNull.Value ? r.GetDouble(7) : 0;
+                            pa.heading = r.GetValue(8) != DBNull.Value ? r.GetDouble(8) : 0;
                             pa.has_jetway = r.GetValue(9) != DBNull.Value ? r.GetInt64(9) : 0;
-                            pa.latx = r.GetValue(10) != DBNull.Value ? r.GetInt64(10) : 0;
-                            pa.laty = r.GetValue(11) != DBNull.Value ? r.GetInt64(11) : 0;
+                            pa.lonx = r.GetValue(10) != DBNull.Value ? r.GetDouble(10) : 0;
+                            pa.laty = r.GetValue(11) != DBNull.Value ? r.GetDouble(11) : 0;
 
                             list.Add(pa);
                         }
@@ -312,5 +347,67 @@ namespace SimPanel.ViewModel
             return list;
         }
 
+        public List<ILS> FillILSs()
+        {
+            List<ILS> list = new List<ILS>();
+            if (this.ConnectioString != null)
+            {
+                try
+                {
+                    using (var conn = new SQLiteConnection(this.ConnectioString))
+                    {
+                        conn.Open();
+
+                        SQLiteCommand cmd = new SQLiteCommand(@"SELECT * FROM ILS", conn);
+                        SQLiteDataReader r = cmd.ExecuteReader();
+
+                        while (r.Read())
+                        {
+                            ILS ils = new ILS();
+
+                            ils.ils_id = r.GetValue(0) != DBNull.Value ? r.GetInt64(0) : 0;
+                            ils.ident = r.GetValue(1) != DBNull.Value ? r.GetString(1) : "";
+                            ils.name = r.GetValue(2) != DBNull.Value ? r.GetString(2) : "";
+                            ils.region = r.GetValue(3) != DBNull.Value ? r.GetString(3) : "";
+                            ils.frequency = r.GetValue(4) != DBNull.Value ? r.GetInt64(4) : 0;
+                            ils.range = r.GetValue(5) != DBNull.Value ? r.GetInt64(5) : 0;
+                            ils.mag_var = r.GetValue(6) != DBNull.Value ? r.GetDouble(6) : 0;
+                            ils.has_backcourse = r.GetValue(7) != DBNull.Value ? r.GetInt64(7) : 0;
+                            ils.dme_range = r.GetValue(8) != DBNull.Value ? r.GetInt64(8) : 0;
+                            ils.dme_altitude = r.GetValue(9) != DBNull.Value ? r.GetInt64(9) : 0;
+                            ils.dme_lonx = r.GetValue(10) != DBNull.Value ? r.GetDouble(10) : 0;
+                            ils.dme_laty = r.GetValue(11) != DBNull.Value ? r.GetDouble(11) : 0;
+                            ils.gs_range = r.GetValue(12) != DBNull.Value ? r.GetInt64(12) : 0;
+                            ils.gs_pitch = r.GetValue(13) != DBNull.Value ? r.GetDouble(13) : 0;
+                            ils.gs_altitude = r.GetValue(14) != DBNull.Value ? r.GetInt64(14) : 0;
+                            ils.gs_lonx = r.GetValue(15) != DBNull.Value ? r.GetDouble(15) : 0;
+                            ils.gs_laty = r.GetValue(16) != DBNull.Value ? r.GetDouble(16) : 0;
+                            ils.loc_runway_end_id = r.GetValue(17) != DBNull.Value ? r.GetInt64(17) : 0;
+                            ils.loc_airport_ident = r.GetValue(18) != DBNull.Value ? r.GetString(18) : "";
+                            ils.loc_runway_name = r.GetValue(19) != DBNull.Value ? r.GetString(19) : "";
+                            ils.loc_heading = r.GetValue(20) != DBNull.Value ? r.GetDouble(20) : 0;
+                            ils.loc_width = r.GetValue(21) != DBNull.Value ? r.GetDouble(21) : 0;
+                            ils.end1_lonx = r.GetValue(22) != DBNull.Value ? r.GetDouble(22) : 0;
+                            ils.end1_laty = r.GetValue(23) != DBNull.Value ? r.GetDouble(23) : 0;
+                            ils.end_mid_lonx = r.GetValue(24) != DBNull.Value ? r.GetDouble(24) : 0;
+                            ils.end_mid_laty = r.GetValue(25) != DBNull.Value ? r.GetDouble(25) : 0;
+                            ils.end2_lonx = r.GetValue(26) != DBNull.Value ? r.GetDouble(26) : 0;
+                            ils.end2_laty = r.GetValue(27) != DBNull.Value ? r.GetDouble(27) : 0;
+                            ils.altitude = r.GetValue(28) != DBNull.Value ? r.GetInt64(28) : 0;
+                            ils.lonx = r.GetValue(29) != DBNull.Value ? r.GetDouble(29) : 0;
+                            ils.laty = r.GetValue(30) != DBNull.Value ? r.GetDouble(30) : 0;
+
+                            list.Add(ils);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            return list;
+
+        }
     }
 }

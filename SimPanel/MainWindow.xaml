@@ -248,14 +248,19 @@
                             <TextBlock Text="Server Port (5000)" TextAlignment="Right" Width="224" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,102,0,0"/>
                             <TextBox Text="{Binding ServerPort}" Width="200" Height="Auto" Background="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="232,98,0,0"/>
 
-                            <TextBlock Text="Database" TextAlignment="Right" Width="224" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,134,0,0"/>
+                            <TextBlock Text="Database (navdata.sqlite)" TextAlignment="Right" Width="224" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,134,0,0"/>
                             <TextBox Text="{Binding Database}" Height="Auto" Background="White" VerticalAlignment="Top" Margin="232,128,392,0"/>
+                            <Button x:Name="SelectDB" Click="SelectDB_Clck" Content="{materialDesign:PackIcon Kind=OpenInApp}" Style="{StaticResource MaterialDesignFlatAccentButton}"  HorizontalAlignment="Right" Margin="0,122,337,0" VerticalAlignment="Top" Width="50" Height="32"/>
+
+                            <TextBlock Margin="232,159,0,0" HorizontalAlignment="Left" Width="Auto" Height="Auto" VerticalAlignment="Top">
+                                <Hyperlink Command="{Binding OpenNavdataReader}"  CommandParameter="https://github.com/albar965/navdatareader">https://github.com/albar965/navdatareader</Hyperlink><LineBreak />
+                                navdatareader.exe -f MSFS
+                            </TextBlock>
 
                             <Button Content="Open Index Page" Click="Button_Click" HorizontalAlignment="Left" Margin="206,0,0,10" VerticalAlignment="Bottom"></Button>
 
 
-                            <Button Content="Save" Command="{Binding SaveSettingsCommand}" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"></Button>
-                            <Button x:Name="SelectDB" Click="SelectDB_Clck" Content="{materialDesign:PackIcon Kind=OpenInApp}" Style="{StaticResource MaterialDesignFlatAccentButton}"  HorizontalAlignment="Right" Margin="0,122,337,0" VerticalAlignment="Top" Width="50" Height="32"/>
+                            <Button Content="Save" Command="{Binding SaveSettingsCommand}" HorizontalAlignment="Left" Margin="232,211,0,0" VerticalAlignment="Top"></Button>
                         </Grid>
 
                     </TabItem>

@@ -69,6 +69,12 @@ class Map {
             subdomains: ["a", "b", "c"]
         });
 
+        var carto_light = new L.TileLayer("http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png", {
+            maxZoom: 18,
+            minZoom: 2,
+            format: "image/png",
+            subdomains: ["a", "b", "c"]
+        });
 
         // var attrib = L.control.attribution({ position: "bottomleft" });
         // attrib.addAttribution("<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" style=\"\">Topo</a>");
@@ -89,6 +95,7 @@ class Map {
             "Stamen Terrain": stamen_terrain,
             "Stamen Toner": stamen_black_white,
             "Stamen Water": stamen_water,
+            "Carto Light": carto_light,
             "Carto Dark (Night Mode)": carto_dark,
         };
 
@@ -239,7 +246,7 @@ class Map {
                 }
 
 
-                var q = JSON.stringify({ cmd: "getrunways", data: { zoom: this.map.getZoom(), rating: rating, bounds: this.map.getBounds() } });
+                var q = JSON.stringify({ cmd: "getairports", data: { zoom: this.map.getZoom(), rating: rating, bounds: this.map.getBounds() } });
                 //console.log(q);
                 this.ws.send(q);
                 if (this.map.getZoom() >= 12) {
@@ -306,9 +313,59 @@ class Map {
                 this.planes.bringToFront();
                 break
 
-            case "runways":
+            case "airports":
                 let fms = this.FMS;
                 this.RunwayLayer.clearLayers();
+
+                data.AirPorts.forEach(ap => {
+                    ap.Runways.forEach(rw => {
+                        L.marker([rw.laty, rw.lonx], { icon: this.AirportIcon, rotationAngle: rw.heading, rotationOrigin: 'center center' }).addTo(this.RunwayLayer).bindPopup(
+                            "ICAO: <strong>" + ap.ident + "</strong><br>" +
+                            "NAME: <strong>" + ap.name + "</strong><br>" +
+                            "CITY: <strong>" + ap.city + "</strong><br>" +
+                            "HDG: <strong>" + (rw.heading.toFixed(1) + "° (" + ((rw.heading + 180) % 360).toFixed(1)) + "°)</strong><br>" +
+                            "ALT: <strong>" + rw.altitude + " ft</strong><br>" +
+                            
+                            "PATTERN ALT: <strong>" + rw.pattern_altitude + " ft</strong><br>" +
+                            "TOWER: <strong>" + (ap.tower_frequency > 0 ? (ap.tower_frequency / 1000).toFixed(3) + " kHz" : "N/A") + "</strong><br>" +
+                            "ATIS: <strong>" + (ap.atis_frequency > 0 ? (ap.atis_frequency / 1000).toFixed(3) + " kHz" : "N/A") + "</strong><br>" +
+                            "Surface: <strong>" + (rw.surface ? rw.surface : "N/A") + "</strong><br>" +
+                            "Length: <strong>" + (rw.length > 0 ? rw.length : "N/A") + "</strong><br>" +
+                            "Width: <strong>" + (rw.width > 0 ? rw.width : "N/A") + "</strong><br>" +
+                            "Edge Light: <strong>" + (rw.edge_light ? rw.edge_light : "N/A") + "</strong><br>" 
+                        )
+
+                        if (this.map.getZoom() > 12) {
+
+                            L.marker([rw.Primary.laty, rw.Primary.lonx],
+                                {
+                                    icon: L.divIcon({
+                                        className: 'text-labels', 
+                                        html: rw.Primary.name,
+                                        iconSize: 'auto'
+                                    }),
+                                    rotationAngle: rw.Primary.heading,
+                                    rotationOrigin: 'center center'
+                                }).addTo(this.RunwayLayer).bindPopup(
+                                    "ILS IDENT: <strong>" + rw.Primary.ils_ident + "</strong><br>" 
+                                )
+
+                            L.marker([rw.Secondary.laty, rw.Secondary.lonx],
+                                {
+                                    icon: L.divIcon({
+                                        className: 'text-labels', 
+                                        html: rw.Secondary.name,
+                                        iconSize: 'auto'
+                                    }),
+                                    rotationAngle: rw.Secondary.heading,
+                                    rotationOrigin: 'center center'
+                                }).addTo(this.RunwayLayer)
+                        }
+                    });
+                });
+
+                return;
+
                 for (var i = 0; i < data.runways.length; i++) {
                     let rw = data.runways[i];
                     //var p = [airport.laty, airport.lonx];
@@ -323,11 +380,13 @@ class Map {
                         "NAME: <strong>" + rw.name + "</strong><br>" +
                         "CITY: <strong>" + rw.city + "</strong><br>" +
                         "ALT: <strong>" + rw.altitude + " ft</strong><br>" +
-                        "ALT: <strong>" + (rw.heading.toFixed(1) + "° (" + ((rw.heading + 180) % 360).toFixed(1)) + "°)</strong><br>" +
+                        "HDG: <strong>" + (rw.heading.toFixed(1) + "° (" + ((rw.heading + 180) % 360).toFixed(1)) + "°)</strong><br>" +
                         "TOWER: <strong>" + (rw.tower_frequency != null ? (rw.tower_frequency / 1000).toFixed(3) + " kHz" : "N/A") + "</strong><br>" +
                         "ATIS: <strong>" + (rw.atis_frequency != null ? (rw.atis_frequency / 1000).toFixed(3) + " kHz" : "N/A") + "</strong><br>"
 
                     )
+
+
                     // L.marker([rw.laty, rw.lonx], { icon: this.AirportIcon, rotationAngle: rw.heading }).addTo(this.RunwayLayer).on("click", function (e) {
 
                     //     let d = fms.createModal(800, 400)
@@ -414,124 +473,6 @@ class Map {
 
 
 
-    update333(res) {
-
-        if (res.type == "flightplan") {
-
-            if (this.Timestamp == res.timestamp) {
-                return;
-            }
-            if (this.FlightPlan != null) {
-                this.FlightPlan.remove();
-            }
-
-            this.FlightPlan = L.featureGroup();
-            this.Timestamp = res.timestamp;
-            var pointList = [];
-            for (var i = 0; i < res.data.length; i++) {
-                var wp = res.data[i];
-                var p = new L.LatLng(wp.lat, wp.lng);
-                pointList.push(p);
-
-                if (i == 0) {
-                    // var center = [wp.lat, wp.lng];
-                    // map.panTo(center);
-                    L.marker(p, { icon: this.DepartureIcon }).addTo(this.FlightPlan).bindPopup("<strong>" + wp.id + "</strong><br>Freq: 117.1 kHz<br>Range: 100 km"); //.openPopup();
-
-                }
-                else if (i == res.data.length - 1) {
-                    // var center = [wp.lat, wp.lng];
-                    // map.panTo(center);
-                    L.marker(p, { icon: this.ArrivalIcon }).addTo(this.FlightPlan).bindPopup("<strong>" + wp.id + "</strong><br>Freq: 117.1 kHz<br>Range: 100 km"); //.openPopup();
-
-                } else {
-                    L.marker(p, { icon: this.WaypointIcon }).addTo(this.FlightPlan).bindPopup("<strong>" + wp.id + "</strong><br>Freq: 117.1 kHz<br>Range: 100 km"); //.openPopup();
-                }
-
-            }
-
-            // this.FlightPlan = new L.polyline(pointList, {
-            //     color: 'fuchsia',
-            //     weight: 5,
-            //     opacity: 0.9,
-            //     smoothFactor: 10
-
-            // });
-            var lines = new L.polyline(pointList, {
-                color: 'fuchsia',
-                weight: 5,
-                opacity: 0.9,
-                smoothFactor: 10
-
-            });
-
-            lines.addTo(this.FlightPlan);
-            this.FlightPlan.addTo(this.map);
-            //this.map.fitBounds(this.FlightPlan.getBounds());
-            //this.markers.setZIndex(10);
-            //this.planes.setZIndex(100);
-            this.planes.bringToFront();
-
-            //                                planes.bringToFront();
-
-            // setTimeout(function () {
-            //     ws.send("getflightplane");
-            // }, 10000);
-
-
-        }
-
-        // https://gis.stackexchange.com/questions/182880/leaflet-js-add-text-to-circles
-
-        else if (res.type == "parkingsiiiiiiiiiiiii") {
-            console.log(res.data);
-
-            var pointList = [];
-            this.RunwayLayer = L.featureGroup();
-            this.map.addLayer(this.RunwayLayer);
-
-
-            var lines = res.data.split(';');
-            for (var i = 0; i < lines.length; i++) {
-                var cols = lines[i].split(",");
-                var parking_id = cols[0];
-                var airport_id = cols[1];
-                var type = cols[2];
-                var pushback = cols[3];
-                var name = cols[4];
-                var number = cols[5];
-                var airline_codes = cols[6];
-                var radius = cols[7];
-                var heading = cols[8];
-                var has_jetway = cols[9];
-                var lonx = cols[10];
-                var laty = cols[11];
-
-                var p = new L.LatLng(laty, lonx);
-                //pointList.push(p);
-                switch (type) {
-                    case "FUEL":
-                        L.marker(p, { icon: this.FuelIcon }).addTo(this.RunwayLayer);
-                        //L.circle(p, 30).addTo(this.airports);                       
-                        //L.circleMarker(p, {radius: 7, fillColor: "red", weight: 1, color: "red"}).addTo(this.airports);
-                        break;
-
-                    default:
-                        L.marker(p, { icon: this.ParkingIcon }).addTo(this.RunwayLayer);
-                        //L.circleMarker(p, {radius: 7, fillColor: "green", weight: 1, color: "green"}).addTo(this.airports);
-                        break;
-                }
-
-
-            }
-            this.RunwayLayer.addTo(this.map);
-            var b = this.map.getBounds();
-            console.log(b);
-        }
-
-
-
-    }
 
     connect() {
 
@@ -566,7 +507,7 @@ class Map {
                     this.close();
                 }
 
-                else if (res.type == "runways") {
+                else if (res.type == "airports") {
                     MAP.processData(res);
                 }
 

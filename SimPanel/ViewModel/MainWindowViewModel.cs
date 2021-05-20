@@ -5,6 +5,7 @@ using SimPanel.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace SimPanel.ViewModel
     {
         public MainWindowViewModel()
         {
+            Globals.MainWindow = this;
 
             AddVariableCommand = new RelayCommand(p => { AddRequest(); });
             RemoveVariableCommand = new RelayCommand(p => { RemoveVariable(); }, p => { return this.SimConnectViewModel != null && this.SimConnectViewModel.SelectedSimVar != null; });
@@ -29,6 +31,11 @@ namespace SimPanel.ViewModel
 
             SaveSettingsCommand = new RelayCommand(p => Settings.Default.Save());
 
+            OpenNavdataReader = new RelayCommand(p => {
+                Process.Start(new ProcessStartInfo(p.ToString()));
+            });
+
+
             this.SimConnectViewModel = new SimConnectViewModel();
             if (Settings.Default.LastVariableFile != "")
             {
@@ -40,6 +47,7 @@ namespace SimPanel.ViewModel
             }
 
             this.DatabaseViewModel = new DatabaseViewModel();
+            this.DatabaseViewModel.Init();
 
             this.FlightPlanViewModel = new FlightPlanViewModel();
             if (Settings.Default.LastFlightplanFile != "")
@@ -303,5 +311,6 @@ namespace SimPanel.ViewModel
         public RelayCommand OpenCommand { get; }
         public RelayCommand SendEventCommand { get; }
         public RelayCommand SaveSettingsCommand { get; }
+        public RelayCommand OpenNavdataReader { get; }
     }
 }

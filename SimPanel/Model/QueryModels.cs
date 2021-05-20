@@ -30,6 +30,7 @@ namespace SimPanel.Model
         {
         }
 
+        public string type { get { return "airport"; } }
         public long airport_id { get; set; }
         public long file_id { get; set; }
         public string ident { get; set; }
@@ -98,6 +99,18 @@ namespace SimPanel.Model
         public double lonx { get; set; }
         public double laty { get; set; }
 
+        public List<Runway> Runways
+        {
+            get
+            {
+                if (Globals.MainWindow.DatabaseViewModel.Runways != null)
+                {
+                    return Globals.MainWindow.DatabaseViewModel.Runways.Where(k => k.airport_id == this.airport_id).ToList();
+                }
+                return null;
+            }
+        }
+
     }
 
     public class Runway
@@ -130,8 +143,30 @@ namespace SimPanel.Model
         public double laty { get; set; }
 
 
-        RunwayEnd Primary { get; set; }
-        RunwayEnd Secondary { get; set; }
+        public RunwayEnd Primary
+        {
+            get
+            {
+                if (Globals.MainWindow.DatabaseViewModel.RunwayEnds != null)
+                {
+                    return Globals.MainWindow.DatabaseViewModel.RunwayEnds.Where(k => k.runway_end_id == this.primary_end_id).FirstOrDefault();
+                }
+                return null;
+            }
+
+        }
+        public RunwayEnd Secondary
+        {
+            get
+            {
+                if (Globals.MainWindow.DatabaseViewModel.RunwayEnds != null)
+                {
+                    return Globals.MainWindow.DatabaseViewModel.RunwayEnds.Where(k => k.runway_end_id == this.secondary_end_id).FirstOrDefault();
+                }
+                return null;
+            }
+
+        }
     }
 
     public class RunwayEnd
@@ -182,9 +217,45 @@ namespace SimPanel.Model
         public double radius { get; set; }
         public double heading { get; set; }
         public long has_jetway { get; set; }
-        public double latx { get; set; }
+        public double lonx { get; set; }
         public double laty { get; set; }
     }
+
+    public class ILS
+    {
+        public long ils_id { get; set; }
+        public string ident { get; set; }
+        public string name { get; set; }
+        public string region { get; set; }
+        public long frequency { get; set; }
+        public long range { get; set; }
+        public double mag_var { get; set; }
+        public long has_backcourse { get; set; }
+        public long dme_range { get; set; }
+        public long dme_altitude { get; set; }
+        public double dme_lonx { get; set; }
+        public double dme_laty { get; set; }
+        public long gs_range { get; set; }
+        public double gs_pitch { get; set; }
+        public long gs_altitude { get; set; }
+        public double gs_lonx { get; set; }
+        public double gs_laty { get; set; }
+        public long loc_runway_end_id { get; set; }
+        public string loc_airport_ident { get; set; }
+        public string loc_runway_name { get; set; }
+        public double loc_heading { get; set; }
+        public double loc_width { get; set; }
+        public double end1_lonx { get; set; }
+        public double end1_laty { get; set; }
+        public double end_mid_lonx { get; set; }
+        public double end_mid_laty { get; set; }
+        public double end2_lonx { get; set; }
+        public double end2_laty { get; set; }
+        public long altitude { get; set; }
+        public double lonx { get; set; }
+        public double laty { get; set; }
+    }
+
     public class AirPortInfo
     {
         public AirPortInfo()
@@ -192,9 +263,9 @@ namespace SimPanel.Model
 
         }
 
-        public string type { get { return "airportinfobyname"; } }
-        public AirPort AirPort { get; set; }
-        public List<RunwayInfo> Runways { get; set; }
+        public string type { get { return "airports"; } }
+        public List<AirPort> AirPorts { get; set; }
+
     }
 
     public class RunwayInfo
@@ -209,13 +280,13 @@ namespace SimPanel.Model
     public class ResponseRunways
     {
         public string type { get; set; }
-        public DataTable runways { get; set; }
+        public List<RunwayInfo> runways { get; set; }
     }
 
     public class ResponseParkings
     {
         public string type { get; set; }
-        public DataTable parkings { get; set; }
+        public List<Parking> parkings { get; set; }
     }
 
     public class MapDetailsModel

@@ -3,6 +3,7 @@ using SimPanel.Model;
 using SimPanel.Properties;
 using SimPanel.Utility;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.IO;
@@ -65,14 +66,15 @@ namespace SimPanel.ViewModel
                     if (e.Data.StartsWith("{\"cmd\":"))
                     {
                         QueryModel q = JsonConvert.DeserializeObject<QueryModel>(e.Data);
-                        if (q.cmd == "getrunways")
+                        if (q.cmd == "getairports")
                         {
 
                             MapDetailsModel d = JsonConvert.DeserializeObject<MapDetailsModel>(q.data.ToString());
-                            ResponseRunways rap = new ResponseRunways();
-                            rap.type = "runways";
-                            rap.runways = this.SelectRunways(d);
-                            res = JsonConvert.SerializeObject(rap);
+
+
+                            AirPortInfo ai = new AirPortInfo();
+                            ai.AirPorts = Globals.DatabaseViewModel.SelectAirPorts(d);
+                            res = JsonConvert.SerializeObject(ai);
                             this.Send(res);
                             return;
                         }
@@ -82,7 +84,7 @@ namespace SimPanel.ViewModel
 
                             ResponseParkings rap = new ResponseParkings();
                             rap.type = "parkings";
-                            rap.parkings = this.SelectParkings(d);
+                            rap.parkings = Globals.DatabaseViewModel.SelectParkings(d);
                             res = JsonConvert.SerializeObject(rap);
                             this.Send(res);
                             return;
@@ -92,7 +94,7 @@ namespace SimPanel.ViewModel
                             //DataModel d = JsonConvert.DeserializeObject<DataModel>(q.data.ToString());
 
                             AirPortInfo ai = Globals.MainWindow.DatabaseViewModel.GetAiportInfo(q.data.ToString());
-                            
+
                             res = JsonConvert.SerializeObject(ai);
                             this.Send(res);
                             return;
@@ -116,31 +118,75 @@ namespace SimPanel.ViewModel
 
         }
 
+        //public List<Parking> SelectParkings(MapDetailsModel d)
+        //{
+        //    List<Parking> list = MainWindow.DatabaseViewModel.Parkings.Where(k =>
+        //        k.laty >= d.bounds._southWest.lat &&
+        //        k.laty <= d.bounds._northEast.lat &&
+        //        k.lonx >= d.bounds._southWest.lng &&
+        //        k.lonx <= d.bounds._northEast.lng
+        //    ).ToList();
 
-        public DataTable SelectParkings(MapDetailsModel d)
-        {
-            var db = Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location), "Data", Settings.Default.Database);
-            var cs = $"Data Source = {db}; Cache = Shared";
-            using (var conn = new SQLiteConnection(cs))
-            {
-                conn.Open();
-                DataTable dt = new DataTable();
-                SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM PARKING WHERE laty >= @LAT_MIN and laty <= @LAT_MAX and lonx >= @LNG_MIN and lonx <= @LNG_MAX ", conn);
-                //SQLiteCommand cmd = new SQLiteCommand("select * from parking", conn);
-                cmd.Parameters.AddWithValue("@LAT_MIN", d.bounds._southWest.lat);
-                cmd.Parameters.AddWithValue("@LAT_MAX", d.bounds._northEast.lat);
-                cmd.Parameters.AddWithValue("@LNG_MIN", d.bounds._southWest.lng);
-                cmd.Parameters.AddWithValue("@LNG_MAX", d.bounds._northEast.lng);
+        //    return list;
+        //    //var db = Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location), "Data", Settings.Default.Database);
+        //    //var cs = $"Data Source = {db}; Cache = Shared";
+        //    //using (var conn = new SQLiteConnection(cs))
+        //    //{
+        //    //    conn.Open();
+        //    //    DataTable dt = new DataTable();
+        //    //    SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM PARKING WHERE laty >= @LAT_MIN and laty <= @LAT_MAX and lonx >= @LNG_MIN and lonx <= @LNG_MAX ", conn);
+        //    //    //SQLiteCommand cmd = new SQLiteCommand("select * from parking", conn);
+        //    //    cmd.Parameters.AddWithValue("@LAT_MIN", d.bounds._southWest.lat);
+        //    //    cmd.Parameters.AddWithValue("@LAT_MAX", d.bounds._northEast.lat);
+        //    //    cmd.Parameters.AddWithValue("@LNG_MIN", d.bounds._southWest.lng);
+        //    //    cmd.Parameters.AddWithValue("@LNG_MAX", d.bounds._northEast.lng);
 
 
-                SQLiteDataReader reader = cmd.ExecuteReader();
-                dt.Load(reader);
-                return dt;
-            }
-            return null;
-        }
+        //    //    SQLiteDataReader reader = cmd.ExecuteReader();
+        //    //    dt.Load(reader);
+        //    //    return dt;
+        //    //}
+        //    //return null;
+        //}
 
-        public DataTable SelectRunways(MapDetailsModel d)
+        //public DataTable SelectParkings2(MapDetailsModel d)
+        //{
+        //    var db = Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location), "Data", Settings.Default.Database);
+        //    var cs = $"Data Source = {db}; Cache = Shared";
+        //    using (var conn = new SQLiteConnection(cs))
+        //    {
+        //        conn.Open();
+        //        DataTable dt = new DataTable();
+        //        SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM PARKING WHERE laty >= @LAT_MIN and laty <= @LAT_MAX and lonx >= @LNG_MIN and lonx <= @LNG_MAX ", conn);
+        //        //SQLiteCommand cmd = new SQLiteCommand("select * from parking", conn);
+        //        cmd.Parameters.AddWithValue("@LAT_MIN", d.bounds._southWest.lat);
+        //        cmd.Parameters.AddWithValue("@LAT_MAX", d.bounds._northEast.lat);
+        //        cmd.Parameters.AddWithValue("@LNG_MIN", d.bounds._southWest.lng);
+        //        cmd.Parameters.AddWithValue("@LNG_MAX", d.bounds._northEast.lng);
+
+
+        //        SQLiteDataReader reader = cmd.ExecuteReader();
+        //        dt.Load(reader);
+        //        return dt;
+        //    }
+        //    return null;
+        //}
+
+
+        //public List<AirPort> SelectAirPorts(MapDetailsModel d)
+        //{
+        //    return MainWindow.DatabaseViewModel.Airports.Where(k =>
+        //        //k.ident == "LHBP" &&
+        //        k.rating >= d.rating &&
+        //        k.laty >= d.bounds._southWest.lat &&
+        //        k.laty <= d.bounds._northEast.lat &&
+        //        k.lonx >= d.bounds._southWest.lng &&
+        //        k.lonx <= d.bounds._northEast.lng
+
+        //    ).ToList();
+        //}
+
+        public DataTable SelectRunways2(MapDetailsModel d)
         {
             var db = Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location), "Data", Settings.Default.Database);
             var cs = $"Data Source = {db}; Cache = Shared";
