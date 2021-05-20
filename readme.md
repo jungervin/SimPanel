@@ -54,7 +54,7 @@ Two methods are supported:
 
 GetVariableValue(string varname) will give back the value of variable.
 
-SendEvent(string eventname, uint value) will send an event with value.
+SendEvent(string eventname, uint value) will send an event with value to the Sim.
 
 [Example of Script](https://github.com/jungervin/SimPanel/blob/master/SimPanel/Data/rotary.lua)
 
