@@ -39,4 +39,6 @@ If you use [Little Navmap](https://github.com/albar965/littlenavmap), then you c
 [Little Navmap](https://github.com/albar965/littlenavmap) file can be found somewhere here:
 C:\Users\YourUserName\AppData\Roaming\ABarthel\little_navmap_db\little_navmap_msfs.sqlite
 
+If database exists you will get more infomations about airports on the map:
+
 ![AirportInfo](Doc/images/airport_info.png)
