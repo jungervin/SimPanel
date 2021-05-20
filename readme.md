@@ -36,7 +36,7 @@ The program is currently sized to a 15-inch monitor at 1366x768 pixels. It is no
 ### Database:
 If you use [Little Navmap](https://github.com/albar965/littlenavmap), then you can attach the database file into the simpanel or you can use [Navdatareader](https://github.com/albar965/navdatareader) to create database from the FS2020. 
 
-Little Navmap file can be found somewhere here:
+[Little Navmap](https://github.com/albar965/littlenavmap) file can be found somewhere here:
 C:\Users\YourUserName\AppData\Roaming\ABarthel\little_navmap_db\little_navmap_msfs.sqlite
 
 ![AirportInfo](Doc/images/airport_info.png)
