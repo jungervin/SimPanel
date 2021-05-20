@@ -56,5 +56,7 @@ GetVariableValue(string varname) will give back the value of variable.
 
 SendEvent(string eventname, uint value) will send an event with value.
 
-[Example](https://github.com/jungervin/SimPanel/blob/master/SimPanel/Data/rotary.lua)
+[Example of Script](https://github.com/jungervin/SimPanel/blob/master/SimPanel/Data/rotary.lua)
+
+[Example of Rotary Encoder](https://github.com/jungervin/SimPanel/blob/master/Arduino/Switchpanel/RotaryEncoder/RotaryEncoder.ino)
 
