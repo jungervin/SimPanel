@@ -6,7 +6,15 @@ It has two main parts. One is the server, which handles variables and events thr
 
 The program is currently only tested with the C172, but can also be used on other aircraft.
 
-To install, download the current release and unpack it somewhere. After startup, load variables and events from the Simpanel/Data folder. Then open the web browser with the "Open Index Page" button on the settings tab.
+To install, download the current [release](https://github.com/jungervin/SimPanel/releases) and unpack it somewhere. After startup, load variables and events from the Simpanel/Data folder. Then open the web browser with the "Open Index Page" button on the settings tab.
+
+#### 2021-05-21 Updated Version 0.2 Changelog:
+- Database structure is changed
+- Better Airport infos added to MFD v2
+
+### Demo:
+[![Demo](http://img.youtube.com/vi/8cyhmR0oN2Q/0.jpg)](https://youtu.be/8cyhmR0oN2Q)
+
 
 ### SimPanel
 ![SimPanel](Doc/images/simpanel.png)
@@ -14,8 +22,8 @@ To install, download the current release and unpack it somewhere. After startup,
 ### PFD
 ![PFD](Doc/images/pfd.png)
 
-### MFD
-![MFD](Doc/images/mfd.png)
+### MFD v0.2
+![MFD](Doc/images/mfd_v2.png)
 
 ### Mobile example
 ![Mobile](Doc/images/mobile_example.png)
