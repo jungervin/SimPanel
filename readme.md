@@ -21,6 +21,10 @@ To install, download the current release and unpack it somewhere. After startup,
 ![Mobile](Doc/images/mobile_example.png)
 
 ### Details:
+PFD needs more power for high FPS than a Raspberry Pi can provide (I use an integrated motherboard with J4105 processor), but MFD can works on a stronger tablet.
+
+![Cockpit](Doc/images/cockpit01lo.png)
+
 The program is currently sized to a 15-inch monitor at 1366x768 pixels. It is not advisable to change this, scaling should be used instead.
 
 ```html
@@ -34,7 +38,25 @@ The program is currently sized to a 15-inch monitor at 1366x768 pixels. It is no
 ```
 
 ### Database:
+If you use [Little Navmap](https://github.com/albar965/littlenavmap), then you can attach the database file into the simpanel or you can use [Navdatareader](https://github.com/albar965/navdatareader) to create database from the FS2020. 
+
+[Little Navmap](https://github.com/albar965/littlenavmap) database file can be found somewhere here:
 C:\Users\YourUserName\AppData\Roaming\ABarthel\little_navmap_db\little_navmap_msfs.sqlite
-https://github.com/albar965/navdatareader
+
+If database exists you will get more infomations about airports on the map:
 
 ![AirportInfo](Doc/images/airport_info.png)
+
+### Serial Port and the Lua Script:
+When data comes from the serial port, simpanel will call the Lua Script. Main method must be called Process(trigger), where trigger is the serial data.
+
+Two methods are supported:
+
+GetVariableValue(string varname) will give back the value of variable.
+
+SendEvent(string eventname, uint value) will send an event with value to the Sim.
+
+[Example of Script](https://github.com/jungervin/SimPanel/blob/master/SimPanel/Data/rotary.lua)
+
+[Example of Rotary Encoder](https://github.com/jungervin/SimPanel/blob/master/Arduino/Switchpanel/RotaryEncoder/RotaryEncoder.ino)
+
