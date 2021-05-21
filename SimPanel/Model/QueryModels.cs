@@ -200,6 +200,18 @@ namespace SimPanel.Model
         public long altitude { get; set; }
         public double lonx { get; set; }
         public double laty { get; set; }
+
+        public ILS ILS
+        {
+            get
+            {
+                if (Globals.MainWindow.DatabaseViewModel.ILSs != null && this.ils_ident != null)
+                {
+                    return Globals.MainWindow.DatabaseViewModel.ILSs.Where(k => k.ident == this.ils_ident && k.loc_runway_end_id == this.runway_end_id).FirstOrDefault();
+                }
+                return null;
+            }
+        }
     }
 
     public class Parking
@@ -263,10 +275,23 @@ namespace SimPanel.Model
 
         }
 
+        public string type { get { return "airport"; } }
+        public AirPort AirPort { get; set; }
+
+    }
+
+    public class AirPortsInfo
+    {
+        public AirPortsInfo()
+        {
+
+        }
+
         public string type { get { return "airports"; } }
         public List<AirPort> AirPorts { get; set; }
 
     }
+
 
     public class RunwayInfo
     {

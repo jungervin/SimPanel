@@ -1,0 +1,104 @@
+<div
+    style="height:606px; background:rgb(20, 20, 20); margin: 0px;padding:10px; border: 0;overflow-y: scroll;border-left: 5px solid gray;">
+
+    <style>
+    </style>
+
+    <h1 id="airportinfo_ident" style="margin: 0;padding: 10px 0px 0 0; color: blanchedalmond;"></h1>
+
+    <div style="padding: 10px; margin: 0;">
+        <!-- <h2 style="margin: 0; color: blanchedalmond;">RUNWAYS</h2> -->
+        <div id="runways" style="padding-right: 20px;">
+            <h2 style="color: red;">NO AIRPORT SELECTED!</h2>'
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+
+
+        });
+
+        function load_airportinfo(ident) {
+            let ws = new WebSocket(SETTINGS.ws_sim)
+
+            ws.onopen = function (e) {
+                ws.send(JSON.stringify({ cmd: "getairportbyname", data: ident }))
+            }
+
+            ws.onmessage = function (res) {
+
+                let data = JSON.parse(res.data)
+                console.log(data)
+                if (data.type == "airport") {
+                    let ap = data.AirPort
+                    let html = ""
+
+                    html += '<h2 style="margin-bottom: 20px; color: blanchedalmond;">AIRPORT INFO</h2>'
+                    html += '<table id="runwaytable" style="margin: 0px; font-weight: bold;">'
+                    html += '<tr><td class="title">ICAO: </td><td class="value">' + ap.ident + '</td></tr>'
+                    html += '<tr><td class="title">NAME: </td><td class="value">' + ap.name + '</td></tr>'
+                    //html += '<tr><td class="title">COUNTRY: </td><td class="value">' + ap.country + '</td></tr>'
+                    html += '<tr><td class="title">CITY: </td><td class="value">' + ap.city + '</td></tr>'
+                    html += '<tr><td class="title">ALT:</td><td class="value">' + ap.altitude + ' ft</td></tr>'
+                    html += ap.transition_altitude != 0 ? '<tr><td class="title">TRANSITION ALT:</td><td class="value">' + ap.transition_altitude + '</td></tr>' : ''
+                    html += ap.tower_frequency > 0 ? '<tr><td class="title">TOWER FREQ:</td><td class="value">' + (ap.tower_frequency * 0.001).toFixed(3) + ' kHz</td></tr>' : ''
+                    html += ap.atis_frequency > 0 ? '<tr><td class="title">ATIS FREQ:</td><td class="value">' + (ap.atis_frequency * 0.001).toFixed(3) + ' kHz</td></tr>' : ''
+                    html += ap.awos_frequency > 0 ? '<tr><td class="title">AWOS FREQ:</td><td class="value">' + (ap.awos_frequency * 0.001).toFixed(3) + ' kHz</td></tr>' : ''
+                    html += ap.asos_frequency > 0 ? '<tr><td class="title">ASOS FREQ:</td><td class="value">' + (ap.asos_frequency * 0.001).toFixed(3) + ' kHz</td></tr>' : ''
+                    html += ap.unicom_frequency > 0 ? '<tr><td class="title">UNICOM FREQ:</td><td class="value">' + (ap.unicom_frequency * 0.001).toFixed(3) + ' kHz</td></tr>' : ''
+                    html += '<tr><td class="title">CLOSED:</td><td class="value">' + (ap.is_closed ? 'YES' : 'NO') + '</td></tr>'
+                    html += '<tr><td class="title">MILITARY:</td><td class="value">' + (ap.is_military ? 'YES' : 'NO') + '</td></tr>'
+                    html += '</table>'
+
+                    ap.Runways.forEach(rw => {
+                        html += '<h3 style="margin: 20px 0 0 0; color: cyan;">Runway ' + rw.Primary.name + '-' + rw.Secondary.name + '</h3>'
+
+                        html += '<table>'
+                        html += '<tr><td class="title">SIZE:</td><td class="value">' + rw.length + 'x' + rw.width + ' ft</td></tr>'
+                        html += '<tr><td class="title">ALT:</td><td class="value">' + rw.altitude + '' + ' ft</td></tr>'
+                        html += '</table>'
+
+                        html += '<ul>'
+
+                        html += '<li class="title" style="color: cyan">' + rw.Primary.name + '</li>'
+                        html += '<table>'
+                        html += '<tr><td class="title">HDG:</td><td class="value">' + rw.Primary.heading.toFixed(0) + '°</td></tr>'
+
+                        if (rw.Primary.ILS != null) {
+                            html += '<tr><td class="title">ILS Ident:</td><td class="value">' + rw.Primary.ILS.ident + '</td></tr>'
+                            html += '<tr><td class="title">ILS Name:</td><td class="value">' + rw.Primary.ILS.name + '</td></tr>'
+                            html += '<tr><td class="title">ILS Freq:</td><td class="value">' + (rw.Primary.ILS.frequency * 0.001).toFixed(3) + ' kHz</td></tr>'
+                            html += '<tr><td class="title">ILS Range:</td><td class="value">' + rw.Primary.ILS.range + " nm</td></tr>"
+                            html += '<tr><td class="title">ILS Magvar:</td><td class="value">' + rw.Primary.ILS.mag_var.toFixed(0) + '°</td></tr>'
+                            html += '<tr><td class="title">ILS GS Range:</td><td class="value">' + rw.Primary.ILS.gs_range.toFixed(0) + ' nm</td></tr>'
+                            html += '<tr><td class="title">ILS GS Slope:</td><td class="value">' + rw.Primary.ILS.gs_pitch.toFixed(0) + '°</td></tr>'
+                            html += '<tr><td class="title">ILS GS Alt:</td><td class="value">' + rw.Primary.ILS.gs_altitude.toFixed(0) + ' ft</td></tr>'
+                        }
+
+                        html += '</table>'
+
+                        html += '<li class="title" style="color: cyan">' + rw.Secondary.name + '</li>'
+                        html += '<table>'
+                        html += '<tr><td class="title">HDG:</td><td class="value">' + rw.Secondary.heading.toFixed(0) + '°</td></tr>'
+                        if (rw.Secondary.ILS != null) {
+                            html += '<tr><td class="title">ILS Ident:</td><td class="value">' + rw.Secondary.ILS.ident + '</td></tr>'
+                            html += '<tr><td class="title">ILS Name:</td><td class="value">' + rw.Secondary.ILS.name + '</td></tr>'
+                            html += '<tr><td class="title">ILS Freq:</td><td class="value">' + (rw.Secondary.ILS.frequency * 0.001).toFixed(3) + ' kHz</td></tr>'
+                            html += '<tr><td class="title">ILS Range:</td><td class="value">' + rw.Secondary.ILS.range + ' nm</td></tr>'
+                            html += '<tr><td class="title">ILS Magvar:</td><td class="value">' + rw.Secondary.ILS.mag_var.toFixed(0) + '°</td></tr>'
+                            html += '<tr><td class="title">ILS GS Range:</td><td class="value">' + rw.Secondary.ILS.gs_range.toFixed(0) + ' nm</td></tr>'
+                            html += '<tr><td class="title">ILS GS Slope:</td><td class="value">' + rw.Secondary.ILS.gs_pitch.toFixed(0) + '°</td></tr>'
+                            html += '<tr><td class="title">ILS GS Alt:</td><td class="value">' + rw.Secondary.ILS.gs_altitude.toFixed(0) + ' ft</td></tr>'
+                        }
+
+                        html += '</table>'
+                        html += '</ul>'
+                    });
+
+                    document.getElementById("runways").innerHTML = html
+                }
+            }
+        }
+    </script>
+</div>

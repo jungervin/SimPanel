@@ -319,23 +319,29 @@ class Map {
 
                 data.AirPorts.forEach(ap => {
                     ap.Runways.forEach(rw => {
-                        L.marker([rw.laty, rw.lonx], { icon: this.AirportIcon, rotationAngle: rw.heading, rotationOrigin: 'center center' }).addTo(this.RunwayLayer).bindPopup(
-                            "ICAO: <strong>" + ap.ident + "</strong><br>" +
-                            "NAME: <strong>" + ap.name + "</strong><br>" +
-                            "CITY: <strong>" + ap.city + "</strong><br>" +
-                            "HDG: <strong>" + (rw.heading.toFixed(1) + "° (" + ((rw.heading + 180) % 360).toFixed(1)) + "°)</strong><br>" +
-                            "ALT: <strong>" + rw.altitude + " ft</strong><br>" +
+                        // L.marker([rw.laty, rw.lonx], { icon: this.AirportIcon, rotationAngle: rw.heading, rotationOrigin: 'center center' }).addTo(this.RunwayLayer).bindPopup(
+                        //     "ICAO: <strong>" + ap.ident + "</strong><br>" +
+                        //     "NAME: <strong>" + ap.name + "</strong><br>" +
+                        //     "CITY: <strong>" + ap.city + "</strong><br>" +
+                        //     "HDG: <strong>" + (rw.heading.toFixed(1) + "° (" + ((rw.heading + 180) % 360).toFixed(1)) + "°)</strong><br>" +
+                        //     "ALT: <strong>" + rw.altitude + " ft</strong><br>" +
                             
-                            "PATTERN ALT: <strong>" + rw.pattern_altitude + " ft</strong><br>" +
-                            "TOWER: <strong>" + (ap.tower_frequency > 0 ? (ap.tower_frequency / 1000).toFixed(3) + " kHz" : "N/A") + "</strong><br>" +
-                            "ATIS: <strong>" + (ap.atis_frequency > 0 ? (ap.atis_frequency / 1000).toFixed(3) + " kHz" : "N/A") + "</strong><br>" +
-                            "Surface: <strong>" + (rw.surface ? rw.surface : "N/A") + "</strong><br>" +
-                            "Length: <strong>" + (rw.length > 0 ? rw.length : "N/A") + "</strong><br>" +
-                            "Width: <strong>" + (rw.width > 0 ? rw.width : "N/A") + "</strong><br>" +
-                            "Edge Light: <strong>" + (rw.edge_light ? rw.edge_light : "N/A") + "</strong><br>" 
-                        )
+                        //     "PATTERN ALT: <strong>" + rw.pattern_altitude + " ft</strong><br>" +
+                        //     "TOWER: <strong>" + (ap.tower_frequency > 0 ? (ap.tower_frequency / 1000).toFixed(3) + " kHz" : "N/A") + "</strong><br>" +
+                        //     "ATIS: <strong>" + (ap.atis_frequency > 0 ? (ap.atis_frequency / 1000).toFixed(3) + " kHz" : "N/A") + "</strong><br>" +
+                        //     "Surface: <strong>" + (rw.surface ? rw.surface : "N/A") + "</strong><br>" +
+                        //     "Length: <strong>" + (rw.length > 0 ? rw.length : "N/A") + "</strong><br>" +
+                        //     "Width: <strong>" + (rw.width > 0 ? rw.width : "N/A") + "</strong><br>" +
+                        //     "Edge Light: <strong>" + (rw.edge_light ? rw.edge_light : "N/A") + "</strong><br>" 
+                        // ).on('click', function (params) {
+                        //     $('#airportinfo').load("airport_info.html", function () {
+                        //         load_airportinfo(ap.ident)
+                        //     });
+                        // });
 
-                        if (this.map.getZoom() > 12) {
+
+
+                        if (this.map.getZoom() > 10) {
 
                             L.marker([rw.Primary.laty, rw.Primary.lonx],
                                 {
@@ -361,75 +367,19 @@ class Map {
                                     rotationOrigin: 'center center'
                                 }).addTo(this.RunwayLayer)
                         }
+
+                        L.marker([rw.laty, rw.lonx], { icon: this.AirportIcon, rotationAngle: rw.heading, rotationOrigin: 'center center' })
+                        .addTo(this.RunwayLayer)
+                        .on('click', function (params) {
+                            load_airportinfo(ap.ident)
+                            // $('#airportinfo').load("airport_info.html", function () {
+                                
+                            // });
+                        });
+
+
                     });
                 });
-
-                return;
-
-                for (var i = 0; i < data.runways.length; i++) {
-                    let rw = data.runways[i];
-                    //var p = [airport.laty, airport.lonx];
-                    // var p1 = new L.LatLng(airport.top_laty, airport.left_lonx);
-                    // var p2 = new L.LatLng(airport.bottom_laty, airport.right_lonx);
-                    // var p1 = [airport.top_laty, airport.left_lonx];
-                    // var p2 = [airport.bottom_laty, airport.right_lonx];
-                    //var r =   L.GeometryUtil.angle(this.map, p1, p2) + 10;
-                    // L.marker([airport.laty, airport.lonx], { icon: this.AirportIcon, rotationAngle: airport.heading }).addTo(this.airports).bindPopup("<strong>" + airport.ident + "</strong><br>" + airport.city + "<br>"); //.openPopup();
-                    L.marker([rw.laty, rw.lonx], { icon: this.AirportIcon, rotationAngle: rw.heading }).addTo(this.RunwayLayer).bindPopup(
-                        "ICAO: <strong>" + rw.ident + "</strong><br>" +
-                        "NAME: <strong>" + rw.name + "</strong><br>" +
-                        "CITY: <strong>" + rw.city + "</strong><br>" +
-                        "ALT: <strong>" + rw.altitude + " ft</strong><br>" +
-                        "HDG: <strong>" + (rw.heading.toFixed(1) + "° (" + ((rw.heading + 180) % 360).toFixed(1)) + "°)</strong><br>" +
-                        "TOWER: <strong>" + (rw.tower_frequency != null ? (rw.tower_frequency / 1000).toFixed(3) + " kHz" : "N/A") + "</strong><br>" +
-                        "ATIS: <strong>" + (rw.atis_frequency != null ? (rw.atis_frequency / 1000).toFixed(3) + " kHz" : "N/A") + "</strong><br>"
-
-                    )
-
-
-                    // L.marker([rw.laty, rw.lonx], { icon: this.AirportIcon, rotationAngle: rw.heading }).addTo(this.RunwayLayer).on("click", function (e) {
-
-                    //     let d = fms.createModal(800, 400)
-
-                    //     let runways = document.querySelector('#runways').content.cloneNode(true);
-                    //     d.appendChild(runways)
-
-                    //     let table = document.querySelector('#runwaytable');
-                    //     let tbody = table.querySelector('tbody');
-
-                    //     function addRow(label, value) {
-                    //         let row = document.querySelector('#runwayrow').content.cloneNode(true)
-                    //         let td = row.querySelectorAll("td")
-                    //         td[0].innerHTML = "<b>" + label + "</b>"
-                    //         td[1].innerHTML = "<b>" + value + "</b>"
-                    //         tbody.appendChild(row)
-                    //     }
-
-                    //     addRow("ICAO", rw.ident)
-                    //     addRow("CITY", rw.city)
-                    //     addRow("NAME", rw.name)
-                    //     addRow("ALT", rw.altitude + " ft")
-                    //     addRow("HDG", rw.heading.toFixed(1) + "° (" + ((rw.heading+180) % 360).toFixed(1)  + "°)")
-                    //     addRow("TOWER", rw.tower_frequency != null ? (rw.tower_frequency / 1000).toFixed(3) + " kHz" : "N/A")
-                    //     addRow("ATIS",  rw.atis_frequency != null ? (rw.atis_frequency / 1000).toFixed(3) + " kHz" : "N/A")
-
-                    //     function close() {
-                    //         d.remove()
-                    //          document.getElementById("simpanel").removeEventListener("click", close)
-                    //     }
-                    //    // document.getElementById("simpanel").addEventListener("click", close)
-                    //     let btn = document.getElementById("btnRunwaysClose")
-                    //     btn.onclick = function name(params) {
-                    //         d.remove()
-                    //     }
-
-                    // })
-
-
-
-
-                    // ); //.openPopup();
-                }
 
                 break;
 

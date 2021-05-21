@@ -18,3 +18,47 @@ button {
     height: 32px;
     width: 60px;
 }
+
+        /* width */
+        ::-webkit-scrollbar {
+            width: 16px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #111111;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        body {
+            font-family: "Consolas";
+        }
+
+        select {
+            background-color: black;
+            color: white;
+            font-family: consolas;
+            font-size: 16px;
+            font-weight: bold;
+            border: 1px solid gray;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .title {
+            color: white;
+        }
+
+        .value {
+            color: magenta;
+            font-weight: bold;
+        }

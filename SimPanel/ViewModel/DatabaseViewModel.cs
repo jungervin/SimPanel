@@ -35,7 +35,7 @@ namespace SimPanel.ViewModel
             this.Parkings = this.FillParking();
             this.ILSs = this.FillILSs();
 
-            AirPortInfo ai = this.GetAiportInfo("LHBP");
+            AirPortsInfo ai = this.GetAiportInfo("LHBP");
 
             string res = JsonConvert.SerializeObject(ai);
             Console.WriteLine(res);
@@ -54,9 +54,9 @@ namespace SimPanel.ViewModel
             ).ToList();
         }
 
-        public List<AirPort> SelectAirPorts(string ident)
+        public AirPort SelectAirPorts(string ident)
         {
-            return this.Airports.Where(k => k.ident == ident).ToList();
+            return this.Airports.Where(k => k.ident == ident).FirstOrDefault();
         }
 
 
@@ -69,9 +69,9 @@ namespace SimPanel.ViewModel
                  k.lonx <= d.bounds._northEast.lng
              ).ToList();
         }
-        public AirPortInfo GetAiportInfo(string ident)
+        public AirPortsInfo GetAiportInfo(string ident)
         {
-            AirPortInfo ai = new AirPortInfo();
+            AirPortsInfo ai = new AirPortsInfo();
             //ai.AirPort = this.Airports.Where(k => k.ident == ident).FirstOrDefault();
             //ai.Runways = new List<RunwayInfo>();
 

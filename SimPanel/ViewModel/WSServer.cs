@@ -72,7 +72,7 @@ namespace SimPanel.ViewModel
                             MapDetailsModel d = JsonConvert.DeserializeObject<MapDetailsModel>(q.data.ToString());
 
 
-                            AirPortInfo ai = new AirPortInfo();
+                            AirPortsInfo ai = new AirPortsInfo();
                             ai.AirPorts = Globals.DatabaseViewModel.SelectAirPorts(d);
                             res = JsonConvert.SerializeObject(ai);
                             this.Send(res);
@@ -89,15 +89,21 @@ namespace SimPanel.ViewModel
                             this.Send(res);
                             return;
                         }
-                        else if (q.cmd == "getairportinfobyname")
+                        else if (q.cmd == "getairportbyname")
                         {
-                            //DataModel d = JsonConvert.DeserializeObject<DataModel>(q.data.ToString());
+                            ////DataModel d = JsonConvert.DeserializeObject<DataModel>(q.data.ToString());
 
-                            AirPortInfo ai = Globals.MainWindow.DatabaseViewModel.GetAiportInfo(q.data.ToString());
+                            //AirPortInfo ai = Globals.MainWindow.DatabaseViewModel.GetAiportInfo(q.data.ToString());
 
+                            //res = JsonConvert.SerializeObject(ai);
+                            //this.Send(res);
+                            //return;
+                            AirPortInfo ai = new AirPortInfo();
+                            ai.AirPort = Globals.DatabaseViewModel.SelectAirPorts(q.data.ToString());
                             res = JsonConvert.SerializeObject(ai);
                             this.Send(res);
                             return;
+
                         }
                         this.Send("{\"type\":\"status\", \"data\": \"Unknown cmd\"}");
                     }
