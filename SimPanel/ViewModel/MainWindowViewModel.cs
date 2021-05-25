@@ -64,9 +64,16 @@ namespace SimPanel.ViewModel
             this.SerialDeviceViewModel = new SerialDeviceViewModel();
             this.SerialDeviceViewModel.Start();
 
-
-            this.SimpleHttpSever = new SimpleHttpServer(Settings.Default.TCPPort);
-            this.SimpleHttpSever.Start();
+            //Settings.Default.TCPPort = 5001;
+            try
+            {
+                this.SimpleHttpSever = new SimpleHttpServer(Settings.Default.TCPPort);
+                this.SimpleHttpSever.Start();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void RemoveVariable()

@@ -38,6 +38,7 @@ namespace SimPanel.ViewModel
 
         public bool LoadFromFile(string filename)
         {
+            
             string ext = Path.GetExtension(filename).ToLower();
             if (ext == ".flt")
             {
@@ -55,11 +56,11 @@ namespace SimPanel.ViewModel
             }
             else if (ext == ".pln")
             {
-                if (this.LoadFromPLN(filename))
-                {
-                    this.FlightPlanJSON = this.GetJSON();
-                    return true;
-                }
+                //if (this.LoadFromPLN(filename))
+                //{
+                //    this.FlightPlanJSON = this.GetJSON();
+                //    return true;
+                //}
             }
             else
             {

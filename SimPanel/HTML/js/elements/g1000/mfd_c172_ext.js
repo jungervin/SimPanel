@@ -60,8 +60,12 @@ class C172 extends FMS {
                 MAP.map.invalidateSize()
             }
 
-
         })
+
+        bg.button(60, 32, "PFD").move(bbox.x + 50 + 70 * 10, bbox.y + 30).click(function (e) {
+            window.location = SETTINGS.pfd_url;
+        })
+
 
         this.PanelBottom.btnTRCK.click(function (e){
             MAP.tracking = !MAP.tracking;
@@ -69,6 +73,9 @@ class C172 extends FMS {
         })
 
         this.PanelBottom.btnTRCK.setON(MAP.tracking)
+
+
+
         // this.PanelBottom.btnTRCK.click(function (e){
         //     MAP.tracking = !MAP.tracking;
         //     e.currentTarget.instance.setON(MAP.tracking)

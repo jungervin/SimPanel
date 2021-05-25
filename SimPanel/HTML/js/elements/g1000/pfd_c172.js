@@ -118,6 +118,13 @@ class C172 extends FMS {
             e.currentTarget.instance.setON(MAP.tracking)
         })
 
+        
+        let bg = this.PanelBottom.panel;
+        let bbox = bg.bbox();
+        bg.button(60, 32, "MFD").move(bbox.x + 50 + 70 * 10, bbox.y + 30).click(function (e) {
+            window.location = SETTINGS.mfd_url;
+        })
+
         // this.SwitchPanel = null;
         // this.PanelBottom.btnMenu.on("click", function () {
         //     if (pfd.SwitchPanel == null) {

@@ -89,18 +89,30 @@ namespace SimPanel.ViewModel
                             this.Send(res);
                             return;
                         }
+                        else if (q.cmd == "getvors")
+                        {
+                            MapDetailsModel d = JsonConvert.DeserializeObject<MapDetailsModel>(q.data.ToString());
+
+                            ResponseVORs vrs = new ResponseVORs();
+                            vrs.vors = Globals.DatabaseViewModel.SelectVORs(d);
+                            res = JsonConvert.SerializeObject(vrs);
+                            this.Send(res);
+                            return;
+                        }
                         else if (q.cmd == "getairportbyname")
                         {
-                            ////DataModel d = JsonConvert.DeserializeObject<DataModel>(q.data.ToString());
-
-                            //AirPortInfo ai = Globals.MainWindow.DatabaseViewModel.GetAiportInfo(q.data.ToString());
-
-                            //res = JsonConvert.SerializeObject(ai);
-                            //this.Send(res);
-                            //return;
                             AirPortInfo ai = new AirPortInfo();
                             ai.AirPort = Globals.DatabaseViewModel.SelectAirPorts(q.data.ToString());
                             res = JsonConvert.SerializeObject(ai);
+                            this.Send(res);
+                            return;
+
+                        }
+                        else if (q.cmd == "getvorbyid")
+                        {
+                            VORInfo v = new VORInfo();
+                            v.VOR = Globals.DatabaseViewModel.SelectVOR((Int64)q.data);
+                            res = JsonConvert.SerializeObject(v);
                             this.Send(res);
                             return;
 

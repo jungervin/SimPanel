@@ -105,6 +105,9 @@ class Map {
         this.parkings = L.featureGroup();
         this.map.addLayer(this.parkings);
 
+        this.VORsLayer = L.featureGroup();
+        this.map.addLayer(this.VORsLayer);
+
 
         var overlayMaps = {
             "OpenAIP": openaip_cached_basemap,
@@ -157,6 +160,11 @@ class Map {
         this.AirportIcon = L.icon({
             iconUrl: "images/airport.svg",
             iconSize: [18, 18]
+        });
+
+        this.VORIcon = L.icon({
+            iconUrl: "images/vor.svg",
+            iconSize: [20, 20]
         });
 
 
@@ -247,14 +255,24 @@ class Map {
 
 
                 var q = JSON.stringify({ cmd: "getairports", data: { zoom: this.map.getZoom(), rating: rating, bounds: this.map.getBounds() } });
-                //console.log(q);
                 this.ws.send(q);
+
+
                 if (this.map.getZoom() >= 12) {
                     var q = JSON.stringify({ cmd: "getparkings", data: { zoom: this.map.getZoom(), rating: rating, bounds: this.map.getBounds() } });
                     this.ws.send(q);
                 } else {
-                    // Letörölhetjük a pakolókat, esetleg?
+                    this.parkings.clearLayers()
                 }
+
+                if (this.map.getZoom() >= 7) {
+                    var q = JSON.stringify({ cmd: "getvors", data: { zoom: this.map.getZoom(), rating: rating, bounds: this.map.getBounds() } });
+                    this.ws.send(q);
+                } else {
+                    this.VORsLayer.clearLayers()
+                }
+
+
                 //this.ws.send("getflightplan")
                 this.InfosTimeStamp = t;
             }
@@ -325,7 +343,7 @@ class Map {
                         //     "CITY: <strong>" + ap.city + "</strong><br>" +
                         //     "HDG: <strong>" + (rw.heading.toFixed(1) + "° (" + ((rw.heading + 180) % 360).toFixed(1)) + "°)</strong><br>" +
                         //     "ALT: <strong>" + rw.altitude + " ft</strong><br>" +
-                            
+
                         //     "PATTERN ALT: <strong>" + rw.pattern_altitude + " ft</strong><br>" +
                         //     "TOWER: <strong>" + (ap.tower_frequency > 0 ? (ap.tower_frequency / 1000).toFixed(3) + " kHz" : "N/A") + "</strong><br>" +
                         //     "ATIS: <strong>" + (ap.atis_frequency > 0 ? (ap.atis_frequency / 1000).toFixed(3) + " kHz" : "N/A") + "</strong><br>" +
@@ -346,20 +364,20 @@ class Map {
                             L.marker([rw.Primary.laty, rw.Primary.lonx],
                                 {
                                     icon: L.divIcon({
-                                        className: 'text-labels', 
+                                        className: 'text-labels',
                                         html: rw.Primary.name,
                                         iconSize: 'auto'
                                     }),
                                     rotationAngle: rw.Primary.heading,
                                     rotationOrigin: 'center center'
                                 }).addTo(this.RunwayLayer).bindPopup(
-                                    "ILS IDENT: <strong>" + rw.Primary.ils_ident + "</strong><br>" 
+                                    "ILS IDENT: <strong>" + rw.Primary.ils_ident + "</strong><br>"
                                 )
 
                             L.marker([rw.Secondary.laty, rw.Secondary.lonx],
                                 {
                                     icon: L.divIcon({
-                                        className: 'text-labels', 
+                                        className: 'text-labels',
                                         html: rw.Secondary.name,
                                         iconSize: 'auto'
                                     }),
@@ -369,13 +387,13 @@ class Map {
                         }
 
                         L.marker([rw.laty, rw.lonx], { icon: this.AirportIcon, rotationAngle: rw.heading, rotationOrigin: 'center center' })
-                        .addTo(this.RunwayLayer)
-                        .on('click', function (params) {
-                            load_airportinfo(ap.ident)
-                            // $('#airportinfo').load("airport_info.html", function () {
-                                
-                            // });
-                        });
+                            .addTo(this.RunwayLayer)
+                            .on('click', function (params) {
+                                load_airportinfo(ap.ident)
+                                // $('#airportinfo').load("airport_info.html", function () {
+
+                                // });
+                            });
 
 
                     });
@@ -387,7 +405,7 @@ class Map {
                 // Esetleg letörölhetjük, ha már kicsi a nagyítás, mert így addig marad, amíg új
                 this.parkings.clearLayers();
                 for (var i = 0; i < data.parkings.length; i++) {
-                    var park = data.parkings[i];
+                    let park = data.parkings[i];
                     //var p = new L.LatLng(park.laty, park.lonx);
                     //pointList.push(p);
                     switch (park.type) {
@@ -404,16 +422,28 @@ class Map {
                     }
                 }
                 break;
-        }
 
+            case "vors":
+                this.VORsLayer.clearLayers();
+                for (var i = 0; i < data.vors.length; i++) {
+                    let vor = data.vors[i];
+                    L.marker([vor.laty, vor.lonx], { icon: this.VORIcon })
+                        .addTo(this.VORsLayer)
+                        .on('click', function (params) {
+                            load_vorinfo(vor.vor_id)
+                        });
+
+                }
+                break;
+        }
     }
 
 
     AirPlaneSetPos(lat, lng, deg, track) {
+        var center = [lat, lng];
+        this.AirPlane.setRotationAngle(deg - 34);
+        this.AirPlane.setLatLng(center);
         if (this.tracking) {
-            var center = [lat, lng];
-            this.AirPlane.setRotationAngle(deg - 34);
-            this.AirPlane.setLatLng(center);
             if (track) {
                 this.map.panTo(center);
 
@@ -462,6 +492,10 @@ class Map {
                 }
 
                 else if (res.type == "parkings") {
+                    MAP.processData(res);
+                }
+
+                else if (res.type == "vors") {
                     MAP.processData(res);
                 }
 

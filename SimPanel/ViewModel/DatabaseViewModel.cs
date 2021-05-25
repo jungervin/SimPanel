@@ -32,14 +32,9 @@ namespace SimPanel.ViewModel
             this.Airports = this.FillAirports();
             this.Runways = this.FillRunways();
             this.RunwayEnds = this.FillRunwayEnds();
-            this.Parkings = this.FillParking();
+            this.Parkings = this.FillParkings();
             this.ILSs = this.FillILSs();
-
-            AirPortsInfo ai = this.GetAiportInfo("LHBP");
-
-            string res = JsonConvert.SerializeObject(ai);
-            Console.WriteLine(res);
-
+            this.VORs = this.FillVORs();
         }
 
         public List<AirPort> SelectAirPorts(MapDetailsModel d)
@@ -69,6 +64,22 @@ namespace SimPanel.ViewModel
                  k.lonx <= d.bounds._northEast.lng
              ).ToList();
         }
+
+        public List<VOR> SelectVORs(MapDetailsModel d)
+        {
+            return this.VORs.Where(k =>
+                 k.laty >= d.bounds._southWest.lat &&
+                 k.laty <= d.bounds._northEast.lat &&
+                 k.lonx >= d.bounds._southWest.lng &&
+                 k.lonx <= d.bounds._northEast.lng
+             ).ToList();
+        }
+
+        public VOR SelectVOR(Int64 id)
+        {
+            return this.VORs.Where(k => k.vor_id == id).FirstOrDefault();
+        }
+
         public AirPortsInfo GetAiportInfo(string ident)
         {
             AirPortsInfo ai = new AirPortsInfo();
@@ -95,6 +106,7 @@ namespace SimPanel.ViewModel
         public List<RunwayEnd> RunwayEnds { get; set; }
         public List<Parking> Parkings { get; set; }
         public List<ILS> ILSs { get; set; }
+        public List<VOR> VORs { get; set; }
 
         public List<AirPort> FillAirports()
         {
@@ -304,7 +316,7 @@ namespace SimPanel.ViewModel
             return list;
         }
 
-        public List<Parking> FillParking()
+        public List<Parking> FillParkings()
         {
             List<Parking> list = new List<Parking>();
             if (this.ConnectioString != null)
@@ -408,6 +420,55 @@ namespace SimPanel.ViewModel
             }
             return list;
 
+        }
+
+        public List<VOR> FillVORs()
+        {
+            List<VOR> list = new List<VOR>();
+            if (this.ConnectioString != null)
+            {
+                try
+                {
+                    using (var conn = new SQLiteConnection(this.ConnectioString))
+                    {
+                        conn.Open();
+
+                        SQLiteCommand cmd = new SQLiteCommand(@"SELECT * FROM VOR", conn);
+                        SQLiteDataReader r = cmd.ExecuteReader();
+
+                        while (r.Read())
+                        {
+                            VOR vo = new VOR();
+
+                            vo.vor_id = r.GetValue(0) != DBNull.Value ? r.GetInt64(0) : 0;
+                            vo.file_id = r.GetValue(1) != DBNull.Value ? r.GetInt64(1) : 0;
+                            vo.ident = r.GetValue(2) != DBNull.Value ? r.GetString(2) : "";
+                            vo.name = r.GetValue(3) != DBNull.Value ? r.GetString(3) : "";
+                            vo.region = r.GetValue(4) != DBNull.Value ? r.GetString(4) : "";
+                            vo.airport_id = r.GetValue(5) != DBNull.Value ? r.GetInt64(5) : 0;
+                            vo.type = r.GetValue(6) != DBNull.Value ? r.GetString(6) : "";
+                            vo.frequency = r.GetValue(7) != DBNull.Value ? r.GetInt64(7) : 0;
+                            vo.channel = r.GetValue(8) != DBNull.Value ? r.GetString(8) : "";
+                            vo.range = r.GetValue(9) != DBNull.Value ? r.GetInt64(9) : 0;
+                            vo.mag_var = r.GetValue(10) != DBNull.Value ? r.GetDouble(10) : 0;
+                            vo.dme_only = r.GetValue(11) != DBNull.Value ? r.GetInt64(11) : 0;
+                            vo.dme_altitude = r.GetValue(12) != DBNull.Value ? r.GetInt64(12) : 0;
+                            vo.dme_lonx = r.GetValue(13) != DBNull.Value ? r.GetDouble(13) : 0;
+                            vo.dme_laty = r.GetValue(14) != DBNull.Value ? r.GetDouble(14) : 0;
+                            vo.altitude = r.GetValue(15) != DBNull.Value ? r.GetInt64(15) : 0;
+                            vo.lonx = r.GetValue(16) != DBNull.Value ? r.GetDouble(16) : 0;
+                            vo.laty = r.GetValue(17) != DBNull.Value ? r.GetDouble(17) : 0;
+
+                            list.Add(vo);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            return list;
         }
     }
 }

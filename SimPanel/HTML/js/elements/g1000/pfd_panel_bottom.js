@@ -101,9 +101,7 @@ class G1000PFDPanelBottom {
             })
         })
 
-        g.button(bw, bh, "MFD").move(x + bs * 10, y).click(function (e) {
-            window.open(SETTINGS.mfd_url);
-        })
+       
 
 
         let font1 = { fill: 'white', 'font-family': 'consolas', 'font-weight': 'bold', 'font-size': 18, leading: "0em" }

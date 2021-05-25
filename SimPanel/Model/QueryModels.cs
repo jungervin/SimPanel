@@ -268,6 +268,31 @@ namespace SimPanel.Model
         public double laty { get; set; }
     }
 
+    public class VOR
+    {
+        public VOR()
+        { }
+
+        public long vor_id { get; set; }
+        public long file_id { get; set; }
+        public string ident { get; set; }
+        public string name { get; set; }
+        public string region { get; set; }
+        public long airport_id { get; set; }
+        public string type { get; set; }
+        public long frequency { get; set; }
+        public string channel { get; set; }
+        public long range { get; set; }
+        public double mag_var { get; set; }
+        public long dme_only { get; set; }
+        public long dme_altitude { get; set; }
+        public double dme_lonx { get; set; }
+        public double dme_laty { get; set; }
+        public long altitude { get; set; }
+        public double lonx { get; set; }
+        public double laty { get; set; }
+    }
+
     public class AirPortInfo
     {
         public AirPortInfo()
@@ -313,6 +338,25 @@ namespace SimPanel.Model
         public string type { get; set; }
         public List<Parking> parkings { get; set; }
     }
+
+    public class ResponseVORs
+    {
+        public string type { get { return "vors"; } }
+        public List<VOR> vors { get; set; }
+    }
+
+    public class VORInfo
+    {
+        public VORInfo()
+        {
+
+        }
+
+        public string type { get { return "vorinfo"; } }
+        public VOR VOR { get; set; }
+
+    }
+
 
     public class MapDetailsModel
     {

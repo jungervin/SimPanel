@@ -100,5 +100,60 @@
                 }
             }
         }
+
+        function load_vorinfo(id) {
+            let ws = new WebSocket(SETTINGS.ws_sim)
+
+            ws.onopen = function (e) {
+                ws.send(JSON.stringify({ cmd: "getvorbyid", data: id }))
+            }
+
+            ws.onmessage = function (res) {
+
+                let data = JSON.parse(res.data)
+                console.log(data)
+                if (data.type == "vorinfo") {
+                    let vor = data.VOR
+                    let html = ""
+
+                    html += '<h2 style="margin-bottom: 20px; color: blanchedalmond;">VOR INFO</h2>'
+                    html += '<table id="vorinfo" style="margin: 0px; font-weight: bold;">'
+                    //html += '<tr><td class="title">ID: </td><td class="value">' + vor.vor_id + '</td></tr>'
+                    html += '<tr><td class="title">IDENT: </td><td class="value">' + vor.ident + '</td></tr>'
+                    html += '<tr><td class="title">NAME: </td><td class="value">' + vor.name + '</td></tr>'
+                    html += '<tr><td class="title">REGION: </td><td class="value">' + vor.region + '</td></tr>'
+                    html += '<tr><td class="title">FREQ: </td><td class="value">' + (vor.frequency * 0.001).toFixed(3) + ' MHz</td></tr>'
+                    html += '<tr><td class="title">RANGE: </td><td class="value">' + m2nm(vor.range * 1000).toFixed(0) + ' nm</td></tr>'
+                    html += '<tr><td class="title">MAGVAR: </td><td class="value">' + vor.mag_var.toFixed(0) + '°</td></tr>'
+                    html += '<tr><td class="title">ALT: </td><td class="value">' + vor.altitude + ' ft</td></tr>'
+                    html += '<tr><td class="title">DME ALT: </td><td class="value">' + vor.dme_altitude + ' ft</td></tr>'
+
+                    // https://en.wikipedia.org/wiki/VHF_omnidirectional_range
+                    //T (terminal)	From 1,000 feet above ground level (AGL) up to and including 12,000 feet AGL at radial distances out to 25 NM.
+                    //L (low altitude)	From 1,000 feet AGL up to and including 18,000 feet AGL at radial distances out to 40 NM.
+                    //H (high altitude)	From 1,000 feet AGL up to and including 14,500 feet AGL at radial distances out to 40 NM. From 14,500 AGL up to and including 18,000 feet at radial distances out to 100 NM. From 18,000 feet AGL up to and including 45,000 feet AGL at radial distances out to 130 NM. From 45,000 feet AGL up to and including 60,000 feet at radial distances out to 100 NM.
+
+                    let vt = "N/A"
+                    switch (vor.type) {
+                        case "L": vt = "L (Low Altitude)"
+                            break;
+                        case "H": vt = "H (High Altitude)"
+                            break;
+                        case "T": vt = "T (Terminal)"
+                            break;
+                    }
+
+                    html += '<tr><td class="title">TYPE: </td><td class="value">' + vt + '</td></tr>'
+                    html += '<tr><td class="title">DME: </td><td class="value">' + (vor.dme_only == 0 ? "NO" : "YES") + '</td></tr>'
+                    html += '</table>'
+
+
+                    document.getElementById("runways").innerHTML = html
+                }
+            }
+        }
+
+
+
     </script>
 </div>
