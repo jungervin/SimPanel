@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -76,6 +77,30 @@ namespace SimPanel.ViewModel
             }
         }
 
+
+        public void CloseConnections()
+        {
+            if (this.SimConnectViewModel != null)
+            {
+                this.SimConnectViewModel.Stop();
+                if (this.SimConnectViewModel.Connected)
+                {
+                    this.SimConnectViewModel.Disconnect();
+                }
+            }
+
+            if(this.SerialDeviceViewModel != null)
+            {
+                this.SerialDeviceViewModel.Stop();
+            }
+
+            if(this.SimpleHttpSever != null)
+            {
+                this.SimpleHttpSever.Stop();
+            }
+
+            Thread.Sleep(1000);
+        }
         private void RemoveVariable()
         {
             if (MessageBox.Show("You will remove the selected variable!\r\n\r\nAre you sure?", "Waining", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)

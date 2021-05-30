@@ -2,6 +2,7 @@
 using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using SimPanel.Properties;
+using SimPanel.View;
 using SimPanel.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -130,8 +131,16 @@ namespace SimPanel
                 if (MessageBox.Show(msg, "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.No)
                 {
                     e.Cancel = true;
+                    return;
+                }
+                else
+                {
                 }
             }
+
+            this.MainWindowViewModel.CloseConnections();
+            Environment.Exit(0);
+
         }
 
 
@@ -155,5 +164,8 @@ namespace SimPanel
         {
             System.Diagnostics.Process.Start("http://127.0.0.1:" + Settings.Default.TCPPort.ToString());
         }
+
+
+       
     }
 }

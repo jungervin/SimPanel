@@ -149,6 +149,23 @@ namespace SimPanel.ViewModel
 
                     Thread.Sleep(1000);
                 }
+
+                for (int i = 0; i < this.SerialDevices.Count; i++)
+                {
+                    ExSerialDevice device = this.SerialDevices[i];
+                    if (device.IsOpen)
+                    {
+                        try
+                        {
+                            device.Close();
+                            Console.WriteLine($"SerialDeviceViewModel.Start(): {device.PortName} Closed-");
+                        }
+                        catch(Exception ex)
+                        {
+                            Console.WriteLine($"SerialDeviceViewModel.Start(): {ex.Message}");
+                        }
+                    }
+                }
             });
             t.Start();
         }
