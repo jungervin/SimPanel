@@ -31,7 +31,7 @@ To install, download the current [release](https://github.com/jungervin/SimPanel
 ### Details:
 PFD needs more power for high FPS than a Raspberry Pi can provide (I use an integrated motherboard with J4105 processor), but MFD can works on a stronger tablet.
 
-![Cockpit](Doc/images/cockpit01lo.png)
+[![Cockpit](Doc/images/cockpit01lo.png)](Doc/images/cockpit01.png)
 
 The program is currently sized to a 15-inch monitor at 1366x768 pixels. It is not advisable to change this, scaling should be used instead.
 
