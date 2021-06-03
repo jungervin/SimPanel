@@ -36,6 +36,8 @@ namespace SimPanel.ViewModel
                 res.StatusCode = (int)HttpStatusCode.NotFound;
                 return;
             }
+
+
             res.ContentType = MimeTypes.Mappings[Path.GetExtension(path)]; 
 
             //if (path.EndsWith(".html"))

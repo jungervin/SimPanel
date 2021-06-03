@@ -168,6 +168,8 @@
     <Compile Include="ViewModel\DatabaseViewModel.cs" />
     <Compile Include="ViewModel\EventEditorViewModel.cs" />
     <Compile Include="ViewModel\FlightPlanViewModel.cs" />
+    <Compile Include="ViewModel\G1000MFDViewModel.cs" />
+    <Compile Include="ViewModel\G1000PFDViewModel.cs" />
     <Compile Include="ViewModel\LuaCodeViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -180,6 +182,12 @@
     <Compile Include="ViewModel\WSVariables.cs" />
     <Compile Include="View\EventEditorWindow.xaml.cs">
       <DependentUpon>EventEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\G1000MFDView.xaml.cs">
+      <DependentUpon>G1000MFDView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\G1000PFDView.xaml.cs">
+      <DependentUpon>G1000PFDView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\VariableEditorWindow.xaml.cs">
       <DependentUpon>VariableEditorWindow.xaml</DependentUpon>
@@ -199,6 +207,14 @@
     <Page Include="View\EventEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\G1000MFDView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\G1000PFDView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="View\VariableEditorWindow.xaml">
       <SubType>Designer</SubType>
@@ -374,7 +390,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="HTML\js\mobile.js" />
-    <Content Include="HTML\js\settings.js" />
+    <Content Include="HTML\js\settings.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="HTML\js\svg.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -474,7 +492,66 @@
     <Content Include="HTML\styles\style.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="HTML\twitchpanel.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Microsoft.FlightSimulator.SimConnect.dll" />
+    <Resource Include="Resources\G1000\alt_button.png" />
+    <Resource Include="Resources\G1000\alt_knob.png" />
+    <Resource Include="Resources\G1000\apr_button.png" />
+    <Resource Include="Resources\G1000\ap_button.png" />
+    <Resource Include="Resources\G1000\background.png" />
+    <Resource Include="Resources\G1000\background_noap.png" />
+    <Resource Include="Resources\G1000\baro_knob.png" />
+    <Resource Include="Resources\G1000\bc_button.png" />
+    <Resource Include="Resources\G1000\clr_button.png" />
+    <Resource Include="Resources\G1000\com_knob.png" />
+    <Resource Include="Resources\G1000\crs_knob.png" />
+    <Resource Include="Resources\G1000\crs_knob1.png" />
+    <Resource Include="Resources\G1000\dir_button.png" />
+    <Resource Include="Resources\G1000\downlt_arrow.png" />
+    <Resource Include="Resources\G1000\downrt_arrow.png" />
+    <Resource Include="Resources\G1000\down_arrow.png" />
+    <Resource Include="Resources\G1000\ent_button.png" />
+    <Resource Include="Resources\G1000\fd_button.png" />
+    <Resource Include="Resources\G1000\ff_button.png" />
+    <Resource Include="Resources\G1000\flc_button.png" />
+    <Resource Include="Resources\G1000\fms_knob-Block.png" />
+    <Resource Include="Resources\G1000\fms_knob.png" />
+    <Resource Include="Resources\G1000\fpl_button.png" />
+    <Resource Include="Resources\G1000\FS2020LOGO.png" />
+    <Resource Include="Resources\G1000\hdg_button.png" />
+    <Resource Include="Resources\G1000\hdg_knob.png" />
+    <Resource Include="Resources\G1000\hdg_knob1.png" />
+    <Resource Include="Resources\G1000\knob.png" />
+    <Content Include="Resources\G1000\knobclick.wav" />
+    <Resource Include="Resources\G1000\lt_arrow.png" />
+    <Resource Include="Resources\G1000\menu_button.png" />
+    <Resource Include="Resources\G1000\mfd.png" />
+    <Resource Include="Resources\G1000\nav_button.png" />
+    <Resource Include="Resources\G1000\Nav_knobs.png" />
+    <Resource Include="Resources\G1000\nsdn_button - Copy.png" />
+    <Resource Include="Resources\G1000\nsdn_button.png" />
+    <Resource Include="Resources\G1000\nsup_button.png" />
+    <Resource Include="Resources\G1000\pan_background.png" />
+    <Resource Include="Resources\G1000\pfd.png" />
+    <Resource Include="Resources\G1000\plain_knob_inner.png" />
+    <Resource Include="Resources\G1000\plain_knob_outer.png" />
+    <Resource Include="Resources\G1000\proc_button.png" />
+    <Resource Include="Resources\G1000\rng2_knob.png" />
+    <Resource Include="Resources\G1000\rng_knob-Block.png" />
+    <Resource Include="Resources\G1000\rng_knob.png" />
+    <Resource Include="Resources\G1000\rt_arrow.png" />
+    <Resource Include="Resources\G1000\uparrow_button.png" />
+    <Resource Include="Resources\G1000\uplt_arrow.png" />
+    <Resource Include="Resources\G1000\uprt_arrow.png" />
+    <Resource Include="Resources\G1000\up_arrow.png" />
+    <Resource Include="Resources\G1000\vnv_button.png" />
+    <Resource Include="Resources\G1000\vol2_knob.png" />
+    <Resource Include="Resources\G1000\vol_knob-Block.png" />
+    <Resource Include="Resources\G1000\vol_knob.png" />
+    <Resource Include="Resources\G1000\vol_knob_prs.png" />
+    <Resource Include="Resources\G1000\vs_button.png" />
     <Content Include="SimConnect.dll" />
   </ItemGroup>
   <ItemGroup>

@@ -33,9 +33,10 @@ namespace SimPanel.ViewModel
             {
                 while (!FStopped)
                 {
-                    if (Sessions != null && Sessions.Count > 0)
-                    {
-                        this.Send(Globals.MainWindow.SimConnectViewModel.GetVariablesJSON());
+                    //if (Sessions != null && Sessions.Count > 0 && this.ConnectionState == WebSocketState.Open)
+                    if (this.ConnectionState == WebSocketState.Open)
+                        {
+                            this.Send(Globals.MainWindow.SimConnectViewModel.GetVariablesJSON());
 
                         if(this.Counter == 0 || this.PrevFlightPlanDt != Globals.MainWindow.FlightPlanViewModel.LoadDt)
                         {
@@ -102,7 +103,7 @@ namespace SimPanel.ViewModel
         {
             base.OnOpen();
             this.Sessions.Sweep();
-            this.Send(Globals.MainWindow.FlightPlanViewModel.FlightPlanJSON);
+            //this.Send(Globals.MainWindow.FlightPlanViewModel.FlightPlanJSON);
            // Globals.MainWindow.FlightPlanViewModel.FlightPlanChanged += FlightPlaneChanged;
 
         }

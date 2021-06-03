@@ -14,6 +14,11 @@ namespace SimPanel.Model
             Dummy
         }
 
+        public enum SimEnum : int
+        {
+            group1
+        }
+
         private int FId;
 
         public int Id
@@ -21,7 +26,8 @@ namespace SimPanel.Model
             get { return FId; }
             set
             {
-                FId = 10000 + value;
+                //FId = 10000 + value;
+                FId = 0 + value;
                 this.OnPropertyChanged();
             }
         }

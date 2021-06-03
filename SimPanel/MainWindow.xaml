@@ -188,7 +188,7 @@
 
                             <TextBox  materialDesign:HintAssist.Hint="Value (uint)" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalAlignment="Left" Margin="244,0,0,8" TextWrapping="Wrap" Text="{Binding SimEventValue}" VerticalAlignment="Bottom" Width="120" Height="Auto
                               "/>
-                            <Button Content="Send" Command="{Binding SendEventCommand}" HorizontalAlignment="Left" Margin="369,0,0,10" VerticalAlignment="Bottom" Width="75" d:LayoutOverrides="Height"/>
+                            <Button Content="Send" DataContext="{Binding SimConnectViewModel}"  Command="{Binding SendEventCommand}" CommandParameter="{Binding SelectedEvent}" HorizontalAlignment="Left" Margin="369,0,0,10" VerticalAlignment="Bottom" Width="75" d:LayoutOverrides="Height"/>
 
 
 
@@ -257,10 +257,13 @@
                                 navdatareader.exe -f MSFS
                             </TextBlock>
 
-                            <Button Content="Open Index Page" Click="Button_Click" HorizontalAlignment="Left" Margin="206,0,0,10" VerticalAlignment="Bottom"></Button>
-
-
                             <Button Content="Save" Command="{Binding SaveSettingsCommand}" HorizontalAlignment="Left" Margin="232,211,0,0" VerticalAlignment="Top"></Button>
+
+                            <Button Content="Open Index Page" Click="Button_Click" HorizontalAlignment="Left" Margin="220,0,0,209" VerticalAlignment="Bottom"></Button>
+
+                            <Button Content="G1000 PFD" Click="G1000PFD_Click" HorizontalAlignment="Left" Margin="220,0,0,131" VerticalAlignment="Bottom"></Button>
+                            <Button Content="G1000 MFD" Click="G1000MFD_Click" HorizontalAlignment="Left" Margin="327,0,0,131" VerticalAlignment="Bottom"></Button>
+
                         </Grid>
 
                     </TabItem>

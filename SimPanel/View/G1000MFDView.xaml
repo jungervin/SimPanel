@@ -1,0 +1,114 @@
+﻿<Window x:Class="SimPanel.View.G1000MFDView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimPanel.View"
+        mc:Ignorable="d"
+        AllowsTransparency="True" WindowStyle="None"
+        Title="G1000MFDView" Height="768" Width="1366" KeyDown="Window_KeyDown">
+    <Window.Background>
+        <SolidColorBrush Opacity="0.0" Color="White"/>
+    </Window.Background>
+    <Viewbox>
+        <Grid>
+
+            <Rectangle Fill="Black" Margin="-107,0,0,0" HorizontalAlignment="Left" Width="302">
+            </Rectangle>
+            <Rectangle Fill="Black" HorizontalAlignment="Right" Width="242" Margin="0,0,-112,0"/>
+            <Grid>
+                <Image Source="/SimPanel;component/Resources/G1000/background.png"  MouseDown="G1000_MouseDown" HorizontalAlignment="Left" Width="1412" Height="912" VerticalAlignment="Top">
+
+                </Image>
+
+                <Image x:Name="Nav_Vol_Knob" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/vol_knob.png"  PreviewMouseWheel="AS1000_MFD_VOL_1_INC" HorizontalAlignment="Left" Margin="62,43,0,0" VerticalAlignment="Top" Width="50" Height="50" />
+                <Image x:Name="NAV_FF_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/ff_button.png" Width="53"  MouseDown="NAV_FF_Button_MouseDown" HorizontalAlignment="Left" Margin="101,105,0,0" VerticalAlignment="Top"></Image>
+
+                <Grid Margin="48,172,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
+                    <Image x:Name="NavOuter_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/plain_knob_outer.png" MouseWheel="AS1000_MFD_NAV_Large_Rotate" HorizontalAlignment="Left" VerticalAlignment="Top" Height="79" />
+                    <Image x:Name="NavInner_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/plain_knob_inner.png" MouseWheel="AS1000_MFD_NAV_Small_Rotate"  MouseDown="AS1000_MFD_NAV_Push" HorizontalAlignment="Left" Margin="16,16,0,0" VerticalAlignment="Top" Height="47" />
+                </Grid>
+
+                <Image x:Name="HDG_Knob" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/hdg_knob.png" MouseWheel="AS1000_MFD_HEADING_Rotate"  MouseDown="AS1000_MFD_HEADING_SYNC" HorizontalAlignment="Left" Margin="48,337,0,0" VerticalAlignment="Top" Width="80" Height="80" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <RotateTransform Angle="{Binding HDGAngle}"/>
+                    </Image.RenderTransform>
+                </Image>
+                <Image x:Name="AP_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/ap_button.png" Width="53"  MouseDown="AP_MASTER" HorizontalAlignment="Left" Margin="28,467,0,0" VerticalAlignment="Top"></Image>
+                <Image x:Name="FD_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/fd_button.png" Width="53"  MouseDown="TOGGLE_FLIGHT_DIRECTOR" HorizontalAlignment="Left" Margin="99,467,0,0" VerticalAlignment="Top"></Image>
+                <Image x:Name="HDG_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/hdg_button.png" Width="53" HorizontalAlignment="Left" Margin="28,517,0,0" VerticalAlignment="Top" MouseDown="AP_HDG_HOLD"/>
+                <Image x:Name="ALT_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/alt_button.png" Width="53" HorizontalAlignment="Left" Margin="99,517,0,0" VerticalAlignment="Top" MouseDown="AP_ALT_HOLD"/>
+                <Image x:Name="NAV_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/nav_button.png" Width="53" HorizontalAlignment="Left" Margin="28,567,0,0" VerticalAlignment="Top" MouseDown="AP_NAV1_HOLD"/>
+                <Image x:Name="VNV_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/vnv_button.png" Width="57"  MouseDown="AP_Button_MouseDown" HorizontalAlignment="Left" Margin="97,567,0,0" VerticalAlignment="Top" />
+                <Image x:Name="APR_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/apr_button.png" Width="53" HorizontalAlignment="Left" Margin="27,617,0,0" VerticalAlignment="Top" MouseDown="AP_APR_HOLD" />
+                <Image x:Name="BC_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/bc_button.png" Width="57" HorizontalAlignment="Left" Margin="97,617,0,0" VerticalAlignment="Top" MouseDown="AP_BC_HOLD" />
+                <Image x:Name="VS_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/vs_button.png" Width="53" HorizontalAlignment="Left" Margin="28,667,0,0" VerticalAlignment="Top" MouseDown="AP_VS_HOLD" />
+                <Image x:Name="NoseUP_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/nsup_button.png" Width="53"  MouseDown="NOSEUP" HorizontalAlignment="Left" Margin="99,667,0,0" VerticalAlignment="Top" />
+                <Image x:Name="FLC_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/flc_button.png" Width="57" HorizontalAlignment="Left" Margin="25,717,0,0" VerticalAlignment="Top" MouseDown="FLIGHT_LEVEL_CHANGE"  />
+                <Image x:Name="NoseDN_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/nsdn_button.png" Width="53" HorizontalAlignment="Left" Margin="99,717,0,0" VerticalAlignment="Top" MouseDown="NOSEDOWN" />
+                <Grid Margin="48,789,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
+                    <Image x:Name="AltOuter_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/plain_knob_outer.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="79" MouseWheel="AS1000_AP_ALT_DEC_1000" />
+                    <Image x:Name="AltInner_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/plain_knob_inner.png"   HorizontalAlignment="Left" Margin="16,16,0,0" VerticalAlignment="Top" Height="47" MouseWheel="AS1000_AP_ALT_DEC_100" />
+                </Grid>
+
+                <Image x:Name="Soft1_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/uparrow_button.png" Width="53"   HorizontalAlignment="Left" Margin="211,846,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_SOFTKEYS_1"  />
+                <Image x:Name="Soft2_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/uparrow_button.png" Width="53"   HorizontalAlignment="Left" Margin="295,846,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_SOFTKEYS_2"  />
+                <Image x:Name="Soft3_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/uparrow_button.png" Width="53"   HorizontalAlignment="Left" Margin="381,846,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_SOFTKEYS_3"  />
+                <Image x:Name="Soft4_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/uparrow_button.png" Width="53"   HorizontalAlignment="Left" Margin="465,846,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_SOFTKEYS_4"  />
+                <Image x:Name="Soft5_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/uparrow_button.png" Width="53"   HorizontalAlignment="Left" Margin="550,846,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_SOFTKEYS_5"  />
+                <Image x:Name="Soft6_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/uparrow_button.png" Width="53"   HorizontalAlignment="Left" Margin="636,846,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_SOFTKEYS_6"  />
+                <Image x:Name="Soft7_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/uparrow_button.png" Width="53"   HorizontalAlignment="Left" Margin="720,846,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_SOFTKEYS_7"  />
+                <Image x:Name="Soft8_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/uparrow_button.png" Width="53"   HorizontalAlignment="Left" Margin="803,846,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_SOFTKEYS_8"  />
+                <Image x:Name="Soft9_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/uparrow_button.png" Width="53"   HorizontalAlignment="Left" Margin="888,846,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_SOFTKEYS_9"  />
+                <Image x:Name="Soft10_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/uparrow_button.png" Width="53"  HorizontalAlignment="Left" Margin="973,846,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_SOFTKEYS_10"  />
+                <Image x:Name="Soft11_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/uparrow_button.png" Width="53"  HorizontalAlignment="Left" Margin="1057,846,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_SOFTKEYS_11"  />
+                <Image x:Name="Soft12_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/uparrow_button.png" Width="53"  HorizontalAlignment="Left" Margin="1142,846,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_SOFTKEYS_12"  />
+
+                <Image x:Name="Com_Vol_Knob" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/vol_knob.png"  HorizontalAlignment="Left" Margin="1291,42,0,0" VerticalAlignment="Top" Width="50" Height="50" MouseWheel="AS1000_MFD_VOL_2_INC" />
+                <Image x:Name="COM_FF_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/ff_button.png" Width="53" HorizontalAlignment="Left" Margin="1252,105,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_COM_Switch"></Image>
+
+                <Grid Margin="1276,172,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
+                    <Image x:Name="ComOuter_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/plain_knob_outer.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="79" MouseWheel="AS1000_MFD_COM_Large_DEC" />
+                    <Image x:Name="ComInner_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/plain_knob_inner.png" HorizontalAlignment="Left" Margin="16,16,0,0" VerticalAlignment="Top" Height="47" MouseWheel="AS1000_MFD_COM_Small_DEC" MouseDown="AS1000_MFD_COM_Push" />
+                </Grid>
+
+                <Grid Margin="1276,334,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
+                    <Image x:Name="BaroOuter_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/plain_knob_outer.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="79" MouseWheel="AS1000_MFD_BARO_DEC" />
+                    <Image x:Name="BaroInner_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/crs_knob.png"  HorizontalAlignment="Left" Margin="16,15,0,0" VerticalAlignment="Top" Height="47" MouseWheel="AS1000_MFD_CRS_DEC" MouseDown="AS1000_MFD_CRS_PUSH" />
+                </Grid>
+
+                <Image x:Name="Rng_Knob" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/rng2_knob.png" HorizontalAlignment="Left" Margin="1286,494,0,0" VerticalAlignment="Top" Height="65" Width="65" MouseWheel="AS1000_MFD_RANGE_DEC" />
+
+
+
+                <Image x:Name="Dir_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/dir_button.png" Width="53"   HorizontalAlignment="Left" Margin="1255,616,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_DIRECTTO"  />
+                <Image x:Name="Menu_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/menu_button.png" Width="53" HorizontalAlignment="Left" Margin="1326,616,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_MENU_Push"  />
+
+                <Image x:Name="FPL_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/fpl_button.png" Width="53"  HorizontalAlignment="Left" Margin="1255,668,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_FPL_Push"  />
+                <Image x:Name="Proc_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/proc_button.png" Width="53" HorizontalAlignment="Left" Margin="1326,668,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_PROC_Push"  />
+
+                <Image x:Name="Clr_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/clr_button.png" Width="53" HorizontalAlignment="Left" Margin="1255,720,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_CLR"  />
+                <Image x:Name="Ent_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/ent_button.png" Width="53" HorizontalAlignment="Left" Margin="1326,720,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_ENT_Push"  />
+
+                <Grid Margin="1275,789,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
+                    <Image x:Name="FMSOuter_Button" Cursor="Hand" PreviewMouseWheel="FMSOuter_Button_PreviewMouseWheel" Source="/SimPanel;component/Resources/G1000/plain_knob_outer.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="79" RenderTransformOrigin="0.5,0.5" MouseWheel="AS1000_MFD_FMS_Lower_DEC" >
+                        <Image.RenderTransform>
+                            <RotateTransform Angle="{Binding FMSOuterAngle}"/>
+                        </Image.RenderTransform>
+                    </Image>
+
+                    <Image x:Name="FMSInner_Button" Cursor="Hand" PreviewMouseWheel="FMSInner_Button_PreviewMouseWheel" Source="/SimPanel;component/Resources/G1000/plain_knob_inner.png"  HorizontalAlignment="Left" Margin="16,16,0,0" VerticalAlignment="Top" Height="47" RenderTransformOrigin="0.5,0.5" MouseDown="AS1000_MFD_FMS_Upper_PUSH" MouseWheel="AS1000_MFD_FMS_Upper_DEC" >
+                        <Image.RenderTransform>
+                            <RotateTransform Angle="{Binding FMSInnerAngle}"/>
+                        </Image.RenderTransform>
+                    </Image>
+                </Grid>
+
+
+                <!--<Rectangle x:Name="BC_Button" Cursor="Hand" Fill="Black" RadiusX="4" RadiusY="4" Width="43"  Height="27" Opacity="0.3" MouseDown="AP_Button_MouseDown" HorizontalAlignment="Left" Margin="84,521,0,0" VerticalAlignment="Top" />-->
+
+            </Grid>
+
+        </Grid>
+    </Viewbox>
+</Window>

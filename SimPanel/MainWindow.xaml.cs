@@ -138,7 +138,7 @@ namespace SimPanel
                 }
             }
 
-            this.MainWindowViewModel.CloseConnections();
+            //this.MainWindowViewModel.CloseConnections();
             Environment.Exit(0);
 
         }
@@ -165,7 +165,16 @@ namespace SimPanel
             System.Diagnostics.Process.Start("http://127.0.0.1:" + Settings.Default.TCPPort.ToString());
         }
 
+        private void G1000PFD_Click(object sender, RoutedEventArgs e)
+        {
+            SimPanel.View.G1000PFDView pfd = new SimPanel.View.G1000PFDView();
+            pfd.Show();
+        }
 
-       
+        private void G1000MFD_Click(object sender, RoutedEventArgs e)
+        {
+            SimPanel.View.G1000MFDView mfd = new SimPanel.View.G1000MFDView();
+            mfd.Show();
+        }
     }
 }

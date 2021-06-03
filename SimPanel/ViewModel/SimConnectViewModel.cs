@@ -545,6 +545,7 @@ namespace SimPanel.ViewModel
                 if (!se.Subscribed)
                 {
                     this.Map(se);
+                    this.SimConnect.AddClientEventToNotificationGroup(SimEvent.SimEnum.group1 , (SimEvent.DEFINITIONS)se.Id , false);
                     se.Subscribed = true;
                 }
             }
@@ -822,20 +823,24 @@ namespace SimPanel.ViewModel
             {
                 this.EventList.Clear();
                 string[] lines = File.ReadAllLines(filename);
-                foreach (string l in lines)
+                foreach (string li in lines)
                 {
-                    string[] items = l.Split(',');
-                    if (items.Length >= 1)
+                    string l = li.Trim();
+                    if (!l.Contains("/") && l != "")
                     {
-                        //this.AddRequest(items[0], items[1], items[2]);
-                        SimEvent se = new SimEvent()
+                        string[] items = l.Split(',');
+                        if (items.Length >= 1)
                         {
-                            Id = this.EventList.Count + 1,
-                            EventName = items[0],
-                            //SerialTrigger = items[1]
-                            //Writable = items[2]
-                        };
-                        this.EventList.Add(se);
+                            //this.AddRequest(items[0], items[1], items[2]);
+                            SimEvent se = new SimEvent()
+                            {
+                                Id = this.EventList.Count + 1,
+                                EventName = items[0],
+                                //SerialTrigger = items[1]
+                                //Writable = items[2]
+                            };
+                            this.EventList.Add(se);
+                        }
                     }
                 }
                 this.EventListModified = false;

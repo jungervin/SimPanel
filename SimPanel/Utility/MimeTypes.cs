@@ -71,6 +71,7 @@ namespace SimPanel.Utility
         {".xml", "text/xml"},
         {".xpi", "application/x-xpinstall"},
         {".zip", "application/zip"},
+        {".map", "application/json" },
     };
     }
 }
