@@ -1,0 +1,79 @@
+﻿<Window x:Class="SimPanel.View.G530View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimPanel.View"
+        mc:Ignorable="d"
+        AllowsTransparency="True" WindowStyle="None"
+        Title="G530" Height="600" Width="820" KeyDown="Window_KeyDown">
+    <Window.Background>
+        <SolidColorBrush Opacity="0.0" Color="White"/>
+    </Window.Background>
+    <Viewbox >
+        <Grid>
+
+            <Rectangle Fill="Black" Margin="-107,0,0,0" HorizontalAlignment="Left" Width="172">
+            </Rectangle>
+            <Rectangle Fill="Black" HorizontalAlignment="Right" Width="192" Margin="0,0,-112,0"/>
+            <Grid>
+                <Image Source="/SimPanel;component/Resources/G530/background1.png"  MouseDown="G530_MouseDown" HorizontalAlignment="Left" Width="820" Height="600" VerticalAlignment="Top">
+                </Image>
+
+                <Rectangle x:Name="COM_Button" MouseDown="AS530_COMSWAP_Push" Style="{StaticResource ButtonRect}" RadiusX="4" RadiusY="4" Width="27"  Height="50"  HorizontalAlignment="Left" Margin="79,56,0,0" VerticalAlignment="Top" />
+                <Rectangle x:Name="NAV_Button" MouseDown="AS530_NAVSWAP_Push" Style="{StaticResource ButtonRect}" RadiusX="4" RadiusY="4" Width="27"  Height="50"  HorizontalAlignment="Left" Margin="79,193,0,0" VerticalAlignment="Top" />
+
+
+                <Rectangle x:Name="CDI_Button" MouseDown="CDI_Button_MouseDown" Style="{StaticResource ButtonRect}" RadiusX="8" RadiusY="4" Width="48"  Height="26"  HorizontalAlignment="Left" Margin="174,494,0,0" VerticalAlignment="Top" />
+                <Rectangle x:Name="OBS_Button" MouseDown="AS530_OBS_Push"  Style="{StaticResource ButtonRect}" RadiusX="8" RadiusY="4" Width="48"  Height="26"  HorizontalAlignment="Left" Margin="260,494,0,0" VerticalAlignment="Top" />
+                <Rectangle x:Name="MSG_Button" MouseDown="AS530_MSG_Push"  Style="{StaticResource ButtonRect}" RadiusX="8" RadiusY="4" Width="48"  Height="26"  HorizontalAlignment="Left" Margin="345,494,0,0" VerticalAlignment="Top" />
+                <Rectangle x:Name="FPL_Button" MouseDown="AS530_FPL_Push"  Style="{StaticResource ButtonRect}" RadiusX="8" RadiusY="4" Width="48"  Height="26"  HorizontalAlignment="Left" Margin="430,494,0,0" VerticalAlignment="Top" />
+                <Rectangle x:Name="VNAV_Button" MouseDown="AS530_VNAV_Push"  Style="{StaticResource ButtonRect}" RadiusX="8" RadiusY="4" Width="48"  Height="26"  HorizontalAlignment="Left" Margin="515,494,0,0" VerticalAlignment="Top" />
+                <Rectangle x:Name="PROC_Button" MouseDown="AS530_PROC_Push"  Style="{StaticResource ButtonRect}" RadiusX="8" RadiusY="4" Width="48"  Height="26"  HorizontalAlignment="Left" Margin="600,494,0,0" VerticalAlignment="Top" />
+
+
+                <Rectangle x:Name="RNG_UP_Button" MouseDown="AS530_RNG_Dezoom"  Style="{StaticResource ButtonRect}" RadiusX="8" RadiusY="4" Width="50"  Height="35"  HorizontalAlignment="Left" Margin="732,62,0,0" VerticalAlignment="Top" />
+                <Rectangle x:Name="RNG_DN_Button" MouseDown="AS530_RNG_Zoom"  Style="{StaticResource ButtonRect}" RadiusX="8" RadiusY="4" Width="50"  Height="36"  HorizontalAlignment="Left" Margin="732,138,0,0" VerticalAlignment="Top" />
+
+                <Rectangle x:Name="DRCT_Button" MouseDown="AS530_DirectTo_Push"  Style="{StaticResource ButtonRect}" RadiusX="8" RadiusY="4" Width="50"  Height="29"  HorizontalAlignment="Left" Margin="732,202,0,0" VerticalAlignment="Top" />
+                <Rectangle x:Name="MENU_Button" MouseDown="AS530_MENU_Push"  Style="{StaticResource ButtonRect}" RadiusX="8" RadiusY="4" Width="50"  Height="29"  HorizontalAlignment="Left" Margin="732,256,0,0" VerticalAlignment="Top" />
+                <Rectangle x:Name="CLR_Button" MouseDown="AS530_CLR_Push"  Style="{StaticResource ButtonRect}" RadiusX="8" RadiusY="4" Width="50"  Height="29"  HorizontalAlignment="Left" Margin="732,311,0,0" VerticalAlignment="Top" />
+                <Rectangle x:Name="ENT_Button" MouseDown="AS530_ENT_Push"  Style="{StaticResource ButtonRect}" RadiusX="8" RadiusY="4" Width="50"  Height="29"  HorizontalAlignment="Left" Margin="732,366,0,0" VerticalAlignment="Top" />
+                
+                <Grid Margin="3,450,675,8">
+                    <Image Source="/SimPanel;component/Resources/G530/cv_outer.png" Width="142" Height="142" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <RotateTransform Angle="{Binding CVOuterAngle}"/>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Ellipse Style="{StaticResource ButtonEllipse}"  MouseWheel="AS530_LeftLargeKnob_Rotate" Width="110" Height="110" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,16,0,0"/>
+
+                    <Image Source="/SimPanel;component/Resources/G530/cv_inner.png" Width="79" Height="79"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,31,0,0" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <RotateTransform Angle="{Binding CVInnerAngle}"/>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Ellipse Style="{StaticResource ButtonEllipse}" MouseDown="AS530_LeftSmallKnob_Push" MouseWheel="AS530_LeftSmallKnob_Rotate" Width="79" Height="79" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,31,0,0"/>
+                </Grid>
+
+                <Grid Margin="675,450,3,8">
+                    <Image Source="/SimPanel;component/Resources/G530/cv_outer.png" Width="142" Height="142" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <RotateTransform Angle="{Binding CRSOuterAngle}"/>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Ellipse Style="{StaticResource ButtonEllipse}" MouseWheel="AS530_RightLargeKnob_Rotate" Width="110" Height="110" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,16,0,0"/>
+
+                    <Image Source="/SimPanel;component/Resources/G530/cursr_inner.png" Width="79" Height="79" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,31,0,0" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <RotateTransform Angle="{Binding CRSInnerAngle}"/>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Ellipse Style="{StaticResource ButtonEllipse}" MouseDown="AS530_RightSmallKnob_Push" MouseWheel="AS530_RightSmallKnob_Rotate" Width="79" Height="79" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,31,0,0"/>
+                </Grid>
+
+
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Window>

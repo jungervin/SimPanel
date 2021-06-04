@@ -264,6 +264,8 @@
                             <Button Content="G1000 PFD" Click="G1000PFD_Click" HorizontalAlignment="Left" Margin="220,0,0,131" VerticalAlignment="Bottom"></Button>
                             <Button Content="G1000 MFD" Click="G1000MFD_Click" HorizontalAlignment="Left" Margin="327,0,0,131" VerticalAlignment="Bottom"></Button>
 
+                            <Button Content="G530" Click="G530_Click" HorizontalAlignment="Left" Margin="220,0,0,68" VerticalAlignment="Bottom"></Button>
+
                         </Grid>
 
                     </TabItem>

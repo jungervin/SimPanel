@@ -189,6 +189,9 @@
     <Compile Include="View\G1000PFDView.xaml.cs">
       <DependentUpon>G1000PFDView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\G530View.xaml.cs">
+      <DependentUpon>G530View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\VariableEditorWindow.xaml.cs">
       <DependentUpon>VariableEditorWindow.xaml</DependentUpon>
     </Compile>
@@ -215,6 +218,10 @@
     <Page Include="View\G1000PFDView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\G530View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\VariableEditorWindow.xaml">
       <SubType>Designer</SubType>
@@ -552,6 +559,33 @@
     <Resource Include="Resources\G1000\vol_knob.png" />
     <Resource Include="Resources\G1000\vol_knob_prs.png" />
     <Resource Include="Resources\G1000\vs_button.png" />
+    <Resource Include="Resources\G530\background.png" />
+    <Resource Include="Resources\G530\background1.png" />
+    <Resource Include="Resources\G530\blank.png" />
+    <Resource Include="Resources\G530\bottom_gps.png" />
+    <Resource Include="Resources\G530\cdi_but.png" />
+    <Resource Include="Resources\G530\clr_but.png" />
+    <Resource Include="Resources\G530\com_ff_but.png" />
+    <Resource Include="Resources\G530\cursr_inner.png" />
+    <Resource Include="Resources\G530\cv_inner.png" />
+    <Resource Include="Resources\G530\cv_outer.png" />
+    <Resource Include="Resources\G530\direct_but.png" />
+    <Resource Include="Resources\G530\ent_but.png" />
+    <Resource Include="Resources\G530\fpl_but.png" />
+    <Resource Include="Resources\G530\gps_2.png" />
+    <Content Include="Resources\G530\knobclick.wav" />
+    <Resource Include="Resources\G530\left_gps.png" />
+    <Resource Include="Resources\G530\menu_but.png" />
+    <Resource Include="Resources\G530\msg_but.png" />
+    <Resource Include="Resources\G530\nav_ff_but.png" />
+    <Resource Include="Resources\G530\obs_but.png" />
+    <Resource Include="Resources\G530\proc_but.png" />
+    <Resource Include="Resources\G530\pwr_off.png" />
+    <Resource Include="Resources\G530\right_gps.png" />
+    <Resource Include="Resources\G530\top_gps.png" />
+    <Resource Include="Resources\G530\vnav_but.png" />
+    <Resource Include="Resources\G530\zoom_down_but.png" />
+    <Resource Include="Resources\G530\zoom_up_but.png" />
     <Content Include="SimConnect.dll" />
   </ItemGroup>
   <ItemGroup>

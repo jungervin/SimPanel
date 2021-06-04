@@ -176,5 +176,12 @@ namespace SimPanel
             SimPanel.View.G1000MFDView mfd = new SimPanel.View.G1000MFDView();
             mfd.Show();
         }
+
+        private void G530_Click(object sender, RoutedEventArgs e)
+        {
+            G530View g = new G530View();
+            g.Show();
+               
+        }
     }
 }
