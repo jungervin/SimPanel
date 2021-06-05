@@ -115,13 +115,45 @@
                 <MenuItem Header="Open..." Command="{Binding OpenCommand}"></MenuItem>
                 <MenuItem Header="Save..." Command="{Binding SaveCommand}"></MenuItem>
             </MenuItem>
-
         </Menu>
 
         <materialDesign:DialogHost x:Name="m_dialogHost" Identifier="dialogHost" DialogTheme="Light">
             <Grid>
                 <TabControl Margin="10,60,10,10" Style="{StaticResource MaterialDesignTabControl}" SelectedIndex="{Binding SelectedTabIndex, UpdateSourceTrigger=PropertyChanged}">
                     <!--<TabControl Margin="10,60,10,10" >-->
+                    <TabItem Header="Instruments" DataContext="{Binding WinManViewModel}">
+                        <Grid >
+
+                            <GroupBox Margin="10,10,10,0" Header="G1000 PFD" Height="229" VerticalAlignment="Top" >
+                                <Grid>
+                                    <Button Content="SELECT G1000" Command="{Binding G1000PFDFindHandle}" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top"/>
+                                    <TextBox Text="{Binding G1000PFDHandle}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="133,6,0,0"/>
+                                    <TextBox  Text="{Binding G1000PFDPosX}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,48,0,0"/>
+                                    <TextBox Text="{Binding G1000PFDPosY}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="115,48,0,0"/>
+                                    <TextBox Text="{Binding G1000PFDPosW}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,48,0,0"/>
+                                    <TextBox Text="{Binding G1000PFDPosH}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="325,48,0,0"/>
+                                    <Button Content="SetPos" Command="{Binding G1000PFDSetPos}" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Margin="430,42,0,0" Width="100"/>
+                                    <Button Content="G1000 PFD" Click="G1000PFD_Click" HorizontalAlignment="Left" Margin="10,0,0,16" VerticalAlignment="Bottom" Width="205"/>
+                                </Grid>
+                            </GroupBox>
+
+                            <GroupBox Margin="10,244,10,0" Header="G1000 MFD" Height="229" VerticalAlignment="Top" >
+                                <Grid>
+                                    <Button Content="SELECT G1000" Command="{Binding G1000MFDFindHandle}" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top"/>
+                                    <TextBox Text="{Binding G1000MFDHandle}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="133,6,0,0"/>
+                                    <TextBox  Text="{Binding G1000MFDPosX}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,48,0,0"/>
+                                    <TextBox Text="{Binding G1000MFDPosY}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="115,48,0,0"/>
+                                    <TextBox Text="{Binding G1000MFDPosW}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,48,0,0"/>
+                                    <TextBox Text="{Binding G1000MFDPosH}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="325,48,0,0"/>
+                                    <Button Content="SetPos" Command="{Binding G1000MFDSetPos}" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Margin="430,42,0,0" Width="100"/>
+                                    <Button Content="G1000 MFD" Click="G1000MFD_Click" HorizontalAlignment="Left" Margin="10,0,0,16" VerticalAlignment="Bottom" Width="205"/>
+                                </Grid>
+                            </GroupBox>
+
+
+
+                        </Grid>
+                    </TabItem>
                     <TabItem Header="Variables">
                         <Grid>
                             <TextBlock Text="Variables: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="66" />
@@ -259,12 +291,21 @@
 
                             <Button Content="Save" Command="{Binding SaveSettingsCommand}" HorizontalAlignment="Left" Margin="232,211,0,0" VerticalAlignment="Top"></Button>
 
-                            <Button Content="Open Index Page" Click="Button_Click" HorizontalAlignment="Left" Margin="220,0,0,209" VerticalAlignment="Bottom"></Button>
+                            <Button Content="Open Index Page" Click="Button_Click" HorizontalAlignment="Left" Margin="220,0,0,275" VerticalAlignment="Bottom"></Button>
 
-                            <Button Content="G1000 PFD" Click="G1000PFD_Click" HorizontalAlignment="Left" Margin="220,0,0,131" VerticalAlignment="Bottom"></Button>
-                            <Button Content="G1000 MFD" Click="G1000MFD_Click" HorizontalAlignment="Left" Margin="327,0,0,131" VerticalAlignment="Bottom"></Button>
+                            <GroupBox Margin="570,453,359,-50" Header="G1000" >
+                                <Grid>
+                                    <Button Content="G1000 PFD" Click="G1000PFD_Click" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top"/>
+                                    <TextBox Text="Handle"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="122,3,0,0"></TextBox>
+                                    <TextBox Text="Handle"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,48,0,0"/>
+                                    <TextBox Text="Handle"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="122,48,0,0"/>
+                                </Grid>
+                            </GroupBox>
+                            <Button Content="G1000 MFD" Click="G1000MFD_Click" HorizontalAlignment="Left" Margin="220,0,0,134" VerticalAlignment="Bottom"></Button>
 
                             <Button Content="G530" Click="G530_Click" HorizontalAlignment="Left" Margin="220,0,0,68" VerticalAlignment="Bottom"></Button>
+                            <Button Content="Window" Click="Win_Click" HorizontalAlignment="Left" Margin="448,0,0,68" VerticalAlignment="Bottom"/>
+
 
                         </Grid>
 

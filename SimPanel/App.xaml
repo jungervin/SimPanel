@@ -40,6 +40,19 @@
 
             <Style x:Key="ButtonRect" TargetType="Rectangle">
                 <Setter Property="Fill" Value="White"></Setter>
+                <Setter Property="Opacity" Value="0.5"></Setter>
+                <!--<Setter Property="RadiusX" Value="8"></Setter>
+                <Setter Property="RadiusY" Value="4"></Setter>-->
+                <Setter Property="Cursor" Value="Hand"></Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Opacity" Value="0.1"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="ButtonRectDark" TargetType="Rectangle">
+                <Setter Property="Fill" Value="Black"></Setter>
                 <Setter Property="Opacity" Value="0.01"></Setter>
                 <!--<Setter Property="RadiusX" Value="8"></Setter>
                 <Setter Property="RadiusY" Value="4"></Setter>-->
@@ -53,6 +66,19 @@
 
             <Style x:Key="ButtonEllipse" TargetType="Ellipse">
                 <Setter Property="Fill" Value="White"></Setter>
+                <Setter Property="Opacity" Value="0.01"></Setter>
+                <!--<Setter Property="RadiusX" Value="8"></Setter>
+                <Setter Property="RadiusY" Value="4"></Setter>-->
+                <Setter Property="Cursor" Value="Hand"></Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Opacity" Value="0.2"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="ButtonEllipseDark" TargetType="Ellipse">
+                <Setter Property="Fill" Value="Black"></Setter>
                 <Setter Property="Opacity" Value="0.01"></Setter>
                 <!--<Setter Property="RadiusX" Value="8"></Setter>
                 <Setter Property="RadiusY" Value="4"></Setter>-->

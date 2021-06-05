@@ -161,6 +161,7 @@
     <Compile Include="Model\SimEvent.cs" />
     <Compile Include="Model\SimVar.cs" />
     <Compile Include="Model\SimVarCollection.cs" />
+    <Compile Include="Utility\Helpers.cs" />
     <Compile Include="Utility\IniFile.cs" />
     <Compile Include="Utility\JSon.cs" />
     <Compile Include="Utility\MimeTypes.cs" />
@@ -169,7 +170,6 @@
     <Compile Include="ViewModel\EventEditorViewModel.cs" />
     <Compile Include="ViewModel\FlightPlanViewModel.cs" />
     <Compile Include="ViewModel\G1000MFDViewModel.cs" />
-    <Compile Include="ViewModel\G1000PFDViewModel.cs" />
     <Compile Include="ViewModel\LuaCodeViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -178,6 +178,7 @@
     <Compile Include="ViewModel\SimpleHttpServer.cs" />
     <Compile Include="ViewModel\VariableEditorViewModel.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
+    <Compile Include="ViewModel\WinManViewModel.cs" />
     <Compile Include="ViewModel\WSServer.cs" />
     <Compile Include="ViewModel\WSVariables.cs" />
     <Compile Include="View\EventEditorWindow.xaml.cs">

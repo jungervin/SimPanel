@@ -1,7 +1,9 @@
 ﻿using SimPanel.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,15 +20,25 @@ namespace SimPanel.View
     /// <summary>
     /// Interaction logic for G1000PFDView.xaml
     /// </summary>
-    public partial class G1000PFDView : Window
+    public partial class G1000PFDView : Window, INotifyPropertyChanged
     {
-        public G1000PFDViewModel ViewModel { get; }
 
         public G1000PFDView()
         {
             InitializeComponent();
-            this.ViewModel = new G1000PFDViewModel();
-            this.DataContext = this.ViewModel;
+
+            this.DataContext = this;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string _sPropertyName = null)
+        {
+            PropertyChangedEventHandler hEventHandler = this.PropertyChanged;
+            if (hEventHandler != null && !string.IsNullOrEmpty(_sPropertyName))
+            {
+                hEventHandler(this, new PropertyChangedEventArgs(_sPropertyName));
+            }
         }
 
         private void G1000_MouseDown(object sender, MouseButtonEventArgs e)
@@ -35,36 +47,7 @@ namespace SimPanel.View
                 this.DragMove();
         }
 
-        private void AP_Button_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void FMSInner_Button_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            if (e.Delta < 0)
-            {
-                this.ViewModel.FMSInnerAngle = this.ViewModel.FMSInnerAngle == 0 ? 4 : 0;
-            }
-            else
-            {
-                this.ViewModel.FMSInnerAngle = this.ViewModel.FMSInnerAngle == 0 ? -4 : 0;
-            }
-        }
-
-        private void FMSOuter_Button_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            if (e.Delta < 0)
-            {
-                this.ViewModel.FMSOuterAngle = this.ViewModel.FMSOuterAngle == 0 ? 8 : 0;
-            }
-            else
-            {
-                this.ViewModel.FMSOuterAngle = this.ViewModel.FMSOuterAngle == 0 ? -8 : 0;
-            }
-        }
-
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+       private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.F11)
             {
@@ -143,13 +126,13 @@ namespace SimPanel.View
             if (e.Delta < 0)
             {
                 //Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_HEADING_FAST_DEC", 0);
-                this.ViewModel.HDGAngle -= 5;
+                this.HDGAngle -= 5;
                 Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_HEADING_DEC", 0);
             }
             else
             {
                 //Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_HEADING_FAST_INC", 0);
-                this.ViewModel.HDGAngle += 5;
+                this.HDGAngle += 5;
                 Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_HEADING_INC", 0);
             }
 
@@ -446,10 +429,12 @@ namespace SimPanel.View
         {
             if (e.Delta < 0)
             {
+                this.FMSInnerAngle -= 5;
                 Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_FMS_Upper_DEC", 0);
             }
             else
             {
+                this.FMSInnerAngle += 5;
                 Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_FMS_Upper_INC", 0);
             }
         }
@@ -458,11 +443,51 @@ namespace SimPanel.View
         {
             if (e.Delta < 0)
             {
+                this.FMSOuterAngle -= 5;
                 Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_FMS_Lower_DEC", 0);
             }
             else
             {
+                this.FMSOuterAngle += 5;
                 Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_FMS_Lower_INC", 0);
+            }
+        }
+
+        private void AP_VNV_HOLD(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private double FFMSOuterAngle;
+
+        public double FMSOuterAngle
+        {
+            get { return FFMSOuterAngle; }
+            set
+            {
+                FFMSOuterAngle = value;
+                this.OnPropertyChanged();
+            }
+        }
+        private double FFMSInnerAngle;
+        public double FMSInnerAngle
+        {
+            get { return FFMSInnerAngle; }
+            set
+            {
+                FFMSInnerAngle = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        private double FHDGAngle;
+        public double HDGAngle
+        {
+            get { return FHDGAngle; }
+            set
+            {
+                FHDGAngle = value;
+                this.OnPropertyChanged();
             }
         }
     }

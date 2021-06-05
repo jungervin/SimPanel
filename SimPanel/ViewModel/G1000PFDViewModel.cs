@@ -12,38 +12,7 @@ namespace SimPanel.ViewModel
         { }
 
 
-        private double FFMSOuterAngle;
-
-        public double FMSOuterAngle
-        {
-            get { return FFMSOuterAngle; }
-            set
-            {
-                FFMSOuterAngle = value;
-                this.OnPropertyChanged();
-            }
-        }
-        private double FFMSInnerAngle;
-        public double FMSInnerAngle
-        {
-            get { return FFMSInnerAngle; }
-            set
-            {
-                FFMSInnerAngle = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        private double FHDGAngle;
-        public double HDGAngle
-        {
-            get { return FHDGAngle; }
-            set
-            {
-                FHDGAngle = value;
-                this.OnPropertyChanged();
-            }
-        }
+        
 
     }
 }

@@ -12,7 +12,7 @@ namespace SimPanel.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -116,6 +116,198 @@ namespace SimPanel.Properties {
             }
             set {
                 this["SimConnectConfigIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int G1000PFDPosX {
+            get {
+                return ((int)(this["G1000PFDPosX"]));
+            }
+            set {
+                this["G1000PFDPosX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int G1000PFDPosY {
+            get {
+                return ((int)(this["G1000PFDPosY"]));
+            }
+            set {
+                this["G1000PFDPosY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int G1000PFDPosW {
+            get {
+                return ((int)(this["G1000PFDPosW"]));
+            }
+            set {
+                this["G1000PFDPosW"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int G1000PFDPosH {
+            get {
+                return ((int)(this["G1000PFDPosH"]));
+            }
+            set {
+                this["G1000PFDPosH"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int G1000PFDFramePosX {
+            get {
+                return ((int)(this["G1000PFDFramePosX"]));
+            }
+            set {
+                this["G1000PFDFramePosX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int G1000PFDFramePosY {
+            get {
+                return ((int)(this["G1000PFDFramePosY"]));
+            }
+            set {
+                this["G1000PFDFramePosY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int G1000PFDFramePosW {
+            get {
+                return ((int)(this["G1000PFDFramePosW"]));
+            }
+            set {
+                this["G1000PFDFramePosW"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int G1000PFDFramePosH {
+            get {
+                return ((int)(this["G1000PFDFramePosH"]));
+            }
+            set {
+                this["G1000PFDFramePosH"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int G1000MFDPosX {
+            get {
+                return ((int)(this["G1000MFDPosX"]));
+            }
+            set {
+                this["G1000MFDPosX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int G1000MFDPosY {
+            get {
+                return ((int)(this["G1000MFDPosY"]));
+            }
+            set {
+                this["G1000MFDPosY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int G1000MFDPosW {
+            get {
+                return ((int)(this["G1000MFDPosW"]));
+            }
+            set {
+                this["G1000MFDPosW"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int G1000MFDPosH {
+            get {
+                return ((int)(this["G1000MFDPosH"]));
+            }
+            set {
+                this["G1000MFDPosH"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int G1000MFDFramePosX {
+            get {
+                return ((int)(this["G1000MFDFramePosX"]));
+            }
+            set {
+                this["G1000MFDFramePosX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int G1000MFDFramePosY {
+            get {
+                return ((int)(this["G1000MFDFramePosY"]));
+            }
+            set {
+                this["G1000MFDFramePosY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int G1000MFDFramePosW {
+            get {
+                return ((int)(this["G1000MFDFramePosW"]));
+            }
+            set {
+                this["G1000MFDFramePosW"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int G1000MFDFramePosH {
+            get {
+                return ((int)(this["G1000MFDFramePosH"]));
+            }
+            set {
+                this["G1000MFDFramePosH"] = value;
             }
         }
     }

@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,7 +33,8 @@ namespace SimPanel.ViewModel
 
             SaveSettingsCommand = new RelayCommand(p => Settings.Default.Save());
 
-            OpenNavdataReader = new RelayCommand(p => {
+            OpenNavdataReader = new RelayCommand(p =>
+            {
                 Process.Start(new ProcessStartInfo(p.ToString()));
             });
 
@@ -71,10 +73,13 @@ namespace SimPanel.ViewModel
                 this.SimpleHttpSever = new SimpleHttpServer(Settings.Default.TCPPort);
                 this.SimpleHttpSever.Start();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
+            this.WinManViewModel = new WinManViewModel();
+            this.WinManViewModel.Init();
         }
 
 
@@ -89,12 +94,12 @@ namespace SimPanel.ViewModel
                 }
             }
 
-            if(this.SerialDeviceViewModel != null)
+            if (this.SerialDeviceViewModel != null)
             {
                 this.SerialDeviceViewModel.Stop();
             }
 
-            if(this.SimpleHttpSever != null)
+            if (this.SimpleHttpSever != null)
             {
                 this.SimpleHttpSever.Stop();
             }
@@ -335,6 +340,10 @@ namespace SimPanel.ViewModel
                 this.OnPropertyChanged();
             }
         }
+
+
+
+
         public RelayCommand AddVariableCommand { get; private set; }
         public RelayCommand RemoveVariableCommand { get; }
         public RelayCommand AddEventCommand { get; }
@@ -344,5 +353,16 @@ namespace SimPanel.ViewModel
         public RelayCommand SendEventCommand { get; }
         public RelayCommand SaveSettingsCommand { get; }
         public RelayCommand OpenNavdataReader { get; }
+        public WinManViewModel FWinManViewModel = null;
+
+        public WinManViewModel WinManViewModel
+        {
+            get { return this.FWinManViewModel; }
+            set
+            {
+                this.FWinManViewModel = value;
+                this.OnPropertyChanged();
+            }
+        }
     }
 }

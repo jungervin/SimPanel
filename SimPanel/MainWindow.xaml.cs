@@ -2,10 +2,12 @@
 using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using SimPanel.Properties;
+using SimPanel.Utility;
 using SimPanel.View;
 using SimPanel.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -46,7 +48,7 @@ namespace SimPanel
             this.Title = "SimPanel Server v" + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.MainWindowViewModel = new MainWindowViewModel();
             this.DataContext = this.MainWindowViewModel;
-        
+
         }
         protected HwndSource GetHWinSource()
         {
@@ -147,7 +149,7 @@ namespace SimPanel
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void SelectDB_Clck(object sender, RoutedEventArgs e)
@@ -156,7 +158,7 @@ namespace SimPanel
             d.Filter = "SQLite|*.sqlite";
             if (d.ShowDialog() == true)
             {
-               this.MainWindowViewModel.Database = d.FileName;
+                this.MainWindowViewModel.Database = d.FileName;
             }
         }
 
@@ -181,7 +183,53 @@ namespace SimPanel
         {
             G530View g = new G530View();
             g.Show();
-               
+
+        }
+
+        private void Win_Click(object sender, RoutedEventArgs e)
+        {
+
+
+
+
+
+
+
+
+            //Process[] p = Process.GetProcesses();
+            //Process fs = null;
+            //foreach(var pr in p)
+            //{
+            //    Console.WriteLine(pr.ProcessName);
+            //    if(pr.ProcessName == "FlightSimulator")
+            //    {
+            //        Console.WriteLine(pr.Handle.ToString("X"));
+            //        IntPtr child2 = Helpers.FindWindowEx2(pr.Handle, IntPtr.Zero, "AceApp", "$AS1000_PFD_1");
+            //    }
+            //}
+
+            // return;
+
+
+
+            IntPtr parent = Helpers.FindWindowA("Microsoft Flight Simulator - 1.16.2.0");
+            Console.WriteLine(parent.ToString("X"));
+
+            WindowHandleInfo hi = new WindowHandleInfo(parent);
+            var list = hi.GetAllChildHandles();
+            foreach (var w in list)
+            {
+
+                Console.WriteLine(w.ToString("X"));
+
+                Rect size = hi.GetPos(w);
+                //{ 319,479,1024,1024}
+                //hi.SetPos(w, 0, 0, 600, 400);
+                if (size.Left == 319 && size.Width == 1024)
+                {
+                    hi.SetPos((IntPtr)w, 400, 400, 800, 800);
+                }
+            }
         }
     }
 }
