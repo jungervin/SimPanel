@@ -69,7 +69,7 @@
 
                 <Grid Margin="1276,172,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
                     <Image x:Name="ComOuter_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/plain_knob_outer.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="79" MouseWheel="AS1000_MFD_COM_Large_DEC" />
-                    <Image x:Name="ComInner_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/plain_knob_inner.png" HorizontalAlignment="Left" Margin="16,16,0,0" VerticalAlignment="Top" Height="47" MouseWheel="AS1000_MFD_COM_Small_DEC" MouseDown="AS1000_MFD_COM_Push" />
+                    <Image x:Name="ComInner_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/plain_knob_inner.png" HorizontalAlignment="Left" Margin="16,16,0,0" VerticalAlignment="Top" Height="47" MouseWheel="AS1000_MFD_COM_Small_DEC" MouseDown="AS1000_MFD_COM_Push" MouseUp="AS1000_MFD_COM_Push_Up" />
                 </Grid>
 
                 <Grid Margin="1276,334,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
@@ -77,7 +77,11 @@
                     <Image x:Name="BaroInner_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/crs_knob.png"  HorizontalAlignment="Left" Margin="16,15,0,0" VerticalAlignment="Top" Height="47" MouseWheel="AS1000_MFD_CRS_DEC" MouseDown="AS1000_MFD_CRS_PUSH" />
                 </Grid>
 
-                <Image x:Name="Rng_Knob" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/rng2_knob.png" HorizontalAlignment="Left" Margin="1286,494,0,0" VerticalAlignment="Top" Height="65" Width="65" MouseWheel="AS1000_MFD_RANGE_DEC" />
+                <Image x:Name="Rng_Knob" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/rng2_knob.png" HorizontalAlignment="Left" Margin="1286,494,0,0" VerticalAlignment="Top" Height="65" Width="65" MouseWheel="AS1000_MFD_RANGE_DEC" MouseDown="AS1000_MFD_JOYSTICK_PUSH"  />
+                <Rectangle  MouseDown="AS1000_MFD_JOYSTICK_LEFT" Style="{StaticResource ButtonRectDark}" Width="34"  Height="65"  HorizontalAlignment="Left" Margin="1247,494,0,0" VerticalAlignment="Top" />
+                <Rectangle  MouseDown="AS1000_MFD_JOYSTICK_RIGHT" Style="{StaticResource ButtonRectDark}" Width="34"  Height="65"  HorizontalAlignment="Left" Margin="1356,494,0,0" VerticalAlignment="Top" />
+                <Rectangle  MouseDown="AS1000_MFD_JOYSTICK_UP" Style="{StaticResource ButtonRectDark}" Width="78"  Height="36"  HorizontalAlignment="Left" Margin="1276,453,0,0" VerticalAlignment="Top" />
+                <Rectangle  MouseDown="AS1000_MFD_JOYSTICK_DOWN" Style="{StaticResource ButtonRectDark}" Width="78"  Height="36"  HorizontalAlignment="Left" Margin="1277,564,0,0" VerticalAlignment="Top" />
 
 
 
@@ -87,7 +91,7 @@
                 <Image x:Name="FPL_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/fpl_button.png" Width="53"  HorizontalAlignment="Left" Margin="1255,668,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_FPL_Push"  />
                 <Image x:Name="Proc_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/proc_button.png" Width="53" HorizontalAlignment="Left" Margin="1326,668,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_PROC_Push"  />
 
-                <Image x:Name="Clr_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/clr_button.png" Width="53" HorizontalAlignment="Left" Margin="1255,720,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_CLR"  />
+                <Image x:Name="Clr_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/clr_button.png" Width="53" HorizontalAlignment="Left" Margin="1255,720,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_CLR" MouseUp="AS1000_MFD_CLR_Up"  />
                 <Image x:Name="Ent_Button" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/ent_button.png" Width="53" HorizontalAlignment="Left" Margin="1326,720,0,0" VerticalAlignment="Top" MouseDown="AS1000_MFD_ENT_Push"  />
 
                 <Grid Margin="1275,789,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">

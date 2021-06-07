@@ -1,4 +1,5 @@
 ﻿using SimPanel.Properties;
+using SimPanel.View;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace SimPanel.ViewModel
 {
@@ -100,10 +102,10 @@ namespace SimPanel.ViewModel
 
             this.G1000PFDSetPos = new RelayCommand(p =>
             {
-                Settings.Default.G1000PFDPosX = this.G1000PFDPosX;
-                Settings.Default.G1000PFDPosY = this.G1000PFDPosY;
-                Settings.Default.G1000PFDPosW = this.G1000PFDPosW;
-                Settings.Default.G1000PFDPosH = this.G1000PFDPosH;
+                //Settings.Default.G1000PFDPosX = this.G1000PFDPosX;
+                //Settings.Default.G1000PFDPosY = this.G1000PFDPosY;
+                //Settings.Default.G1000PFDPosW = this.G1000PFDPosW;
+                //Settings.Default.G1000PFDPosH = this.G1000PFDPosH;
                 Settings.Default.Save();
 
                 if (this.G1000PFDHandle != 0)
@@ -112,7 +114,39 @@ namespace SimPanel.ViewModel
                     //SetWindowPos(hwnd, x, y, w, h, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_SHOWWINDOW);
                     SetWindowPos((IntPtr)this.G1000PFDHandle, HWND_TOP, this.G1000PFDPosX, this.G1000PFDPosY, this.G1000PFDPosW, this.G1000PFDPosH, SWP_SHOWWINDOW);
                 }
-            });
+            }, p => { return this.G1000PFDHandle > 0; });
+
+            this.OpenG1000PFDCommand = new RelayCommand(p =>
+            {
+                if (this.G1000PFDView == null)
+                {
+                    this.G1000PFDView = new G1000PFDView();
+                    this.G1000PFDView.Closed += G1000PFDView_Closed;
+                    this.G1000PFDView.Show();
+                }
+            }, p => { return this.G1000PFDView == null; });
+
+            this.G1000PFDFrameSetPos = new RelayCommand(p =>
+            {
+                if (this.G1000PFDView != null)
+                {
+                    this.G1000PFDView.Left = this.G1000PFDFramePosX;
+                    this.G1000PFDView.Top = this.G1000PFDFramePosY;
+                    this.G1000PFDView.Width = this.G1000PFDFramePosW;
+                    this.G1000PFDView.Height = this.G1000PFDFramePosH;
+                    this.G1000PFDView.WindowState = System.Windows.WindowState.Maximized;
+                    this.G1000PFDView.Topmost = true;
+                    Settings.Default.Save();
+
+                    //SetWindowPos((IntPtr)this.G1000PFDView., HWND_TOP, this.G1000PFDPosX, this.G1000PFDPosY, this.G1000PFDPosW, this.G1000PFDPosH, SWP_SHOWWINDOW);
+                }
+            }, p => { return this.G1000PFDView != null; });
+
+
+
+            // =============================================================================================
+            // G1000 MFD 
+            // =============================================================================================
 
             this.G1000MFDFindHandle = new RelayCommand(p =>
             {
@@ -127,39 +161,88 @@ namespace SimPanel.ViewModel
                 }
             });
 
+
             this.G1000MFDSetPos = new RelayCommand(p =>
             {
-                Settings.Default.G1000MFDPosX = this.G1000MFDPosX;
-                Settings.Default.G1000MFDPosY = this.G1000MFDPosY;
-                Settings.Default.G1000MFDPosW = this.G1000MFDPosW;
-                Settings.Default.G1000MFDPosH = this.G1000MFDPosH;
+                //Settings.Default.G1000MFDPosX = this.G1000MFDPosX;
+                //Settings.Default.G1000MFDPosY = this.G1000MFDPosY;
+                //Settings.Default.G1000MFDPosW = this.G1000MFDPosW;
+                //Settings.Default.G1000MFDPosH = this.G1000MFDPosH;
                 Settings.Default.Save();
 
-                if (this.G1000PFDHandle != 0)
+                if (this.G1000MFDHandle != 0)
                 {
                     //hwnd = (IntPtr)0x000E0546;
                     //SetWindowPos(hwnd, x, y, w, h, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_SHOWWINDOW);
                     SetWindowPos((IntPtr)this.G1000MFDHandle, HWND_TOP, this.G1000MFDPosX, this.G1000MFDPosY, this.G1000MFDPosW, this.G1000MFDPosH, SWP_SHOWWINDOW);
                 }
-            });
+            }, p => { return this.G1000MFDHandle > 0; });
 
+            this.OpenG1000MFDCommand = new RelayCommand(p =>
+            {
+                if (this.G1000MFDView == null)
+                {
+                    this.G1000MFDView = new G1000MFDView();
+                    this.G1000MFDView.Closed += G1000MFDView_Closed;
+                    this.G1000MFDView.Show();
+                }
+            }, p => { return this.G1000MFDView == null; });
 
+            this.G1000MFDFrameSetPos = new RelayCommand(p =>
+            {
+                if (this.G1000MFDView != null)
+                {
+                    this.G1000MFDView.Left = this.G1000MFDFramePosX;
+                    this.G1000MFDView.Top = this.G1000MFDFramePosY;
+                    this.G1000MFDView.Width = this.G1000MFDFramePosW;
+                    this.G1000MFDView.Height = this.G1000MFDFramePosH;
+                    this.G1000MFDView.WindowState = System.Windows.WindowState.Maximized;
+                    this.G1000MFDView.Topmost = true;
+
+                    Settings.Default.Save();
+
+                    //SetWindowPos((IntPtr)this.G1000PFDView., HWND_TOP, this.G1000PFDPosX, this.G1000PFDPosY, this.G1000PFDPosW, this.G1000PFDPosH, SWP_SHOWWINDOW);
+                }
+            }, p => { return this.G1000MFDView != null; });
 
 
 
         }
 
+        private void G1000MFDView_Closed(object sender, EventArgs e)
+        {
+            this.G1000MFDView.Closed -= G1000MFDView_Closed;
+
+            this.G1000PFDView = null;
+            CommandManager.InvalidateRequerySuggested();
+        }
+
+        private void G1000PFDView_Closed(object sender, EventArgs e)
+        {
+            this.G1000PFDView.Closed -= G1000PFDView_Closed;
+
+            this.G1000PFDView = null;
+            CommandManager.InvalidateRequerySuggested();
+        }
+
         public void Init()
         {
-            this.G1000PFDPosX = Settings.Default.G1000PFDPosX;
-            this.G1000PFDPosY = Settings.Default.G1000PFDPosY;
-            this.G1000PFDPosW = Settings.Default.G1000PFDPosW;
-            this.G1000PFDPosH = Settings.Default.G1000PFDPosH;
+            //this.G1000PFDPosX = Settings.Default.G1000PFDPosX;
+            //this.G1000PFDPosY = Settings.Default.G1000PFDPosY;
+            //this.G1000PFDPosW = Settings.Default.G1000PFDPosW;
+            //this.G1000PFDPosH = Settings.Default.G1000PFDPosH;
 
-            this.G1000MFDPosX = Settings.Default.G1000MFDPosX;
-            this.G1000MFDPosY = Settings.Default.G1000MFDPosY;
-            this.G1000MFDPosW = Settings.Default.G1000MFDPosW;
-            this.G1000MFDPosH = Settings.Default.G1000MFDPosH;
+            //this.G1000PFDFramePosX = Settings.Default.G1000PFDFramePosX;
+            //this.G1000PFDFramePosY = Settings.Default.G1000PFDFramePosY;
+            //this.G1000PFDFramePosW = Settings.Default.G1000PFDFramePosW;
+            //this.G1000PFDFramePosH = Settings.Default.G1000PFDFramePosH;
+
+
+
+            //this.G1000MFDPosX = Settings.Default.G1000MFDPosX;
+            //this.G1000MFDPosY = Settings.Default.G1000MFDPosY;
+            //this.G1000MFDPosW = Settings.Default.G1000MFDPosW;
+            //this.G1000MFDPosH = Settings.Default.G1000MFDPosH;
 
         }
 
@@ -218,53 +301,110 @@ namespace SimPanel.ViewModel
             }
         }
 
-        private int FG1000PFDPosX;
+
 
         public int G1000PFDPosX
         {
-            get { return FG1000PFDPosX; }
+            get { return Settings.Default.G1000PFDPosX; }
             set
             {
-                FG1000PFDPosX = value;
+                Settings.Default.G1000PFDPosX = value;
                 this.OnPropertyChanged();
             }
         }
 
-        private int FG1000PFDPosY;
+        
 
         public int G1000PFDPosY
         {
-            get { return FG1000PFDPosY; }
+            get { return Settings.Default.G1000PFDPosY; }
             set
             {
-                FG1000PFDPosY = value;
+                Settings.Default.G1000PFDPosY = value;
                 this.OnPropertyChanged();
             }
         }
 
-        private int FG1000PFDPosW;
+        
 
         public int G1000PFDPosW
         {
-            get { return FG1000PFDPosW; }
+            get { return Settings.Default.G1000PFDPosW; }
             set
             {
-                FG1000PFDPosW = value;
+                Settings.Default.G1000PFDPosW = value;
                 this.OnPropertyChanged();
             }
         }
 
-        private int FG1000PFDPosH;
+        
 
         public int G1000PFDPosH
         {
-            get { return FG1000PFDPosH; }
+            get { return Settings.Default.G1000PFDPosH; }
             set
             {
-                FG1000PFDPosH = value;
+                Settings.Default.G1000PFDPosH = value;
                 this.OnPropertyChanged();
             }
         }
+
+
+        
+        public int G1000PFDFramePosX
+        {
+            get { return Settings.Default.G1000PFDFramePosX; }
+            set
+            {
+                Settings.Default.G1000PFDFramePosX = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        
+
+        public int G1000PFDFramePosY
+        {
+            get { return Settings.Default.G1000PFDFramePosY; }
+            set
+            {
+                Settings.Default.G1000PFDFramePosY = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        
+
+        public int G1000PFDFramePosW
+        {
+            get { return Settings.Default.G1000PFDFramePosW; }
+            set
+            {
+                Settings.Default.G1000PFDFramePosW = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        
+
+        public int G1000PFDFramePosH
+        {
+            get { return Settings.Default.G1000PFDFramePosH; }
+            set
+            {
+                Settings.Default.G1000PFDFramePosH = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+
+
+
+
+
+
+
+        // MFD Properties
 
         private int FG1000MFDHandle;
         public int G1000MFDHandle
@@ -278,50 +418,93 @@ namespace SimPanel.ViewModel
         }
 
 
-        private int FG1000MFDPosX;
+
 
         public int G1000MFDPosX
         {
-            get { return FG1000MFDPosX; }
+            get { return Settings.Default.G1000MFDPosX; }
             set
             {
-                FG1000MFDPosX = value;
+                Settings.Default.G1000MFDPosX = value;
                 this.OnPropertyChanged();
             }
         }
 
-        private int FG1000MFDPosY;
+
 
         public int G1000MFDPosY
         {
-            get { return FG1000MFDPosY; }
+            get { return Settings.Default.G1000MFDPosY; }
             set
             {
-                FG1000MFDPosY = value;
+                Settings.Default.G1000MFDPosY = value;
                 this.OnPropertyChanged();
             }
         }
 
-        private int FG1000MFDPosW;
+
 
         public int G1000MFDPosW
         {
-            get { return FG1000MFDPosW; }
+            get { return Settings.Default.G1000MFDPosW; }
             set
             {
-                FG1000MFDPosW = value;
+                Settings.Default.G1000MFDPosW = value;
                 this.OnPropertyChanged();
             }
         }
 
-        private int FG1000MFDPosH;
+
 
         public int G1000MFDPosH
         {
-            get { return FG1000MFDPosH; }
+            get { return Settings.Default.G1000MFDPosH; }
             set
             {
-                FG1000MFDPosH = value;
+                Settings.Default.G1000MFDPosH = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        // MFD FRAME
+
+        public int G1000MFDFramePosX
+        {
+            get { return Settings.Default.G1000MFDFramePosX; }
+            set
+            {
+                Settings.Default.G1000MFDFramePosX = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public int G1000MFDFramePosY
+        {
+            get { return Settings.Default.G1000MFDFramePosY; }
+            set
+            {
+                Settings.Default.G1000MFDFramePosY = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+
+        public int G1000MFDFramePosW
+        {
+            get { return Settings.Default.G1000MFDFramePosW; }
+            set
+            {
+                Settings.Default.G1000MFDFramePosW = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public int G1000MFDFramePosH
+        {
+            get { return Settings.Default.G1000MFDFramePosH; }
+            set
+            {
+                Settings.Default.G1000MFDFramePosH = value;
                 this.OnPropertyChanged();
             }
         }
@@ -329,8 +512,36 @@ namespace SimPanel.ViewModel
 
         public RelayCommand G1000PFDFindHandle { get; }
         public RelayCommand G1000PFDSetPos { get; }
+        public RelayCommand OpenG1000PFDCommand { get; }
+        public RelayCommand G1000PFDFrameSetPos { get; }
         public RelayCommand G1000MFDFindHandle { get; }
         public RelayCommand G1000MFDSetPos { get; }
+        public RelayCommand OpenG1000MFDCommand { get; }
+        public RelayCommand G1000MFDFrameSetPos { get; }
+
+        private G1000PFDView FG1000PFDView = null;
+        public G1000PFDView G1000PFDView
+        {
+            get { return this.FG1000PFDView; }
+            set
+            {
+                this.FG1000PFDView = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        private G1000MFDView FG1000MFDView = null;
+        public G1000MFDView G1000MFDView
+        {
+            get { return this.FG1000MFDView; }
+            set
+            {
+                this.FG1000MFDView = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+
         private static HookModes HookMode = HookModes.None;
     }
 }

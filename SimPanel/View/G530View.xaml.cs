@@ -96,11 +96,6 @@ namespace SimPanel.View
             Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS530_MENU_Push", 0);
         }
 
-        private void AS530_CLR_Push(object sender, MouseButtonEventArgs e)
-        {
-            Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS530_CLR_Push", 0);
-        }
-
         private void AS530_ENT_Push(object sender, MouseButtonEventArgs e)
         {
             Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS530_ENT_Push", 0);
@@ -239,5 +234,41 @@ namespace SimPanel.View
         {
             Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS530_RightSmallKnob_Push", 0);
         }
+
+        bool CLR_Down = false;
+        private void AS530_CLR_Push(object sender, MouseButtonEventArgs e)
+        {
+            if (this.CLR_Down == false)
+            {
+                this.CLR_Down = true;
+                DateTime dt = DateTime.Now;
+                Task t = new Task(() =>
+                {
+                    while (this.CLR_Down)
+                    {
+                        if ((DateTime.Now - dt).TotalSeconds > 2)
+                        {
+                            Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS530_CLR_Push_Long", 0);
+                            this.CLR_Down = false;
+                            return;
+                        }
+                    }
+                    this.CLR_Down = false;
+                    Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS530_CLR_Push", 0);
+                });
+                t.Start();
+            }
+        }
+
+
+        //Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_MFD_CLR", 0);
+        //}
+
+        private void AS530_CLR_Up(object sender, MouseButtonEventArgs e)
+        {
+            this.CLR_Down = false;
+        }
+
+
     }
 }

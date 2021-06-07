@@ -47,7 +47,7 @@ namespace SimPanel.View
                 this.DragMove();
         }
 
-       private void Window_KeyDown(object sender, KeyEventArgs e)
+        private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.F11)
             {
@@ -343,10 +343,46 @@ namespace SimPanel.View
             }
         }
 
+        //private void AS1000_PFD_COM_Push(object sender, MouseButtonEventArgs e)
+        //{
+        //    Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_COM_Push", 0);
+        //}
+
+        bool COM_Down = false;
         private void AS1000_PFD_COM_Push(object sender, MouseButtonEventArgs e)
         {
             Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_COM_Push", 0);
+
+            if (this.COM_Down == false)
+            {
+                this.COM_Down = true;
+                DateTime dt = DateTime.Now;
+                Task t = new Task(() =>
+                {
+                    while (this.COM_Down)
+                    {
+                        if ((DateTime.Now - dt).TotalSeconds > 2)
+                        {
+                            Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_COM_Push_Long", 0);
+                            this.COM_Down = false;
+                            return;
+                        }
+                    }
+                    this.COM_Down = false;
+                    //                    Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_COM_Push", 0);
+                });
+                t.Start();
+            }
+
+            //Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_COM_Switch_Long", 0);
+            //Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_MFD_COM_Push", 0);
         }
+
+        private void AS1000_PFD_COM_Push_Up(object sender, MouseButtonEventArgs e)
+        {
+            this.COM_Down = false;
+        }
+
 
         private void AS1000_PFD_CRS_DEC(object sender, MouseWheelEventArgs e)
         {
@@ -410,10 +446,59 @@ namespace SimPanel.View
             Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_PROC_Push", 0);
         }
 
+
+        bool CLR_Down = false;
         private void AS1000_PFD_CLR(object sender, MouseButtonEventArgs e)
         {
-            Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_CLR", 0);
+            if (this.CLR_Down == false)
+            {
+                this.CLR_Down = true;
+                DateTime dt = DateTime.Now;
+                Task t = new Task(() =>
+                {
+                    while (this.CLR_Down)
+                    {
+                        if ((DateTime.Now - dt).TotalSeconds > 2)
+                        {
+                            Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_CLR_Long", 0);
+                            this.CLR_Down = false;
+                            return;
+                        }
+                    }
+                    this.CLR_Down = false;
+                    Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_CLR", 0);
+                });
+                t.Start();
+            }
         }
+
+
+        //Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_MFD_CLR", 0);
+        //}
+
+        private void AS1000_PFD_CLR_Up(object sender, MouseButtonEventArgs e)
+        {
+            this.CLR_Down = false;
+        }
+
+        //private DateTime CLRDt = DateTime.MinValue;
+        //private void AS1000_PFD_CLR(object sender, MouseButtonEventArgs e)
+        //{
+        //    this.CLRDt = DateTime.Now;
+        //}
+
+        //private void AS1000_PFD_CLR_Long(object sender, MouseButtonEventArgs e)
+        //{
+        //    if ((DateTime.Now - this.CLRDt).TotalSeconds < 2)
+        //    {
+        //        Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_CLR", 0);
+        //    }
+        //    else
+        //    {
+        //        Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_CLR_Long", 0);
+        //    }
+        //}
+
 
         private void AS1000_PFD_ENT_Push(object sender, MouseButtonEventArgs e)
         {
@@ -489,6 +574,31 @@ namespace SimPanel.View
                 FHDGAngle = value;
                 this.OnPropertyChanged();
             }
+        }
+
+        private void AS1000_PFD_JOYSTICK_PUSH(object sender, MouseButtonEventArgs e)
+        {
+            Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_JOYSTICK_PUSH", 0);
+        }
+
+        private void AS1000_PFD_JOYSTICK_LEFT(object sender, MouseButtonEventArgs e)
+        {
+            Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_JOYSTICK_LEFT", 0);
+        }
+
+        private void AS1000_PFD_JOYSTICK_RIGHT(object sender, MouseButtonEventArgs e)
+        {
+            Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_JOYSTICK_RIGHT", 0);
+        }
+
+        private void AS1000_PFD_JOYSTICK_UP(object sender, MouseButtonEventArgs e)
+        {
+            Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_JOYSTICK_UP", 0);
+        }
+
+        private void AS1000_PFD_JOYSTICK_DOWN(object sender, MouseButtonEventArgs e)
+        {
+            Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_JOYSTICK_DOWN", 0);
         }
     }
 }
