@@ -127,14 +127,16 @@
                             <GroupBox Margin="10,10,10,0" Header="G1000 PFD" Height="229" VerticalAlignment="Top" >
                                 <Grid>
                                     <Button Content="SELECT AS1000 PFD" Command="{Binding G1000PFDFindHandle}" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top"/>
+                                    <!--<Button Content="READ AS1000 PFD POS" Command="{Binding G1000PFDReadPos}" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Margin="290,0,0,0"/>-->
+
                                     <TextBox Text="{Binding G1000PFDHandle}"  Width="100" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="161,6,0,0"/>
-                                    <TextBox  Text="{Binding G1000PFDPosX}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="325,6,0,0"/>
-                                    <TextBox Text="{Binding G1000PFDPosY}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="430,6,0,0"/>
-                                    <TextBox Text="{Binding G1000PFDPosW}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="535,6,0,0"/>
-                                    <TextBox Text="{Binding G1000PFDPosH}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="640,6,0,0"/>
-                                    <Button Content="SetPos" Command="{Binding G1000PFDSetPos}" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Margin="745,0,0,0" Width="100"/>
+                                    <TextBox  Text="{Binding G1000PFDPosX}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="325,10,0,0"/>
+                                    <TextBox Text="{Binding G1000PFDPosY}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="430,10,0,0"/>
+                                    <TextBox Text="{Binding G1000PFDPosW}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="535,10,0,0"/>
+                                    <TextBox Text="{Binding G1000PFDPosH}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="640,10,0,0"/>
+                                    <Button Content="SetPos" Command="{Binding G1000PFDSetPos}" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Margin="745,4,0,0" Width="100"/>
                                     <Button Content="G1000 PFD" Command="{Binding OpenG1000PFDCommand}" HorizontalAlignment="Left" Margin="0,0,0,81" VerticalAlignment="Bottom" Width="146"/>
-                                    
+
                                     <TextBox  Text="{Binding G1000PFDFramePosX}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="325,69,0,0"/>
                                     <TextBox  Text="{Binding G1000PFDFramePosY}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="430,69,0,0"/>
                                     <TextBox  Text="{Binding G1000PFDFramePosW}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="535,69,0,0"/>

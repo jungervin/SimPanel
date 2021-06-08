@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SimPanel.ViewModel
@@ -83,6 +84,8 @@ namespace SimPanel.ViewModel
         [DllImport("user32.dll", EntryPoint = "SetWindowPos")]
         public static extern IntPtr SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int x, int Y, int cx, int cy, int wFlags);
 
+        [DllImport("user32.dll")]
+        public static extern bool GetWindowRect(IntPtr hwnd, ref Rect rectangle);
         public enum HookModes { None, G1000PFD, G1000MFD };
 
         public WinManViewModel() : base()
@@ -99,6 +102,17 @@ namespace SimPanel.ViewModel
                     }
                 }
             });
+
+            //this.G1000PFDReadPos = new RelayCommand(p => {
+            //    if (this.G1000PFDHandle > 0)
+            //    {
+            //        Rect rect = new Rect();
+            //        if (GetWindowRect((IntPtr)this.G1000PFDHandle, ref rect))
+            //        {
+            //            this.G1000PFDPosX = Convert.ToInt32(rect.Left);
+            //        }
+            //    }
+            //});
 
             this.G1000PFDSetPos = new RelayCommand(p =>
             {
@@ -297,6 +311,17 @@ namespace SimPanel.ViewModel
             set
             {
                 FG1000PFDHandle = value;
+                if (value > 0)
+                {
+                    this.G1000PFDSetPos.Execute(null);
+
+                    if (this.G1000PFDView == null)
+                    {
+                        this.OpenG1000PFDCommand.Execute(null);
+                        this.G1000PFDFrameSetPos.Execute(null);
+                    }
+                }
+
                 this.OnPropertyChanged();
             }
         }
@@ -413,6 +438,16 @@ namespace SimPanel.ViewModel
             set
             {
                 FG1000MFDHandle = value;
+                if (value > 0)
+                {
+                    this.G1000MFDSetPos.Execute(null);
+
+                    if (this.G1000MFDView == null)
+                    {
+                        this.OpenG1000MFDCommand.Execute(null);
+                        this.G1000MFDFrameSetPos.Execute(null);
+                    }
+                }
                 this.OnPropertyChanged();
             }
         }
@@ -511,6 +546,7 @@ namespace SimPanel.ViewModel
 
 
         public RelayCommand G1000PFDFindHandle { get; }
+        public RelayCommand G1000PFDReadPos { get; }
         public RelayCommand G1000PFDSetPos { get; }
         public RelayCommand OpenG1000PFDCommand { get; }
         public RelayCommand G1000PFDFrameSetPos { get; }

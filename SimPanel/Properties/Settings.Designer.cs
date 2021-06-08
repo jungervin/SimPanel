@@ -310,5 +310,41 @@ namespace SimPanel.Properties {
                 this["G1000MFDFramePosH"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool G1000PFDOpenAtStart {
+            get {
+                return ((bool)(this["G1000PFDOpenAtStart"]));
+            }
+            set {
+                this["G1000PFDOpenAtStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool G1000MFDOpenAtStart {
+            get {
+                return ((bool)(this["G1000MFDOpenAtStart"]));
+            }
+            set {
+                this["G1000MFDOpenAtStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool G530OpenAtStart {
+            get {
+                return ((bool)(this["G530OpenAtStart"]));
+            }
+            set {
+                this["G530OpenAtStart"] = value;
+            }
+        }
     }
 }

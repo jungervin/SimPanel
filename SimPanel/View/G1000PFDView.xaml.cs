@@ -121,21 +121,37 @@ namespace SimPanel.View
             Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_HEADING_SYNC", 1);
         }
 
+        int tsAS1000_PFD_HEADING = 0;
         private void AS1000_PFD_HEADING_Rotate(object sender, MouseWheelEventArgs e)
         {
+            int dt = e.Timestamp - tsAS1000_PFD_HEADING;
             if (e.Delta < 0)
             {
-                //Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_HEADING_FAST_DEC", 0);
                 this.HDGAngle -= 5;
-                Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_HEADING_DEC", 0);
+                if (dt <= 50)
+                {
+                    Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_HEADING_FAST_DEC", 0);
+                }
+                else
+                {
+                    Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_HEADING_DEC", 0);
+                }
             }
             else
             {
-                //Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_HEADING_FAST_INC", 0);
                 this.HDGAngle += 5;
-                Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_HEADING_INC", 0);
-            }
+                if (dt <= 50)
+                {
+                    Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_HEADING_FAST_INC", 0);
+                }
+                else
+                {
+                    Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_HEADING_INC", 0);
+                }
 
+
+            }
+            this.tsAS1000_PFD_HEADING = e.Timestamp;
         }
 
         private void AP_MASTER(object sender, MouseButtonEventArgs e)
