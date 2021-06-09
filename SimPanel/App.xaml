@@ -89,6 +89,29 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
+
+            <Style x:Key="RotaryButton" TargetType="{x:Type Control}">
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Background" Value="Gray"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Control}">
+                            <Grid>
+                                <Ellipse x:Name="ellipse" Fill="{TemplateBinding Background}" />
+                                <Ellipse x:Name="ellipse2" Fill="#40FFFFFF" Visibility="Hidden"/>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="ellipse2" Property="Visibility" Value="Visible" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

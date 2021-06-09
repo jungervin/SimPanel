@@ -154,6 +154,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\Knob.cs" />
     <Compile Include="Domain\NoEmptyValidationRule.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Model\CoordModel.cs" />

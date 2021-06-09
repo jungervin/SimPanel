@@ -225,17 +225,21 @@ namespace SimPanel.ViewModel
 
         private void G1000MFDView_Closed(object sender, EventArgs e)
         {
-            this.G1000MFDView.Closed -= G1000MFDView_Closed;
-
-            this.G1000PFDView = null;
+            if (this.G1000MFDView != null)
+            {
+                this.G1000MFDView.Closed -= G1000MFDView_Closed;
+                this.G1000PFDView = null;
+            }
             CommandManager.InvalidateRequerySuggested();
         }
 
         private void G1000PFDView_Closed(object sender, EventArgs e)
         {
-            this.G1000PFDView.Closed -= G1000PFDView_Closed;
-
-            this.G1000PFDView = null;
+            if (this.G1000PFDView != null)
+            {
+                this.G1000PFDView.Closed -= G1000PFDView_Closed;
+                this.G1000PFDView = null;
+            }
             CommandManager.InvalidateRequerySuggested();
         }
 
@@ -338,7 +342,7 @@ namespace SimPanel.ViewModel
             }
         }
 
-        
+
 
         public int G1000PFDPosY
         {
@@ -350,7 +354,7 @@ namespace SimPanel.ViewModel
             }
         }
 
-        
+
 
         public int G1000PFDPosW
         {
@@ -362,7 +366,7 @@ namespace SimPanel.ViewModel
             }
         }
 
-        
+
 
         public int G1000PFDPosH
         {
@@ -375,7 +379,7 @@ namespace SimPanel.ViewModel
         }
 
 
-        
+
         public int G1000PFDFramePosX
         {
             get { return Settings.Default.G1000PFDFramePosX; }
@@ -386,7 +390,7 @@ namespace SimPanel.ViewModel
             }
         }
 
-        
+
 
         public int G1000PFDFramePosY
         {
@@ -398,7 +402,7 @@ namespace SimPanel.ViewModel
             }
         }
 
-        
+
 
         public int G1000PFDFramePosW
         {
@@ -410,7 +414,7 @@ namespace SimPanel.ViewModel
             }
         }
 
-        
+
 
         public int G1000PFDFramePosH
         {
