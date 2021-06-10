@@ -49,7 +49,7 @@ namespace SimPanel
             this.MainWindowViewModel = new MainWindowViewModel();
             this.DataContext = this.MainWindowViewModel;
 
-            this.Topmost = true;
+            //this.Topmost = true;
 
         }
         protected HwndSource GetHWinSource()

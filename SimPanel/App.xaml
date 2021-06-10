@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SimPanel"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             
+             xmlns:ctrl="clr-namespace:SimPanel.Controls"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -90,7 +90,7 @@
                 </Style.Triggers>
             </Style>
 
-            <Style x:Key="RotaryButton" TargetType="{x:Type Control}">
+            <!--<Style x:Key="RotaryButton" TargetType="{x:Type Control}">
                 <Setter Property="Cursor" Value="Hand" />
                 <Setter Property="Background" Value="Gray"></Setter>
                 <Setter Property="Template">
@@ -109,8 +109,65 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
+            </Style>-->
+
+            <Style x:Key="PushButton" TargetType="{x:Type ctrl:PushButton}">
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Background" Value="Gray"></Setter>
+                <!--<Setter Property="Selected" Value="True"></Setter>-->
+                <Setter Property="Opacity" Value="0.0" />
+                
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ctrl:PushButton}">
+                            <Grid>
+                                <Rectangle x:Name="rect" Fill="Black" RadiusX="{TemplateBinding RadiusX}" RadiusY="{TemplateBinding RadiusY}" />
+                                <!--<Ellipse x:Name="ellipse2" Fill="#40FFFFFF" Visibility="Hidden"/>-->
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <!--<Setter TargetName="ellipse2" Property="Visibility" Value="Visible" />-->
+                                    <Setter Property="Opacity" Value="0.2" />
+                                </Trigger>
+                                <!--<Trigger Property="Selected" Value="True">
+                                    <Setter TargetName="ellipse" Property="Fill" Value="Red"></Setter>
+                                    <Setter Property="Opacity" Value="0.3" />
+                                </Trigger>-->
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
 
+
+            <Style x:Key="RotaryButton" TargetType="{x:Type ctrl:Knob}">
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Background" Value="Gray"></Setter>
+                <!--<Setter Property="Selected" Value="True"></Setter>-->
+                <Setter Property="Opacity" Value="0.0" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ctrl:Knob}">
+                            <Grid>
+                                <Ellipse x:Name="ellipse" Fill="Gray" />
+                                <!--<Ellipse x:Name="ellipse2" Fill="#40FFFFFF" Visibility="Hidden"/>-->
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <!--<Setter TargetName="ellipse2" Property="Visibility" Value="Visible" />-->
+                                    <!--<Setter Property="Opacity" Value="0.5" />-->
+                                </Trigger>
+                                <Trigger Property="Selected" Value="True">
+                                    <Setter TargetName="ellipse" Property="Fill" Value="Red"></Setter>
+                                    <Setter Property="Opacity" Value="0.3" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
         </ResourceDictionary>
     </Application.Resources>

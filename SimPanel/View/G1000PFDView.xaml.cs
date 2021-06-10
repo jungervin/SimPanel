@@ -1,4 +1,5 @@
-﻿using SimPanel.ViewModel;
+﻿using SimPanel.Controls;
+using SimPanel.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,7 @@ namespace SimPanel.View
             InitializeComponent();
 
             this.DataContext = this;
+            this.SimConnectViewModel = Globals.MainWindow.SimConnectViewModel;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -616,5 +618,34 @@ namespace SimPanel.View
         {
             Globals.MainWindow.SimConnectViewModel.SendEvent("MobiFlight.AS1000_PFD_JOYSTICK_DOWN", 0);
         }
+
+        private void HDGKnob_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Console.WriteLine("MouseDown");
+
+            if (sender is Knob)
+            {
+                (sender as Knob).Selected = true;
+            }
+
+        }
+
+        private void HDGKnob_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Console.WriteLine("DoubleClick");
+        }
+
+        private SimConnectViewModel FSimConnectViewModel;
+
+        public SimConnectViewModel SimConnectViewModel
+        {
+            get { return FSimConnectViewModel; }
+            set
+            {
+                FSimConnectViewModel = value;
+                this.OnPropertyChanged();
+            }
+        }
+
     }
 }

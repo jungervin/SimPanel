@@ -82,6 +82,7 @@ namespace SimPanel.ViewModel
             //}
 
             Globals.MainWindow.LuaCodeViewModel.Run(data);
+            Globals.MainWindow.SimConnectViewModel.Run(data);
 
             if (this.LogEnabled)
             {

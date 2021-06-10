@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.FlightSimulator.SimConnect;
+using SimPanel.Controls;
 using SimPanel.Model;
 using SimPanel.Properties;
 using SimPanel.Utility;
@@ -8,11 +9,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Threading;
 using static SimPanel.Model.SimVar;
 
@@ -103,6 +106,14 @@ namespace SimPanel.ViewModel
         private void EventList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             this.EventListModified = true;
+        }
+
+        internal void Run(string data)
+        {
+            if (this.SelectedKnob != null)
+            {
+                this.SelectedKnob.Process(data);
+            }
         }
 
         private void VarList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -225,7 +236,7 @@ namespace SimPanel.ViewModel
                     if (!this.Connected)
                     {
                         this.Connect();
-                    }                  
+                    }
                     Thread.Sleep(3000);
                 }
             });
@@ -545,7 +556,7 @@ namespace SimPanel.ViewModel
                 if (!se.Subscribed)
                 {
                     this.Map(se);
-                    this.SimConnect.AddClientEventToNotificationGroup(SimEvent.SimEnum.group1 , (SimEvent.DEFINITIONS)se.Id , false);
+                    this.SimConnect.AddClientEventToNotificationGroup(SimEvent.SimEnum.group1, (SimEvent.DEFINITIONS)se.Id, false);
                     se.Subscribed = true;
                 }
             }
@@ -1041,7 +1052,43 @@ namespace SimPanel.ViewModel
         }
 
 
-
+        private Knob FSelectedKnob = null;
+        public Knob SelectedKnob
+        {
+            get { return this.FSelectedKnob; }
+            set
+            {
+                //private void PlaySound()
+                //{
+                // /SimPanel;component/Resources/G1000
+                Uri uri = new Uri(@"pack://application:,,,/Resources/G1000/knobclick");
+                //Uri uri = new Uri("../../Resources/Sounds/knobclick.wav", UriKind.Relative);
+                //var uri = new Uri(@"your_local_path", UriKind.RelativeOrAbsolute);
+                var player = new MediaPlayer();
+                player.Volume = 1;
+                //var player = new SoundPlayer(uri);
+                player.MediaFailed += (o, args) =>
+                {
+                    Console.WriteLine(args);
+                  
+                };
+                player.Open(uri);
+                    player.Play();
+                
+                if (this.FSelectedKnob != null)
+                {
+                    this.FSelectedKnob.Selected = false;
+                    this.OnPropertyChanged();
+                }
+                this.FSelectedKnob = value;
+                if (this.FSelectedKnob != null)
+                {
+                    this.FSelectedKnob = value;
+                    this.FSelectedKnob.Selected = true;
+                    this.OnPropertyChanged();
+                }
+            }
+        }
         internal WSServer WSServer { get; set; }
 
         public int GetUserSimConnectWinEvent()

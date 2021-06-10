@@ -155,6 +155,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\Knob.cs" />
+    <Compile Include="Controls\PushButton.cs" />
     <Compile Include="Domain\NoEmptyValidationRule.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Model\CoordModel.cs" />
@@ -588,6 +589,7 @@
     <Resource Include="Resources\G530\vnav_but.png" />
     <Resource Include="Resources\G530\zoom_down_but.png" />
     <Resource Include="Resources\G530\zoom_up_but.png" />
+    <Content Include="Resources\Sounds\knobclick.wav" />
     <Content Include="SimConnect.dll" />
   </ItemGroup>
   <ItemGroup>

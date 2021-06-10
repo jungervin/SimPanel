@@ -1,8 +1,10 @@
-﻿using System;
+﻿using SimPanel.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace SimPanel.ViewModel
 {
@@ -45,5 +47,17 @@ namespace SimPanel.ViewModel
             }
         }
 
+        private void HDGKnob_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Console.WriteLine("MouseDown");
+
+            if (sender is Knob)
+            {
+                (sender as Knob).Selected = true;
+            }
+
+        }
+
+      
     }
 }

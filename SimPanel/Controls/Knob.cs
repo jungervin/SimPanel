@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimPanel.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,14 @@ namespace SimPanel.Controls
         private double diffAngle = double.MaxValue;
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            //base.OnMouseLeftButtonDown(e);
+            //
+            if(this.SimConnect is SimConnectViewModel)
+            {
+                //this.Selected = true;
+                this.SimConnect.SelectedKnob = this;
+
+            }
+
 
             Point pos = Mouse.GetPosition(this);
 
@@ -32,8 +40,9 @@ namespace SimPanel.Controls
             }
 
             diffAngle = this.Angle - a;
-        
-        e.Handled = true;
+
+            //e.Handled = true;
+            base.OnMouseLeftButtonDown(e);
         }
 
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
@@ -41,11 +50,12 @@ namespace SimPanel.Controls
             //base.OnMouseLeftButtonUp(e);
             diffAngle = double.MaxValue;
             this.ReleaseMouseCapture();
-            e.Handled = true;
+            //e.Handled = true;
+            base.OnMouseLeftButtonUp(e);
         }
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            //base.OnMouseMove(e);
+            
             if (this.diffAngle < double.MaxValue)
             {
                     Point pos = Mouse.GetPosition(this);
@@ -64,37 +74,86 @@ namespace SimPanel.Controls
                     {
                         if (this.Angle < prevAngle)
                         {
-//                            simconnect.SendEvent(this.EventLeft);
-                        }
-                        else
+                        this.SimConnect.SendEvent(this.EventLeft, 0);
+
+                        //                            simconnect.SendEvent(this.EventLeft);
+                    }
+                    else
                         {
 
-  //                          simconnect.SendEvent(this.EventRight);
-                        }
-                        prevAngle = this.Angle;
+                        this.SimConnect.SendEvent(this.EventRight, 0);
+                        //                          simconnect.SendEvent(this.EventRight);
+                    }
+                    prevAngle = this.Angle;
                     }
                     this.CaptureMouse();
-                e.Handled = true;
+                //e.Handled = true;
             }
+            base.OnMouseMove(e);
         }
 
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
-            //base.OnMouseWheel(e);
-
                 this.Angle += e.Delta / 10;
 
                 if (e.Delta < 0)
                 {
-//                    simconnect.SendEvent(this.EventLeft);
-                }
-                else
+                this.SimConnect.SendEvent(this.EventLeft, 0);
+            }
+            else
                 {
-  //                  simconnect.SendEvent(this.EventRight);
-                }
+                this.SimConnect.SendEvent(this.EventRight, 0);
+            }
 
-                //prevDelta = e.Delta;
-            e.Handled = true;
+            //prevDelta = e.Delta;
+            //e.Handled = true;
+            //base.OnMouseWheel(e);
+        }
+
+        internal void Process(string data)
+        {
+            //throw new NotImplementedException();
+            if (this.SimConnect != null)
+            {
+                if (data == "D1:R1=1" && this.EventRight != null)
+                {
+                    this.SimConnect.SendEvent(this.EventRight, 0);
+                    this.Angle += 5;
+                }
+                else if (data == "D1:R1=-1" && this.EventLeft != null)
+                {
+                    this.SimConnect.SendEvent(this.EventLeft, 0);
+                    this.Angle -= 5;
+                }
+                else if (data == "D1:R1=10")
+                {
+                    if (this.EventRightFast != null)
+                    {
+                        this.SimConnect.SendEvent(this.EventRightFast, 0);
+                        this.Angle += 10;
+
+                    }
+                    else if (this.EventRight != null)
+                    {
+                        this.SimConnect.SendEvent(this.EventRight, 0);
+                        this.Angle += 5;
+                    }
+                }
+                else if (data == "D1:R1=-10")
+                {
+                    if (this.EventLeftFast != null)
+                    {
+                        this.SimConnect.SendEvent(this.EventLeftFast, 0);
+                        this.Angle -= 10;
+                    }
+                    else if (this.EventLeft != null)
+                    {
+                        this.SimConnect.SendEvent(this.EventLeft, 0);
+                        this.Angle -= 5;
+                    }
+                }
+            }
+
         }
 
         public double Angle
@@ -108,25 +167,39 @@ namespace SimPanel.Controls
             DependencyProperty.Register("Angle", typeof(double), typeof(Knob), new PropertyMetadata(0.0));
 
 
-        public ImageSource ImageKnob
+
+        public SimConnectViewModel SimConnect
         {
-            get { return (ImageSource)GetValue(ImageKnobProperty); }
-            set { SetValue(ImageKnobProperty, value); }
+            get { return (SimConnectViewModel)GetValue(SimConnectProperty); }
+            set { SetValue(SimConnectProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for ImageKnob.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ImageKnobProperty =
-            DependencyProperty.Register("ImageKnob", typeof(ImageSource), typeof(Knob), new PropertyMetadata(null));
+        // Using a DependencyProperty as the backing store for SimConnect.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SimConnectProperty =
+            DependencyProperty.Register("SimConnect", typeof(SimConnectViewModel), typeof(Knob), new PropertyMetadata(null));
 
-        public ImageSource ImageSelection
-        {
-            get { return (ImageSource)GetValue(ImageSelectionProperty); }
-            set { SetValue(ImageSelectionProperty, value); }
-        }
 
-        // Using a DependencyProperty as the backing store for ImageSelection.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ImageSelectionProperty =
-            DependencyProperty.Register("ImageSelection", typeof(ImageSource), typeof(Knob), new PropertyMetadata(null));
+
+
+        //public ImageSource ImageKnob
+        //{
+        //    get { return (ImageSource)GetValue(ImageKnobProperty); }
+        //    set { SetValue(ImageKnobProperty, value); }
+        //}
+
+        //// Using a DependencyProperty as the backing store for ImageKnob.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty ImageKnobProperty =
+        //    DependencyProperty.Register("ImageKnob", typeof(ImageSource), typeof(Knob), new PropertyMetadata(null));
+
+        //public ImageSource ImageSelection
+        //{
+        //    get { return (ImageSource)GetValue(ImageSelectionProperty); }
+        //    set { SetValue(ImageSelectionProperty, value); }
+        //}
+
+        //// Using a DependencyProperty as the backing store for ImageSelection.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty ImageSelectionProperty =
+        //    DependencyProperty.Register("ImageSelection", typeof(ImageSource), typeof(Knob), new PropertyMetadata(null));
 
         //public EVENTS EventLeft
         //{
@@ -163,15 +236,76 @@ namespace SimPanel.Controls
 
 
 
-        //public bool Selected
-        //{
-        //    get { return (bool)GetValue(SelectedProperty); }
-        //    set { SetValue(SelectedProperty, value); }
-        //}
+        public string EventLeft
+        {
+            get { return (string)GetValue(EventLeftProperty); }
+            set { SetValue(EventLeftProperty, value); }
+        }
 
-        //// Using a DependencyProperty as the backing store for Selected.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty SelectedProperty =
-        //    DependencyProperty.Register("Selected", typeof(bool), typeof(Knob), new PropertyMetadata(false));
+        // Using a DependencyProperty as the backing store for EventLeft.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EventLeftProperty =
+            DependencyProperty.Register("EventLeft", typeof(string), typeof(Knob), new PropertyMetadata(null));
+
+
+
+        public string EventLeftFast
+        {
+            get { return (string)GetValue(EventLeftFastProperty); }
+            set { SetValue(EventLeftFastProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EventLeftFast.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EventLeftFastProperty =
+            DependencyProperty.Register("EventLeftFast", typeof(string), typeof(Knob), new PropertyMetadata(null));
+
+
+
+        public string EventRight
+        {
+            get { return (string)GetValue(EventRightProperty); }
+            set { SetValue(EventRightProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EventRight.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EventRightProperty =
+            DependencyProperty.Register("EventRight", typeof(string), typeof(Knob), new PropertyMetadata(null));
+
+
+
+        public string EventRightFast
+        {
+            get { return (string)GetValue(EventRightFastProperty); }
+            set { SetValue(EventRightFastProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EventRightFast.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EventRightFastProperty =
+            DependencyProperty.Register("EventRightFast", typeof(string), typeof(Knob), new PropertyMetadata(null));
+
+
+
+        public string EventPush
+        {
+            get { return (string)GetValue(EventPushProperty); }
+            set { SetValue(EventPushProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EventPush.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EventPushProperty =
+            DependencyProperty.Register("EventPush", typeof(string), typeof(Knob), new PropertyMetadata(null));
+
+
+
+
+        public bool Selected
+        {
+            get { return (bool)GetValue(SelectedProperty); }
+            set { SetValue(SelectedProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Selected.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedProperty =
+            DependencyProperty.Register("Selected", typeof(bool), typeof(Knob), new PropertyMetadata(false));
 
         //public void DataReceived(string data)
         //{
