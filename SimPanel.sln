@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPanel", "SimPanel\SimPanel.csproj", "{486608E8-0C29-43F0-BBED-36A4ACA92857}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StandaloneModule", "StandaloneModule\Sources\Code\StandaloneModule.vcxproj", "{691392AC-AECF-4197-8F7F-37B7AEB41D4B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B11DF8ED-070A-4DE2-828C-235A1D0F555F}"
 	ProjectSection(SolutionItems) = preProject
 		TextFile1.txt = TextFile1.txt
@@ -42,16 +40,6 @@ Global
 		{486608E8-0C29-43F0-BBED-36A4ACA92857}.Release|x64.Build.0 = Release|x64
 		{486608E8-0C29-43F0-BBED-36A4ACA92857}.Release|x86.ActiveCfg = Release|x86
 		{486608E8-0C29-43F0-BBED-36A4ACA92857}.Release|x86.Build.0 = Release|x86
-		{691392AC-AECF-4197-8F7F-37B7AEB41D4B}.Debug|Any CPU.ActiveCfg = Debug|MSFS
-		{691392AC-AECF-4197-8F7F-37B7AEB41D4B}.Debug|MSFS.ActiveCfg = Debug|MSFS
-		{691392AC-AECF-4197-8F7F-37B7AEB41D4B}.Debug|MSFS.Build.0 = Debug|MSFS
-		{691392AC-AECF-4197-8F7F-37B7AEB41D4B}.Debug|x64.ActiveCfg = Debug|MSFS
-		{691392AC-AECF-4197-8F7F-37B7AEB41D4B}.Debug|x86.ActiveCfg = Debug|MSFS
-		{691392AC-AECF-4197-8F7F-37B7AEB41D4B}.Release|Any CPU.ActiveCfg = Release|MSFS
-		{691392AC-AECF-4197-8F7F-37B7AEB41D4B}.Release|MSFS.ActiveCfg = Release|MSFS
-		{691392AC-AECF-4197-8F7F-37B7AEB41D4B}.Release|MSFS.Build.0 = Release|MSFS
-		{691392AC-AECF-4197-8F7F-37B7AEB41D4B}.Release|x64.ActiveCfg = Release|MSFS
-		{691392AC-AECF-4197-8F7F-37B7AEB41D4B}.Release|x86.ActiveCfg = Release|MSFS
 		{EC2FC650-65C0-4730-A0BC-33C8A573478B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EC2FC650-65C0-4730-A0BC-33C8A573478B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC2FC650-65C0-4730-A0BC-33C8A573478B}.Debug|MSFS.ActiveCfg = Debug|Any CPU

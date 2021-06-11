@@ -124,7 +124,7 @@
                     <TabItem Header="Instruments" DataContext="{Binding WinManViewModel}">
                         <Grid >
 
-                            <GroupBox Margin="10,10,10,0" Header="G1000 PFD" Height="229" VerticalAlignment="Top" >
+                            <GroupBox Margin="10,55,10,0" Header="G1000 PFD" Height="229" VerticalAlignment="Top" >
                                 <Grid>
                                     <Button Content="SELECT AS1000 PFD" Command="{Binding G1000PFDFindHandle}" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top"/>
                                     <!--<Button Content="READ AS1000 PFD POS" Command="{Binding G1000PFDReadPos}" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Margin="290,0,0,0"/>-->
@@ -142,17 +142,13 @@
                                     <TextBox  Text="{Binding G1000PFDFramePosW}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="535,69,0,0"/>
                                     <TextBox  Text="{Binding G1000PFDFramePosH}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="640,69,0,0"/>
                                     <Button Content="SetPos" Command="{Binding G1000PFDFrameSetPos}" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Margin="745,63,0,0" Width="100"/>
-                                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="0,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-                                        F11: Toggle Full Screen<LineBreak />
-                                        F12: Toggle Topmost
-                                    </TextBlock>
 
 
 
                                 </Grid>
                             </GroupBox>
 
-                            <GroupBox Margin="10,244,10,0" Header="G1000 MFD" Height="229" VerticalAlignment="Top" >
+                            <GroupBox Margin="10,289,10,0" Header="G1000 MFD" Height="229" VerticalAlignment="Top" >
                                 <Grid>
                                     <Button Content="SELECT AS1000 MFD" Command="{Binding G1000MFDFindHandle}" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top"/>
                                     <TextBox Text="{Binding G1000MFDHandle}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="166,6,0,0"/>
@@ -172,6 +168,7 @@
 
                                 </Grid>
                             </GroupBox>
+                            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="532"><Run Text="F11: Toggle Full Screen"/><LineBreak /><Run Text="F12: Toggle Topmost"/></TextBlock>
 
 
 
@@ -250,6 +247,23 @@
 
                         </Grid>
                     </TabItem>
+                    <TabItem Header="Lua Script">
+                        <Grid Background="WhiteSmoke">
+                            <TextBlock Text="Script: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,10,0,0" Width="66" />
+                            <TextBlock DataContext="{Binding LuaCodeViewModel}" Text="{Binding FileName, FallbackValue=FileName}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="82,10,0,0" />
+
+                            <TextBox Margin="10,32,235,122" DataContext="{Binding LuaCodeViewModel}" Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}" Background="White" TextWrapping="WrapWithOverflow" AcceptsTab="True" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" FontFamily="Courier New"/>
+                            <TextBox Margin="0,40,10,122" Background="White" DataContext="{Binding SerialDeviceViewModel}"  Text="{Binding IncommingData}" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Visible"  HorizontalAlignment="Right" Width="220"/>
+
+                            <TextBox Margin="58,0,0,47" DataContext="{Binding LuaCodeViewModel}" Text="{Binding Result}" Background="White" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Visible" Height="70" VerticalAlignment="Bottom" FontFamily="Courier New"/>
+                            <TextBox x:Name="param" Margin="58,0,0,10" Background="White"  VerticalAlignment="Bottom" FontFamily="Courier New" Height="32" HorizontalAlignment="Left" Width="500"/>
+                            <Label DataContext="{Binding LuaCodeViewModel}" Content="Param" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,17"/>
+
+                            <Button DataContext="{Binding LuaCodeViewModel}" Content="Run" Command="{Binding RunCommand}" CommandParameter="{Binding Text, ElementName=param}" Margin="563,0,0,10" VerticalAlignment="Bottom" d:LayoutOverrides="Height" HorizontalAlignment="Left" Width="75"/>
+                            <Label Content="Result" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,92"/>
+                            <Label Content="Serial Port" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,164,0"/>
+                        </Grid>
+                    </TabItem>
 
                     <TabItem Header="Flight Plan">
                         <Grid>
@@ -270,24 +284,6 @@
                             <TextBlock  DataContext="{Binding FlightPlanViewModel}" Text="{Binding FileName,FallbackValue=FileName}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="81,10,0,0" />
                             <Button Content="Clear"  DataContext="{Binding FlightPlanViewModel}" Command="{Binding ClearCommand}" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"></Button>
 
-                        </Grid>
-                    </TabItem>
-
-                    <TabItem Header="Lua Script">
-                        <Grid Background="WhiteSmoke">
-                            <TextBlock Text="Script: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,10,0,0" Width="66" />
-                            <TextBlock DataContext="{Binding LuaCodeViewModel}" Text="{Binding FileName, FallbackValue=FileName}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="82,10,0,0" />
-
-                            <TextBox Margin="10,32,235,122" DataContext="{Binding LuaCodeViewModel}" Text="{Binding Code,UpdateSourceTrigger=PropertyChanged}" Background="White" TextWrapping="WrapWithOverflow" AcceptsTab="True" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" FontFamily="Courier New"/>
-                            <TextBox Margin="0,40,10,122" Background="White" DataContext="{Binding SerialDeviceViewModel}"  Text="{Binding IncommingData}" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Visible"  HorizontalAlignment="Right" Width="220"/>
-
-                            <TextBox Margin="58,0,0,47" DataContext="{Binding LuaCodeViewModel}" Text="{Binding Result}" Background="White" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Visible" Height="70" VerticalAlignment="Bottom" FontFamily="Courier New"/>
-                            <TextBox x:Name="param" Margin="58,0,0,10" Background="White"  VerticalAlignment="Bottom" FontFamily="Courier New" Height="32" HorizontalAlignment="Left" Width="500"/>
-                            <Label DataContext="{Binding LuaCodeViewModel}" Content="Param" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,17"/>
-
-                            <Button DataContext="{Binding LuaCodeViewModel}" Content="Run" Command="{Binding RunCommand}" CommandParameter="{Binding ElementName=param, Path=Text}" Margin="563,0,0,10" VerticalAlignment="Bottom" d:LayoutOverrides="Height" HorizontalAlignment="Left" Width="75"/>
-                            <Label Content="Result" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,92"/>
-                            <Label Content="Serial Port" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,164,0"/>
                         </Grid>
                     </TabItem>
 
@@ -314,20 +310,10 @@
 
                             <Button Content="Save" Command="{Binding SaveSettingsCommand}" HorizontalAlignment="Left" Margin="232,211,0,0" VerticalAlignment="Top"></Button>
 
-                            <Button Content="Open Index Page" Click="Button_Click" HorizontalAlignment="Left" Margin="220,0,0,275" VerticalAlignment="Bottom"></Button>
+                            <Button Content="Open Index Page" Click="Button_Click" HorizontalAlignment="Left" Margin="220,0,0,180" VerticalAlignment="Bottom"></Button>
 
-                            <GroupBox Margin="570,453,359,-50" Header="G1000" >
-                                <Grid>
-                                    <Button Content="G1000 PFD" Click="G1000PFD_Click" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top"/>
-                                    <TextBox Text="Handle"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="122,3,0,0"></TextBox>
-                                    <TextBox Text="Handle"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,48,0,0"/>
-                                    <TextBox Text="Handle"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="122,48,0,0"/>
-                                </Grid>
-                            </GroupBox>
-                            <Button Content="G1000 MFD" Click="G1000MFD_Click" HorizontalAlignment="Left" Margin="220,0,0,134" VerticalAlignment="Bottom"></Button>
-
-                            <Button Content="G530" Click="G530_Click" HorizontalAlignment="Left" Margin="220,0,0,68" VerticalAlignment="Bottom"></Button>
-                            <Button Content="Window" Click="Win_Click" HorizontalAlignment="Left" Margin="448,0,0,68" VerticalAlignment="Bottom"/>
+                            <Button Content="G530" Click="G530_Click" HorizontalAlignment="Left" Margin="220,0,0,10" VerticalAlignment="Bottom"></Button>
+                            <Button Content="Window" Click="Win_Click" HorizontalAlignment="Left" Margin="290,0,0,10" VerticalAlignment="Bottom"/>
 
 
                         </Grid>

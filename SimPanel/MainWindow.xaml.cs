@@ -169,35 +169,26 @@ namespace SimPanel
             System.Diagnostics.Process.Start("http://127.0.0.1:" + Settings.Default.TCPPort.ToString());
         }
 
-        private void G1000PFD_Click(object sender, RoutedEventArgs e)
-        {
-            SimPanel.View.G1000PFDView pfd = new SimPanel.View.G1000PFDView();
-            pfd.Show();
-        }
+        //private void G1000PFD_Click(object sender, RoutedEventArgs e)
+        //{
+        //    SimPanel.View.G1000PFDView pfd = new SimPanel.View.G1000PFDView();
+        //    pfd.Show();
+        //}
 
-        private void G1000MFD_Click(object sender, RoutedEventArgs e)
-        {
-            SimPanel.View.G1000MFDView mfd = new SimPanel.View.G1000MFDView();
-            mfd.Show();
-        }
+        //private void G1000MFD_Click(object sender, RoutedEventArgs e)
+        //{
+        //    SimPanel.View.G1000MFDView mfd = new SimPanel.View.G1000MFDView();
+        //    mfd.Show();
+        //}
 
         private void G530_Click(object sender, RoutedEventArgs e)
         {
             G530View g = new G530View();
             g.Show();
-
         }
 
         private void Win_Click(object sender, RoutedEventArgs e)
         {
-
-
-
-
-
-
-
-
             //Process[] p = Process.GetProcesses();
             //Process fs = null;
             //foreach(var pr in p)
@@ -209,10 +200,7 @@ namespace SimPanel
             //        IntPtr child2 = Helpers.FindWindowEx2(pr.Handle, IntPtr.Zero, "AceApp", "$AS1000_PFD_1");
             //    }
             //}
-
             // return;
-
-
 
             IntPtr parent = Helpers.FindWindowA("Microsoft Flight Simulator - 1.16.2.0");
             Console.WriteLine(parent.ToString("X"));

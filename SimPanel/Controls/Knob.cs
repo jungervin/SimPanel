@@ -110,6 +110,14 @@ namespace SimPanel.Controls
             //base.OnMouseWheel(e);
         }
 
+        protected override void OnMouseDoubleClick(MouseButtonEventArgs e)
+        {
+            if (this.SimConnect != null && this.EventDoubleClick != null)
+            {
+                this.SimConnect.SendEvent(this.EventDoubleClick, 0);
+            }
+            base.OnMouseDoubleClick(e);
+        }
         internal void Process(string data)
         {
             //throw new NotImplementedException();
@@ -293,6 +301,21 @@ namespace SimPanel.Controls
         // Using a DependencyProperty as the backing store for EventPush.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EventPushProperty =
             DependencyProperty.Register("EventPush", typeof(string), typeof(Knob), new PropertyMetadata(null));
+
+
+
+
+
+
+        public string EventDoubleClick
+        {
+            get { return (string)GetValue(EventDoubleClickProperty); }
+            set { SetValue(EventDoubleClickProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EventDoubleClick.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EventDoubleClickProperty =
+            DependencyProperty.Register("EventDoubleClick", typeof(string), typeof(Knob), new PropertyMetadata(null));
 
 
 
