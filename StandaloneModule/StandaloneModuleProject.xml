@@ -1,7 +1,0 @@
-<Project Version="2" Name="StandaloneModuleProject" FolderName="Packages">
-	<OutputDirectory>.</OutputDirectory>
-	<TemporaryOutputDirectory>_PackageInt</TemporaryOutputDirectory>
-	<Packages>
-		<Package>PackageDefinitions\mycompany-module-standalone.xml</Package>
-	</Packages>
-</Project>
