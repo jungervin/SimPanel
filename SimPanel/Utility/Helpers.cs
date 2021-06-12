@@ -29,7 +29,7 @@ namespace SimPanel.Utility
 
         public static IntPtr FindWindowA(string caption)
         {
-            return FindWindowA("AceApp", caption);
+            return FindWindowA(null, caption);
         }
 
         public static IntPtr FindWindowEx2(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow)

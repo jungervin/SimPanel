@@ -202,22 +202,33 @@ namespace SimPanel
             //}
             // return;
 
-            IntPtr parent = Helpers.FindWindowA("Microsoft Flight Simulator - 1.16.2.0");
-            Console.WriteLine(parent.ToString("X"));
+            IntPtr parent = IntPtr.Zero;
+            foreach (var p in Process.GetProcesses())
+            {
+                if (p.ProcessName.Contains("Simu"))
+                {
+                    Console.WriteLine(p.ProcessName);
+                    parent = p.Handle;
+                }
+            }
+            
+            //IntPtr parent = Helpers.FindWindowA("Microsoft Flight Simulator - 1.16.2.0");
+            //IntPtr parent = Helpers.FindWindowA("Microsoft Flight Simulator");
+            //Console.WriteLine(parent.ToString("X"));
 
             WindowHandleInfo hi = new WindowHandleInfo(parent);
             var list = hi.GetAllChildHandles();
             foreach (var w in list)
             {
 
-                Console.WriteLine(w.ToString("X"));
+                Console.WriteLine($"{w.ToString()},  {w.ToString("X")}");
 
                 Rect size = hi.GetPos(w);
                 //{ 319,479,1024,1024}
                 //hi.SetPos(w, 0, 0, 600, 400);
                 if (size.Left == 319 && size.Width == 1024)
                 {
-                    hi.SetPos((IntPtr)w, 400, 400, 800, 800);
+                    //hi.SetPos((IntPtr)w, 400, 400, 800, 800);
                 }
             }
         }
