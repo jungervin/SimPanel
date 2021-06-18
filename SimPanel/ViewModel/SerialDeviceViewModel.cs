@@ -27,7 +27,7 @@ namespace SimPanel.ViewModel
 
         public void InitPorts()
         {
-            
+
             foreach (string pname in System.IO.Ports.SerialPort.GetPortNames())
             {
                 if (Settings.Default.DisabledComports.Contains(pname) == false)
@@ -161,7 +161,7 @@ namespace SimPanel.ViewModel
                             device.Close();
                             Console.WriteLine($"SerialDeviceViewModel.Start(): {device.PortName} Closed-");
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             Console.WriteLine($"SerialDeviceViewModel.Start(): {ex.Message}");
                         }
@@ -218,7 +218,9 @@ namespace SimPanel.ViewModel
         public bool Connected
         {
             get { return FConnected; }
-            set { FConnected = value;
+            set
+            {
+                FConnected = true;
                 this.OnPropertyChanged();
             }
         }

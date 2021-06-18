@@ -6,9 +6,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace SimPanel.ViewModel
 {
@@ -88,8 +90,14 @@ namespace SimPanel.ViewModel
         public static extern bool GetWindowRect(IntPtr hwnd, ref Rect rectangle);
         public enum HookModes { None, G1000PFD, G1000MFD };
 
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool IsWindowVisible(IntPtr hWnd);
+
         public WinManViewModel() : base()
         {
+
             this.G1000PFDFindHandle = new RelayCommand(p =>
             {
                 if (IntPtr.Zero == hHook)
@@ -148,7 +156,7 @@ namespace SimPanel.ViewModel
                     this.G1000PFDView.Top = this.G1000PFDFramePosY;
                     this.G1000PFDView.Width = this.G1000PFDFramePosW;
                     this.G1000PFDView.Height = this.G1000PFDFramePosH;
-                    this.G1000PFDView.WindowState = System.Windows.WindowState.Maximized;
+                    //this.G1000PFDView.WindowState = System.Windows.WindowState.Maximized;
                     this.G1000PFDView.Topmost = true;
                     Settings.Default.Save();
 
@@ -219,8 +227,28 @@ namespace SimPanel.ViewModel
                 }
             }, p => { return this.G1000MFDView != null; });
 
+            this.FPFDBackgroundIsVisible = Visibility.Visible;
+            this.Timer = new DispatcherTimer();
+            this.Timer.Tick += Timer_Tick;
+            this.Timer.Start();
 
+        }
 
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
+            //if (this.FG1000PFDHandle > 0)
+            {
+                if (IsWindowVisible((IntPtr)this.FG1000PFDHandle))
+                {
+                    this.PFDBackgroundIsVisible = Visibility.Hidden;
+                }
+                else
+                {
+                    this.G1000PFDHandle = 0;
+                    this.PFDBackgroundIsVisible = Visibility.Visible;
+                }
+            }
         }
 
         private void G1000MFDView_Closed(object sender, EventArgs e)
@@ -317,6 +345,7 @@ namespace SimPanel.ViewModel
                 FG1000PFDHandle = value;
                 if (value > 0)
                 {
+                    //this.PFDBackgroundIsVisible = Visibility.Hidden;
                     this.G1000PFDSetPos.Execute(null);
 
                     if (this.G1000PFDView == null)
@@ -324,6 +353,10 @@ namespace SimPanel.ViewModel
                         this.OpenG1000PFDCommand.Execute(null);
                         this.G1000PFDFrameSetPos.Execute(null);
                     }
+                }
+                else
+                {
+                    //this.PFDBackgroundIsVisible = Visibility.Visible;
                 }
 
                 this.OnPropertyChanged();
@@ -558,6 +591,7 @@ namespace SimPanel.ViewModel
         public RelayCommand G1000MFDSetPos { get; }
         public RelayCommand OpenG1000MFDCommand { get; }
         public RelayCommand G1000MFDFrameSetPos { get; }
+        public DispatcherTimer Timer { get; }
 
         private G1000PFDView FG1000PFDView = null;
         public G1000PFDView G1000PFDView
@@ -581,6 +615,16 @@ namespace SimPanel.ViewModel
             }
         }
 
+        Visibility FPFDBackgroundIsVisible = Visibility.Visible;
+        public Visibility PFDBackgroundIsVisible
+        {
+            get { return this.FPFDBackgroundIsVisible; }
+            set
+            {
+                this.FPFDBackgroundIsVisible = value;
+                this.OnPropertyChanged();
+            }
+        }
 
         private static HookModes HookMode = HookModes.None;
     }
