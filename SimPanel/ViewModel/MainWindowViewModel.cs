@@ -168,7 +168,7 @@ namespace SimPanel.ViewModel
             SaveFileDialog d = new SaveFileDialog();
 
             d.InitialDirectory = Globals.DataDir;
-            if (this.SelectedTabIndex == 0)
+            if (this.SelectedTabIndex == 1)
             {
                 d.Filter = "Variables|*.vars";
                 d.DefaultExt = ".vars";
@@ -177,7 +177,7 @@ namespace SimPanel.ViewModel
                     this.SimConnectViewModel.SaveVariablesToFile(d.FileName);
                 }
             }
-            else if (this.SelectedTabIndex == 1)
+            else if (this.SelectedTabIndex == 2)
             {
                 d.Filter = "Events|*.evnts";
                 d.DefaultExt = ".evnts";

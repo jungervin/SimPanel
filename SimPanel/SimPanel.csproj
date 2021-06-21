@@ -171,7 +171,6 @@
     <Compile Include="ViewModel\DatabaseViewModel.cs" />
     <Compile Include="ViewModel\EventEditorViewModel.cs" />
     <Compile Include="ViewModel\FlightPlanViewModel.cs" />
-    <Compile Include="ViewModel\G1000MFDViewModel.cs" />
     <Compile Include="ViewModel\LuaCodeViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -249,6 +248,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Data\mobiflight.events.txt" />
     <Content Include="HTML\airport_info.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
