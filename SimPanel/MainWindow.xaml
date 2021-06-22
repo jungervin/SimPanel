@@ -121,12 +121,12 @@
             <Grid>
                 <TabControl Margin="10,60,10,10" Style="{StaticResource MaterialDesignTabControl}" SelectedIndex="{Binding SelectedTabIndex, UpdateSourceTrigger=PropertyChanged}">
                     <!--<TabControl Margin="10,60,10,10" >-->
-                    <TabItem Header="Instruments" DataContext="{Binding WinManViewModel}">
+                    <TabItem Header="Instruments" >
                         <ScrollViewer>
                             <Grid Height="693" VerticalAlignment="Top">
                                 <Button Content="Open Index Page" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Click="Button_Click" HorizontalAlignment="Left" Margin="10,10,0,0" Height="32" VerticalAlignment="Top"/>
-                                <GroupBox Margin="10,168,10,0" Header="G1000 PFD" Height="229" VerticalAlignment="Top" >
-                                    <Grid>
+                                <GroupBox Margin="10,201,10,0" Header="G1000 PFD" Height="229" VerticalAlignment="Top" >
+                                    <Grid  DataContext="{Binding WinManViewModel}">
                                         <Button Content="CLICK ON AS1000 PFD" Command="{Binding G1000PFDFindHandle}" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top"/>
                                         <!--<Button Content="READ AS1000 PFD POS" Command="{Binding G1000PFDReadPos}" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Margin="290,0,0,0"/>-->
 
@@ -149,8 +149,8 @@
                                     </Grid>
                                 </GroupBox>
 
-                                <GroupBox Margin="10,402,10,0" Header="G1000 MFD" Height="229" VerticalAlignment="Top" >
-                                    <Grid>
+                                <GroupBox Margin="10,435,10,0" Header="G1000 MFD" Height="229" VerticalAlignment="Top" >
+                                    <Grid  DataContext="{Binding WinManViewModel}">
                                         <Button Content="CLICK ON AS1000 MFD" Command="{Binding G1000MFDFindHandle}" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top"/>
                                         <TextBox materialDesign:HintAssist.HelperText="handle" Text="{Binding G1000MFDHandle}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="183,6,0,0"/>
                                         <TextBox materialDesign:HintAssist.HelperText="x"  Text="{Binding G1000MFDPosX}"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="325,6,0,0"/>
@@ -170,9 +170,10 @@
                                     </Grid>
                                 </GroupBox>
                                 <Separator Margin="-10,47,10,0" Height="22" VerticalAlignment="Top"></Separator>
-                                <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="532" Height="89">
+                                <TextBlock x:Name="textBlock" Margin="10,74,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="122" >
                                 <Run Text="Popup Instruments" FontSize="24" FontWeight="Bold"/><LineBreak />
-                                <Run Text="MobiFlight Wasm module must be intalled!" Foreground="Red" FontWeight="Bold"/><LineBreak />
+                                <Run Text="MobiFlight Wasm module must be installed! (MobiFlightConnector-8.2.0.zip)" Foreground="Red" FontWeight="Bold"/>  <LineBreak />
+                                 <Hyperlink Command="{Binding OpenLink}"  CommandParameter="https://bitbucket.org/mobiflight/mobiflightfc/downloads">https://bitbucket.org/mobiflight/mobiflightfc/downloads</Hyperlink><LineBreak />
                                 <Run Text="F11: Toggle Full Screen"/><LineBreak />
                                 <Run Text="F12: Toggle Topmost"/>
                                 </TextBlock>
@@ -312,7 +313,7 @@
                             <Button x:Name="SelectDB" Click="SelectDB_Clck" Content="{materialDesign:PackIcon Kind=OpenInApp}" Style="{StaticResource MaterialDesignFlatAccentButton}"  HorizontalAlignment="Right" Margin="0,122,337,0" VerticalAlignment="Top" Width="50" Height="32"/>
 
                             <TextBlock Margin="232,159,0,0" HorizontalAlignment="Left" Width="Auto" Height="Auto" VerticalAlignment="Top">
-                                <Hyperlink Command="{Binding OpenNavdataReader}"  CommandParameter="https://github.com/albar965/navdatareader">https://github.com/albar965/navdatareader</Hyperlink><LineBreak />
+                                <Hyperlink Command="{Binding OpenLink}"  CommandParameter="https://github.com/albar965/navdatareader">https://github.com/albar965/navdatareader</Hyperlink><LineBreak />
                                 navdatareader.exe -f MSFS
                             </TextBlock>
 

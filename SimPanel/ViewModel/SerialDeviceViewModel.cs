@@ -20,7 +20,7 @@ namespace SimPanel.ViewModel
         {
 
             this.SerialDevices = new ObservableCollection<ExSerialDevice>();
-
+            this.Connected = false;
             this.LogEnabled = true;
         }
 
@@ -220,7 +220,7 @@ namespace SimPanel.ViewModel
             get { return FConnected; }
             set
             {
-                FConnected = true;
+                FConnected = value;
                 this.OnPropertyChanged();
             }
         }

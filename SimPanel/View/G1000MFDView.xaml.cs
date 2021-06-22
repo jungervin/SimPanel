@@ -47,8 +47,8 @@ namespace SimPanel.View
 
         private void G1000_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
+            //if (e.ChangedButton == MouseButton.Left)
+            //    this.DragMove();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

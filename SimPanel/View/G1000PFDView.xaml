@@ -15,7 +15,7 @@
     <Viewbox Stretch="Uniform">
         <Grid Margin="0,0,0,0">
             <!--<Rectangle Fill="Black" Visibility="{Binding PFDBackgroundIsVisible}">-->
-                <!--<Rectangle.Style>
+            <!--<Rectangle.Style>
                     <Style TargetType="Rectangle">
                         <Style.Triggers>
                             <Trigger Property="Visibility" Value="Visible">
@@ -31,9 +31,9 @@
             <Rectangle Fill="Black" Margin="-107,0,0,0" HorizontalAlignment="Left" Width="302"/>
             <Rectangle Fill="Black" HorizontalAlignment="Right" Width="242" Margin="0,0,-112,0"/>
             <Grid>
-                <Image Source="/SimPanel;component/Resources/G1000/background.png"  MouseDown="G1000_MouseDown" HorizontalAlignment="Left" Width="1412" Height="912" VerticalAlignment="Top"/>
+                <Image Source="/SimPanel;component/Resources/G1000/background2.png"  MouseDown="G1000_MouseDown" HorizontalAlignment="Left" Width="1410" Height="915" VerticalAlignment="Top"/>
 
-                <Image x:Name="Nav_Vol_Knob" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/vol_knob.png" HorizontalAlignment="Left" Margin="62,43,0,0" VerticalAlignment="Top" Width="50" Height="50" RenderTransformOrigin="0.5,0.5">
+                <Image x:Name="Nav_Vol_Knob" Cursor="Hand" Source="/SimPanel;component/Resources/G1000/vol_knob.png" HorizontalAlignment="Left" Margin="60,42,0,0" VerticalAlignment="Top" Width="50" Height="50" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <RotateTransform Angle="{Binding Angle, ElementName=VolKnob}"/>
                     </Image.RenderTransform>
@@ -41,11 +41,11 @@
                 <Controls:Knob x:Name="VolKnob" SimConnect="{Binding SimConnectViewModel}" 
                     EventLeft="MobiFlight.AS1000_PFD_VOL_1_DEC"
                     EventRight="MobiFlight.AS1000_PFD_VOL_1_INC"
-                    HorizontalAlignment="Left" Style="{StaticResource RotaryButton}"   Margin="62,43,0,0" VerticalAlignment="Top" Height="50" Width="50">
+                    HorizontalAlignment="Left" Style="{StaticResource RotaryButton}"   Margin="60,42,0,0" VerticalAlignment="Top" Height="50" Width="50">
                 </Controls:Knob>
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_NAV_Switch" Style="{StaticResource PushButton}"  RadiusX="8" RadiusY="4" Width="50"  Height="32"  HorizontalAlignment="Left" Margin="102,107,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_NAV_Switch" Style="{StaticResource PushButton}"  RadiusX="8" RadiusY="4" Width="50"  Height="32"  HorizontalAlignment="Left" Margin="101,107,0,0" VerticalAlignment="Top" />
 
-                <Grid Margin="48,172,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
+                <Grid Margin="46,173,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
                     <Image x:Name="NavOuter_Button" Source="/SimPanel;component/Resources/G1000/plain_knob_outer.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="79" RenderTransformOrigin="0.5,0.5">
                         <Image.RenderTransform>
                             <RotateTransform Angle="{Binding Angle, ElementName=NavLargeKnob}"/>
@@ -71,7 +71,7 @@
                     </Controls:Knob>
                 </Grid>
 
-                <Image x:Name="HDG_Knob" Source="/SimPanel;component/Resources/G1000/hdg_knob.png" HorizontalAlignment="Left" Margin="48,337,0,0" VerticalAlignment="Top" Width="80" Height="80" RenderTransformOrigin="0.5,0.5">
+                <Image x:Name="HDG_Knob" Source="/SimPanel;component/Resources/G1000/hdg_knob.png" HorizontalAlignment="Left" Margin="46,338,0,0" VerticalAlignment="Top" Width="80" Height="80" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <RotateTransform Angle="{Binding Angle, ElementName=HDGKnob}"/>
                     </Image.RenderTransform>
@@ -85,23 +85,23 @@
                     EventRight="MobiFlight.AS1000_PFD_HEADING_INC"
                     EventRightFast="MobiFlight.AS1000_PFD_HEADING_FAST_INC"
                     EventDoubleClick="MobiFlight.AS1000_PFD_HEADING_SYNC"           
-                    HorizontalAlignment="Left" Style="{StaticResource RotaryButton}"   Margin="48,337,0,0" VerticalAlignment="Top" Height="80" Width="80">
+                    HorizontalAlignment="Left" Style="{StaticResource RotaryButton}"   Margin="48,338,0,0" VerticalAlignment="Top" Height="80" Width="79">
                 </Controls:Knob>
 
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="AP_MASTER" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="28,469,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="TOGGLE_FLIGHT_DIRECTOR" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="100,469,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AP_HDG_HOLD" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="28,519,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="AP_ALT_HOLD" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="100,519,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="AP_NAV1_HOLD" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="28,569,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="AP_VNV_HOLD" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="99,569,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="AP_APR_HOLD" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="28,619,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="AP_BC_HOLD" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="100,619,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="AP_VS_HOLD" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="28,669,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_MFD_NOSE_UP" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="99,669,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_MFD_FLC_Push" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="28,719,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_MFD_NOSE_DN" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="99,719,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="AP_MASTER" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="26,470,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="TOGGLE_FLIGHT_DIRECTOR" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="98,470,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AP_HDG_HOLD" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="26,520,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="AP_ALT_HOLD" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="98,520,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="AP_NAV1_HOLD" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="26,570,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="AP_VNV_HOLD" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="98,570,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="AP_APR_HOLD" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="26,621,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="AP_BC_HOLD" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="98,621,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="AP_VS_HOLD" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="26,672,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_MFD_NOSE_UP" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="98,671,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_MFD_FLC_Push" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="26,721,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_MFD_NOSE_DN" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="98,721,0,0" VerticalAlignment="Top" />
 
-                <Grid Margin="48,789,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
+                <Grid Margin="46,792,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
                     <Image x:Name="AltOuter_Button" Source="/SimPanel;component/Resources/G1000/plain_knob_outer.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="79" RenderTransformOrigin="0.5,0.5">
                         <Image.RenderTransform>
                             <RotateTransform Angle="{Binding Angle, ElementName=AltOuterKnob}"/>
@@ -117,20 +117,20 @@
                     <Controls:Knob x:Name="AltInnerKnob"  SimConnect="{Binding SimConnectViewModel}" EventLeft="MobiFlight.AS1000_AP_ALT_DEC_100" EventRight="MobiFlight.AS1000_AP_ALT_INC_100" HorizontalAlignment="Left" Style="{StaticResource RotaryButton}"   Margin="16,16,0,0" VerticalAlignment="Top" Height="47" Width="47"/>
                 </Grid>
 
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_1" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="212,848,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_2" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="296,848,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_3" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="381,848,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_4" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="465,848,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_5" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="550,848,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_6" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="636,848,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_7" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="720,848,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_8" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="803,848,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_9" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="889,848,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_10" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="974,848,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_11" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="1058,848,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_12" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="1142,848,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_1" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="211,852,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_2" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="295,852,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_3" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="381,852,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_4" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="466,852,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_5" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="552,852,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_6" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="638,852,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_7" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="722,852,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_8" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="806,852,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_9" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="892,852,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_10" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="977,852,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_11" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="1062,852,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_SOFTKEYS_12" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="52"  Height="32"  HorizontalAlignment="Left" Margin="1147,852,0,0" VerticalAlignment="Top" />
 
-                <Image Cursor="Hand" Source="/SimPanel;component/Resources/G1000/vol_knob.png" HorizontalAlignment="Left" Margin="1291,42,0,0" VerticalAlignment="Top" Width="50" Height="50" RenderTransformOrigin="0.5,0.5">
+                <Image Cursor="Hand" Source="/SimPanel;component/Resources/G1000/vol_knob.png" HorizontalAlignment="Left" Margin="1296,42,0,0" VerticalAlignment="Top" Width="50" Height="50" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <RotateTransform Angle="{Binding Angle, ElementName=Vol2Knob}"/>
                     </Image.RenderTransform>
@@ -138,12 +138,12 @@
                 <Controls:Knob x:Name="Vol2Knob" SimConnect="{Binding SimConnectViewModel}" 
                     EventLeft="MobiFlight.AS1000_PFD_VOL_1_DEC"
                     EventRight="MobiFlight.AS1000_PFD_VOL_1_INC"
-                    HorizontalAlignment="Left" Style="{StaticResource RotaryButton}"   Margin="1291,42,0,0" VerticalAlignment="Top" Height="50" Width="50">
+                    HorizontalAlignment="Left" Style="{StaticResource RotaryButton}"   Margin="1296,42,0,0" VerticalAlignment="Top" Height="50" Width="50">
                 </Controls:Knob>
 
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_COM_Switch" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="50"  Height="32"  HorizontalAlignment="Left" Margin="1252,109,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_COM_Switch" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="50"  Height="32"  HorizontalAlignment="Left" Margin="1258,107,0,0" VerticalAlignment="Top" />
 
-                <Grid Margin="1277,172,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
+                <Grid Margin="1282,172,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
                     <Image Source="/SimPanel;component/Resources/G1000/plain_knob_outer.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="79" RenderTransformOrigin="0.5,0.5">
                         <Image.RenderTransform>
                             <RotateTransform Angle="{Binding Angle, ElementName=ComLargeKnob}"/>
@@ -169,7 +169,7 @@
                     </Controls:Knob>
                 </Grid>
 
-                <Grid Margin="1277,334,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
+                <Grid Margin="1282,335,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
                     <Image Source="/SimPanel;component/Resources/G1000/plain_knob_outer.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="79" RenderTransformOrigin="0.5,0.5">
                         <Image.RenderTransform>
                             <RotateTransform Angle="{Binding Angle, ElementName=BaroKnob}"/>
@@ -195,7 +195,7 @@
                     </Controls:Knob>
                 </Grid>
 
-                <Image Cursor="Hand" Source="/SimPanel;component/Resources/G1000/rng2_knob.png" HorizontalAlignment="Left" Margin="1286,494,0,0" VerticalAlignment="Top" Width="65" Height="65" RenderTransformOrigin="0.5,0.5">
+                <Image Cursor="Hand" Source="/SimPanel;component/Resources/G1000/rng2_knob.png" HorizontalAlignment="Left" Margin="1291,496,0,0" VerticalAlignment="Top" Width="65" Height="65" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <RotateTransform Angle="{Binding Angle, ElementName=RangeKnob}"/>
                     </Image.RenderTransform>
@@ -204,22 +204,22 @@
                     EventLeft="MobiFlight.AS1000_PFD_RANGE_DEC"
                     EventRight="MobiFlight.AS1000_PFD_RANGE_INC"
                     EventDoubleClick="MobiFlight.AS1000_PFD_JOYSTICK_PUSH"
-                    HorizontalAlignment="Left" Style="{StaticResource RotaryButton}"   Margin="1286,494,0,0" VerticalAlignment="Top" Height="65" Width="65">
+                    HorizontalAlignment="Left" Style="{StaticResource RotaryButton}"   Margin="1291,496,0,0" VerticalAlignment="Top" Height="65" Width="65">
                 </Controls:Knob>
 
-                <Controls:PushButton PressEvent="MobiFlight.AS1000_PFD_JOYSTICK_LEFT" Style="{StaticResource PushButton}" Width="34"  Height="65"  HorizontalAlignment="Left" Margin="1247,494,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton PressEvent="MobiFlight.AS1000_PFD_JOYSTICK_RIGHT" Style="{StaticResource PushButton}" Width="34"  Height="65"  HorizontalAlignment="Left" Margin="1356,494,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton PressEvent="MobiFlight.AS1000_PFD_JOYSTICK_UP" Style="{StaticResource PushButton}" Width="78"  Height="36"  HorizontalAlignment="Left" Margin="1276,453,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton PressEvent="MobiFlight.AS1000_PFD_JOYSTICK_DOWN" Style="{StaticResource PushButton}" Width="78"  Height="36"  HorizontalAlignment="Left" Margin="1277,564,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton PressEvent="MobiFlight.AS1000_PFD_JOYSTICK_LEFT" Style="{StaticResource PushButton}" Width="39"  Height="65"  HorizontalAlignment="Left" Margin="1247,497,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton PressEvent="MobiFlight.AS1000_PFD_JOYSTICK_RIGHT" Style="{StaticResource PushButton}" Width="34"  Height="65"  HorizontalAlignment="Left" Margin="1361,497,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton PressEvent="MobiFlight.AS1000_PFD_JOYSTICK_UP" Style="{StaticResource PushButton}" Width="64"  Height="36"  HorizontalAlignment="Left" Margin="1291,453,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton PressEvent="MobiFlight.AS1000_PFD_JOYSTICK_DOWN" Style="{StaticResource PushButton}" Width="65"  Height="38"  HorizontalAlignment="Left" Margin="1291,567,0,0" VerticalAlignment="Top" />
 
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_DIRECTTO" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="50"  Height="32"  HorizontalAlignment="Left" Margin="1256,618,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_MENU_Push" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="50"  Height="32"  HorizontalAlignment="Left" Margin="1328,618,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_FPL_Push" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="50"  Height="33"  HorizontalAlignment="Left" Margin="1256,669,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_PROC_Push" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="50"  Height="33"  HorizontalAlignment="Left" Margin="1328,669,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_CLR_Push" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="50"  Height="33"  HorizontalAlignment="Left" Margin="1256,721,0,0" VerticalAlignment="Top" />
-                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_ENT_Push" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="50"  Height="33"  HorizontalAlignment="Left" Margin="1328,721,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_DIRECTTO" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="50"  Height="32"  HorizontalAlignment="Left" Margin="1261,621,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_MENU_Push" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="50"  Height="32"  HorizontalAlignment="Left" Margin="1333,620,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_FPL_Push" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="50"  Height="33"  HorizontalAlignment="Left" Margin="1261,673,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_PROC_Push" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="50"  Height="33"  HorizontalAlignment="Left" Margin="1333,673,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_CLR_Push" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="50"  Height="33"  HorizontalAlignment="Left" Margin="1261,724,0,0" VerticalAlignment="Top" />
+                <Controls:PushButton SimConnect="{Binding SimConnectViewModel}" PressEvent="MobiFlight.AS1000_PFD_ENT_Push" Style="{StaticResource PushButton}" RadiusX="8" RadiusY="4" Width="50"  Height="33"  HorizontalAlignment="Left" Margin="1333,724,0,0" VerticalAlignment="Top" />
 
-                <Grid Margin="1276,789,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
+                <Grid Margin="1280,792,0,0" HorizontalAlignment="Left" Width="79" Height="79" VerticalAlignment="Top">
                     <Image Source="/SimPanel;component/Resources/G1000/plain_knob_outer.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="79" RenderTransformOrigin="0.5,0.5">
                         <Image.RenderTransform>
                             <RotateTransform Angle="{Binding Angle, ElementName=FmsOuterKnob}"/>

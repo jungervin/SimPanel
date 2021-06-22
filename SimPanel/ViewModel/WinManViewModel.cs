@@ -218,7 +218,7 @@ namespace SimPanel.ViewModel
                     this.G1000MFDView.Top = this.G1000MFDFramePosY;
                     this.G1000MFDView.Width = this.G1000MFDFramePosW;
                     this.G1000MFDView.Height = this.G1000MFDFramePosH;
-                    this.G1000MFDView.WindowState = System.Windows.WindowState.Maximized;
+                    //this.G1000MFDView.WindowState = System.Windows.WindowState.Maximized;
                     this.G1000MFDView.Topmost = true;
 
                     Settings.Default.Save();

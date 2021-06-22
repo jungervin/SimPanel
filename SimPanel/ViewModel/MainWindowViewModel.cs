@@ -33,10 +33,11 @@ namespace SimPanel.ViewModel
 
             SaveSettingsCommand = new RelayCommand(p => Settings.Default.Save());
 
-            OpenNavdataReader = new RelayCommand(p =>
+            OpenLink = new RelayCommand(p =>
             {
                 Process.Start(new ProcessStartInfo(p.ToString()));
             });
+
 
 
             this.SimConnectViewModel = new SimConnectViewModel();
@@ -352,7 +353,7 @@ namespace SimPanel.ViewModel
         public RelayCommand OpenCommand { get; }
         public RelayCommand SendEventCommand { get; }
         public RelayCommand SaveSettingsCommand { get; }
-        public RelayCommand OpenNavdataReader { get; }
+        public RelayCommand OpenLink { get; }
         public WinManViewModel FWinManViewModel = null;
 
         public WinManViewModel WinManViewModel

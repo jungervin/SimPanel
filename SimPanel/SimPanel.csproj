@@ -534,6 +534,7 @@
     <Resource Include="Resources\G1000\hdg_knob.png" />
     <Resource Include="Resources\G1000\hdg_knob1.png" />
     <Resource Include="Resources\G1000\knob.png" />
+    <Resource Include="Resources\G1000\background2.png" />
     <Content Include="Resources\G1000\knobclick.wav" />
     <Resource Include="Resources\G1000\lt_arrow.png" />
     <Resource Include="Resources\G1000\menu_button.png" />
