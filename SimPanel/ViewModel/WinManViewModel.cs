@@ -95,6 +95,30 @@ namespace SimPanel.ViewModel
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool IsWindowVisible(IntPtr hWnd);
 
+        [DllImport("user32.dll", EntryPoint = "SetWindowLong")]
+        private static extern int SetWindowLong32(HandleRef hWnd, int nIndex, int dwNewLong);
+
+        [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr")]
+        private static extern IntPtr SetWindowLongPtr64(HandleRef hWnd, int nIndex, IntPtr dwNewLong);
+        //
+        //If that doesn't work, the following signature can be used alternatively.
+        //
+        [DllImport("user32.dll")]
+        static extern int SetWindowLong(IntPtr hWnd, int nIndex, uint dwNewLong);
+
+        [DllImport("user32.dll")]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+
+        [DllImport("user32.dll", EntryPoint = "GetWindowLong")]
+        static extern IntPtr GetWindowLongPtr(IntPtr hWnd, int nIndex);
+
+        const int SW_HIDE = 0;
+        const int SW_SHOW = 1;
+
+         const int GWL_EXSTYLE = -20;
+        const uint WS_EX_APPWINDOW = 0x00040000;
+        const uint WS_EX_NOACTIVATE = 0x08000000;
         public WinManViewModel() : base()
         {
 
@@ -363,7 +387,16 @@ namespace SimPanel.ViewModel
             }
         }
 
+        public static void SetStyle(IntPtr hwnd)
+        {
+           // HWND winHandle = (HWND)winId();
 
+            ShowWindow(hwnd, SW_HIDE);
+            uint s = (uint)GetWindowLongPtr(hwnd, GWL_EXSTYLE);
+            SetWindowLong(hwnd, GWL_EXSTYLE, s | WS_EX_NOACTIVATE | WS_EX_APPWINDOW);
+
+            ShowWindow(hwnd, SW_SHOW);
+        }
 
         public int G1000PFDPosX
         {

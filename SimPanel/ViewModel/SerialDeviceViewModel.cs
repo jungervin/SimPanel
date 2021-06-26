@@ -138,11 +138,12 @@ namespace SimPanel.ViewModel
 
                     }
 
-                    if (MainWindow.App.MainWindowViewModel != null)
+
+                    Application.Current.Dispatcher.Invoke(() =>
                     {
-                        //MainWindow.App.MainWindowViewModel.SimConnectViewModel.SerialPortConnected = res;
-                        this.Connected = res && this.SerialDevices.Count > 0;
-                    }
+                        this.Connected = res && this.SerialDevices.Count > 0 && MainWindow.App.MainWindowViewModel != null;
+                    });
+
                     if (n++ % 10 == 0)
                     {
                         this.InitPorts();
@@ -213,7 +214,7 @@ namespace SimPanel.ViewModel
         }
 
 
-        private bool FConnected;
+        private bool FConnected = false;
 
         public bool Connected
         {

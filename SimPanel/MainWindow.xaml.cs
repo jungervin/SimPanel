@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,7 +51,7 @@ namespace SimPanel
             this.DataContext = this.MainWindowViewModel;
 
             //this.Topmost = true;
-
+            
         }
         protected HwndSource GetHWinSource()
         {
@@ -65,6 +66,9 @@ namespace SimPanel
             {
                 oBaseSimConnectWrapper.SetWindowHandle(GetHWinSource().Handle);
             }
+
+            //WinManViewModel.SetStyle(new WindowInteropHelper(this).Handle);
+
         }
 
         private IntPtr WndProc(IntPtr hWnd, int iMsg, IntPtr hWParam, IntPtr hLParam, ref bool bHandled)
@@ -166,6 +170,14 @@ namespace SimPanel
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            string hostName = Dns.GetHostName();
+            //string myIP = Dns.GetHostByName(hostName).AddressList[0].ToString();
+
+            //String strHostName = string.Empty;
+            //IPHostEntry ipEntry = Dns.GetHostEntry(Dns.GetHostName());
+            //IPAddress[] addr = ipEntry.AddressList;
+            //Globals.MainWindow.SimpleHttpSever.ToString();
+
             System.Diagnostics.Process.Start("http://127.0.0.1:" + Settings.Default.TCPPort.ToString());
         }
 

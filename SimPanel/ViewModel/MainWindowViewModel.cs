@@ -288,7 +288,7 @@ namespace SimPanel.ViewModel
         }
 
         private int FSelectedTabIndex;
-        private SimpleHttpServer SimpleHttpSever;
+        public SimpleHttpServer SimpleHttpSever;
         private WSServer WSServer;
 
         public int SelectedTabIndex

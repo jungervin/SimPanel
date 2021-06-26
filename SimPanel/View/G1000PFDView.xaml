@@ -8,7 +8,7 @@
         x:Class="SimPanel.View.G1000PFDView"
         mc:Ignorable="d"
         AllowsTransparency="True" WindowStyle="None"
-        Title="G1000PFDView" Height="768" Width="1366" KeyDown="Window_KeyDown">
+        Title="G1000PFDView" Height="768" Width="1366" KeyDown="Window_KeyDown" Loaded="Window_Loaded">
     <Window.Background>
         <SolidColorBrush Opacity="0.0" Color="White"/>
     </Window.Background>
