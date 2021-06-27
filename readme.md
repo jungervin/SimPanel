@@ -10,6 +10,8 @@ To install, download the current [release](https://github.com/jungervin/SimPanel
 
 **(See how could you can create your own custom panel: [c172 Switches](https://github.com/jungervin/SimPanel/blob/master/SimPanel/HTML/c172switches.html))**
 
+(Current svg widgets and their syntaxes are here : https://github.com/jungervin/SimPanel/blob/master/SimPanel/HTML/js/elements/svg_ext.js)
+
 #### 2021-06-27 Updated Version 0.3 Changelog:
 - Overlapped G1000 PFD & MFD
 - https://youtu.be/Fkxn1plK5ZQ
