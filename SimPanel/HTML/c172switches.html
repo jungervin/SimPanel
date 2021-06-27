@@ -99,7 +99,7 @@
                 super();
                 const fms = this;
 
-                let lazy = 5;
+                let lazy = 3;
 
                 this.svg = SVG().addTo("#simpanel").size(width, height);
                 let svg = this.svg;
@@ -241,6 +241,8 @@
                 })
                 lw.translate(0, 30)
 
+
+                fms.connect()
             }
         }
 
