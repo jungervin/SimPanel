@@ -8,6 +8,8 @@ The program is currently only tested with the C172, but can also be used on othe
 
 To install, download the current [release](https://github.com/jungervin/SimPanel/releases) and unpack it somewhere. After startup, load variables and events from the Simpanel/Data folder. Then open the web browser with the "Open Index Page" button on the settings tab.
 
+(See how could you can create your own custom panel: [c172 Switches](https://github.com/jungervin/SimPanel/blob/master/SimPanel/HTML/c172switches.html))
+
 #### 2021-06-27 Updated Version 0.3 Changelog:
 - Overlapped G1000 PFD & MFD
 - https://youtu.be/Fkxn1plK5ZQ
