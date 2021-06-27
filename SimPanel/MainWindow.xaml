@@ -319,9 +319,9 @@
 
                             <Button Content="Save" Command="{Binding SaveSettingsCommand}" HorizontalAlignment="Left" Margin="232,211,0,0" VerticalAlignment="Top"></Button>
 
-                            <Button Content="Open Index Page" Click="Button_Click" HorizontalAlignment="Left" Margin="220,0,0,180" VerticalAlignment="Bottom"></Button>
+                            <!--<Button Content="Open Index Page" Click="Button_Click" HorizontalAlignment="Left" Margin="220,0,0,180" VerticalAlignment="Bottom"></Button>
                             <Button Content="G530" Click="G530_Click" HorizontalAlignment="Left" Margin="220,0,0,143" VerticalAlignment="Bottom"></Button>
-                            <Button Content="Window" Click="Win_Click" HorizontalAlignment="Left" Margin="290,0,0,143" VerticalAlignment="Bottom"/>
+                            <Button Content="Window" Click="Win_Click" HorizontalAlignment="Left" Margin="290,0,0,143" VerticalAlignment="Bottom"/>-->
 
 
                         </Grid>

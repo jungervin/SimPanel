@@ -26,7 +26,8 @@
         <h1>SIMPANEL</h1>
         <p>Version: <b><span id="version">???</b></span></p>
         <p>Date: <b><span id="date">???</b></span></p>
-        <p>WebSocket Connection: <b><span id="websocket_url">???</span></b></p>
+        <p>WebSocket Connection (SIM): <b><span id="ws_sim">???</span></b></p>
+        <p>WebSocket Connection (VARIABLES): <b><span id="ws_variables">???</span></b></p>
     </div>
 
 
@@ -37,6 +38,7 @@
                 <li><a href="/c172pfd.html">G1000 PFD</a></li>
                 <li><a href="/c172mfd.html">G1000 MFD</a></li>
                 <li><a href="/c172mfd_ext.html">G1000 MFD V2</a></li>
+                <li><a href="/c172switches.html">C172 Switches</a></li>
             </div>
             <div class="col-sm-4">
                 <h3>MSFS 2020 Links</h3>
@@ -61,8 +63,9 @@
     <script>
         window.onload = function () {
                     document.getElementById("version").innerHTML = SETTINGS.version;
-                    document.getElementById("date").innerHTML = d.date;
-                    document.getElementById("websocket_url").innerHTML = d.websocket_url;
+                    document.getElementById("date").innerHTML = SETTINGS.date;
+                    document.getElementById("ws_sim").innerHTML = SETTINGS.ws_sim;
+                    document.getElementById("ws_variables").innerHTML = SETTINGS.ws_variables;
                    
 
             

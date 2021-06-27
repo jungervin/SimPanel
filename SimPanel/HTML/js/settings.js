@@ -1,8 +1,13 @@
 let SETTINGS = {
-    version: "0.2",
-    date: "2021-04-02",
-    ws_sim: "ws://127.0.0.1:5000/sim",
-    ws_variables: "ws://127.0.0.1:5000/variables",
+    version: "0.4",
+    date: "2021-06-27",
+    
+    //ws_sim: "ws://127.0.0.1:5000/sim",
+    //ws_variables: "ws://127.0.0.1:5000/variables",
+
+    ws_sim: "ws://" + window.location.hostname + ":5000/sim",
+    ws_variables: "ws://" + window.location.hostname + ":5000/variables",
+
     mfd_url: window.location.origin + "/c172mfd_ext.html",
     pfd_url: window.location.origin + "/c172pfd.html",
     timeout: 30,
